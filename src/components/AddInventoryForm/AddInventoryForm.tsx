@@ -1,20 +1,34 @@
 import { useForm } from 'react-hook-form'
-// import { InventoryService } from '../../services/InventoryService'
+import { Inventory } from '../../models/Inventory.model'
+import './AddInventoryForm.styles.scss'
+import { InventoryService } from '../../services/InventoryService'
 
 const AddInventoryForm = () => {
-    const { register, handleSubmit } = useForm()
-    const onSubmit = (data:any) => {
-        // InventoryService.addInventory(data)
-        console.log(data)
+    const { register, handleSubmit } = useForm<Inventory>()
+    const onSubmit = (data: Inventory) => {
+        InventoryService.addInventory(data)
     }
     
     return (
-        <div>
+        <div className='add-inventory-container'>
+            <h2>Add new product:</h2>
             <form onSubmit={handleSubmit(onSubmit)}>
-                <input {...register('name')} type="text" />
-                <input {...register('category')} type="text" />
-                <input {...register('stock')} type="text" />
-                <input {...register('unit')} type="text" />
+                <div className="form-group">
+                    <label htmlFor="">Name:</label>
+                    <input {...register('name')} type="text" />
+                </div>
+                <div className="form-group">
+                    <label htmlFor="">Category:</label>
+                    <input {...register('category')} type="text" />
+                </div>
+                <div className="form-group">
+                    <label htmlFor="">Stock:</label>
+                    <input {...register('stock')} type="text" />
+                </div>
+                <div className="form-group">
+                    <label htmlFor="">Unit:</label>
+                    <input {...register('unit')} type="text" />
+                </div>
                 <button type="submit">Submit</button>
             </form>
         </div>
