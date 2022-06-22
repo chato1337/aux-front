@@ -7,7 +7,8 @@ export class InventoryService{
         return res.data
     }
 
-    static addInventory = data => {
+    //TODO: fix this shit
+    static addInventory = (data: any) => {
         return axios.post(AuxConstants.baseUrl+InventoryConstant.addUrl, data)
     } 
 }

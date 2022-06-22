@@ -1,7 +1,6 @@
-import React from 'react'
 import { useQuery } from 'react-query'
 import { InventoryService } from '../../services/InventoryService'
-import AddInventoryForm from './AddInventoryForm'
+import AddInventoryForm from '../../components/AddInventoryForm/AddInventoryForm'
 
 const Inventory = () => {
     const { data, status } = useQuery('inventory', InventoryService.getInventories)
@@ -11,7 +10,7 @@ const Inventory = () => {
             inventory component:
             <ul>
                 {
-                    data?.map(item =>
+                    data?.map((item: any) =>
                         <li key={item.id}>{item.name} - {item.category} - {item.stock}</li>
                     )
                 }

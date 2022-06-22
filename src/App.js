@@ -1,6 +1,6 @@
 // import './App.css';
 import Logo from './components/Logo/Logo';
-import Inventory from './components/Inventory/Inventory';
+import Inventory from './containers/Inventory/Inventory';
 
 function App() {
   return (

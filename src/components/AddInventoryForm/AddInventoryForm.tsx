@@ -1,11 +1,11 @@
-import React from 'react'
 import { useForm } from 'react-hook-form'
 import { InventoryService } from '../../services/InventoryService'
 
 const AddInventoryForm = () => {
     const { register, handleSubmit } = useForm()
-    const onSubmit = data => {
-        InventoryService.addInventory(data)
+    const onSubmit = (data:any) => {
+        // InventoryService.addInventory(data)
+        console.log(data)
     }
     
     return (
