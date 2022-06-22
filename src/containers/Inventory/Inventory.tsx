@@ -3,7 +3,8 @@ import { InventoryService } from '../../services/InventoryService'
 import AddInventoryForm from '../../components/AddInventoryForm/AddInventoryForm'
 
 const Inventory = () => {
-    const { data, status } = useQuery('inventory', InventoryService.getInventories)
+    const { data } = useQuery('inventory', InventoryService.getInventories)
+    // const { data, status } = useQuery('inventory', InventoryService.getInventories)
 
     return (
         <div>

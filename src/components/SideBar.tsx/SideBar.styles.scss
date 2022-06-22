@@ -1,0 +1,13 @@
+.sideBar-container {
+    border: 1px solid red;
+    height: 100%;
+    margin-block-start: 0;    
+    margin-block-end: 0;
+    padding-inline-start: 0;
+    padding-inline-end: 0;
+
+    li {
+        list-style: none;
+        padding: .2rem .3rem;
+    }
+}

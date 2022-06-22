@@ -1,5 +1,5 @@
 import { useForm } from 'react-hook-form'
-import { InventoryService } from '../../services/InventoryService'
+// import { InventoryService } from '../../services/InventoryService'
 
 const AddInventoryForm = () => {
     const { register, handleSubmit } = useForm()
