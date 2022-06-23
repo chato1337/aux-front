@@ -1,4 +1,5 @@
 import Modal from 'react-modal';
+import './SimpleModal.styles.scss'
 
 type SimpleModalProps = {
 	children: JSX.Element;
@@ -9,12 +10,7 @@ type SimpleModalProps = {
 
 const defaultStyles = {
     content: {
-        top: '50%',
-        left: '50%',
-        right: 'auto',
-        bottom: 'auto',
-        marginRight: '-50%',
-        transform: 'translate(-50%, -50%)',
+        padding: 0
     },
 };
 
@@ -27,9 +23,14 @@ const SimpleModal = ({ children, modalIsOpen, closeModal, customStyles = default
                 // onRequestClose={closeModal}
                 style={customStyles}
                 contentLabel="Example Modal"
+                ariaHideApp={false}
             >
-                <button onClick={closeModal} >close</button>
-                { children }
+                <div className="modal-content">
+                    <button className='close-button' onClick={closeModal} >close</button>
+                    <div className="modal-inner">
+                        { children }
+                    </div>
+                </div>
             </Modal>
         </div>
     )

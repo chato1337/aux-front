@@ -4,6 +4,9 @@ import AddInventoryForm from '../../components/AddInventoryForm/AddInventoryForm
 import { Inventory } from '../../models/Inventory.model.d';
 import SimpleModal from '../../components/SimpleModal/SimpleModal';
 import { useState } from 'react';
+import { FaRegEdit } from 'react-icons/fa'
+import { RiDeleteBinLine } from 'react-icons/ri'
+import { BiAddToQueue } from 'react-icons/bi'
 import './Inventory.styles.scss'
 
 const InventoryComponent = () => {
@@ -20,9 +23,12 @@ const InventoryComponent = () => {
 
     return (
         <div className='inventory-container'>
-            <div>
+            <div className='inventory-header'>
                 <h2>Inventory Products:</h2>
-                <button onClick={() => handleModal(null)}>Add product</button>
+                <button onClick={() => handleModal(null)}>
+                    <BiAddToQueue />
+                    Add product
+                </button>
                 <form>
                     <input type="text" placeholder='product name' />
                     <button>Search</button>
@@ -49,9 +55,13 @@ const InventoryComponent = () => {
                                             <td>{product.category}</td>
                                             <td>{product.stock}</td>
                                             <td>{product.unit}</td>
-                                            <td>
-                                                <button onClick={() => handleModal(product)}>Edit</button>
-                                                <button>Delete</button>
+                                            <td className='action-cell'>
+                                                <button onClick={() => handleModal(product)}>
+                                                    <FaRegEdit />
+                                                </button>
+                                                <button>
+                                                    <RiDeleteBinLine />
+                                                </button>
                                             </td>
                                         </tr>
                                     )

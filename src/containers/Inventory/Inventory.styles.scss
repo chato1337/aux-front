@@ -1,4 +1,16 @@
 .inventory-container {
+    // display: flex;
+    margin: 20px;
+
+    .inventory-header {
+        margin-bottom: 25px;
+        form {
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+        }
+    }
+
     div {
         display: flex;
         justify-content: space-between;
