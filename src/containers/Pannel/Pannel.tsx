@@ -1,15 +1,14 @@
 import SideBar from '../../components/SideBar.tsx/SideBar'
-import Inventory from '../Inventory/Inventory'
 import './Pannel.styles.scss'
 
-const Pannel = () => {
+const Pannel = ({ children }: { children: JSX.Element }) => {
   return (
     <div className="pannel-container">
         <div className="left-pannel">
           <SideBar />
         </div>
         <div className="right-pannel">
-          <Inventory />
+          {children}
         </div>
     </div>
   )
