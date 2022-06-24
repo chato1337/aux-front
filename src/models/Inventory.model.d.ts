@@ -1,6 +1,6 @@
 export interface Inventory {
     id: number
-    stock: string,
+    stock: number,
     name: string,
     category: string,
     unit: string,

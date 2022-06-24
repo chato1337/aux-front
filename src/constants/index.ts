@@ -11,7 +11,7 @@ export class InventoryConstant {
         name: '',
         id: 0,
         category: '',
-        stock: '',
+        stock: 0,
         unit: '',
         is_active: true
     }

@@ -11,7 +11,27 @@ const AddStockForm = ({ productData = InventoryConstant.defaultValue }: AddStock
 
     return (
         <div>
-            <h2>Generate price value for {productData.name}</h2>
+            <h2>Generate price value:</h2>
+
+            <table>
+                <thead>
+                    <tr>
+                        <th>Product Name</th>
+                        <th>Stock</th>
+                        <th>Unit</th>
+                        <th>Price</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>{productData.name}</td>
+                        <td>{productData.stock}</td>
+                        <td>{productData.unit}</td>
+                        <td>0</td>
+                    </tr>
+                </tbody>
+            </table>
+
             <form onSubmit={handleSubmit(onSubmit)}>
                 <div className="form-group">
                     <label htmlFor="">Initial Value:</label>

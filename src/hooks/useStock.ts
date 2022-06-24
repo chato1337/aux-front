@@ -28,6 +28,6 @@ export const useStock = () => {
         modalIsOpen,
         closeModal,
         handleModal,
-        productSelected
+        productSelected,
     }
 }
