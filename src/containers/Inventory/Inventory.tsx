@@ -1,25 +1,14 @@
-import { useQuery } from 'react-query'
-import { InventoryService } from '../../services/InventoryService'
 import AddInventoryForm from '../../components/AddInventoryForm/AddInventoryForm'
 import { Inventory } from '../../models/Inventory.model.d';
 import SimpleModal from '../../components/SimpleModal/SimpleModal';
-import { useState } from 'react';
 import { FaRegEdit } from 'react-icons/fa'
 import { RiDeleteBinLine } from 'react-icons/ri'
 import { BiAddToQueue } from 'react-icons/bi'
 import './Inventory.styles.scss'
+import { useInventory } from '../../hooks/useInventory';
 
 const InventoryComponent = () => {
-    const { data, isSuccess } = useQuery('inventory', InventoryService.getInventories)
-    const [modalIsOpen, setModalIsOpen] = useState(false)
-    const [productSelected, setProductSelected] = useState<null | Inventory>(null)
-
-    const closeModal = () => setModalIsOpen(false)
-
-    const handleModal = (product: Inventory | null) => {
-        setModalIsOpen(true)
-        setProductSelected(product)
-    }
+    const { data, isSuccess, modalIsOpen, productSelected, closeModal, handleModal } = useInventory()
 
     return (
         <div className='inventory-container'>

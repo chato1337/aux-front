@@ -2,6 +2,7 @@ import { Link, useLocation } from 'react-router-dom';
 import './SideBar.styles.scss'
 import { BsBoxSeam } from 'react-icons/bs'
 import { FiSettings } from 'react-icons/fi'
+import { RiInboxUnarchiveLine } from 'react-icons/ri'
 
 const SideBar = () => {
 	const location = useLocation()
@@ -13,6 +14,12 @@ const SideBar = () => {
 					<Link to='inventory'>
 						<BsBoxSeam />
 						Inventory
+					</Link>
+				</li>
+				<li className={ location.pathname === '/dashboard/stock' ? 'menu-active' : '' }>
+					<Link to='stock'>
+						<RiInboxUnarchiveLine />
+						Stock
 					</Link>
 				</li>
 				<li className={ location.pathname === '/dashboard/settings' ? 'menu-active' : '' }>
