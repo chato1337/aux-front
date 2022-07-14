@@ -5,3 +5,5 @@ export interface Stock {
     tax: number;
     initial_value: number;
 }
+
+export interface StockDTO extends Omit<Stock, 'id'>{}

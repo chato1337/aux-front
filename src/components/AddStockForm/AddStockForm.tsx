@@ -3,7 +3,7 @@ import { useStock } from '../../hooks/useStock';
 import { Inventory } from '../../models/Inventory.model';
 
 type AddStockFormTypes = {
-    productData?: Inventory
+    productData: Inventory | null
 }
 
 const AddStockForm = ({ productData = InventoryConstant.defaultValue }: AddStockFormTypes) => {
@@ -23,12 +23,14 @@ const AddStockForm = ({ productData = InventoryConstant.defaultValue }: AddStock
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                        <td>{productData.name}</td>
-                        <td>{productData.stock}</td>
-                        <td>{productData.unit}</td>
-                        <td>0</td>
-                    </tr>
+                    {productData && (
+                        <tr>
+                            <td>{productData.name}</td>
+                            <td>{productData.stock}</td>
+                            <td>{productData.unit}</td>
+                            <td>0</td>
+                        </tr>
+                    )}
                 </tbody>
             </table>
 

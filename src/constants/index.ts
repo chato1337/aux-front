@@ -17,3 +17,9 @@ export class InventoryConstant {
     }
     
 }
+
+export class StockConstant {
+    static apiUrl = 'api/stock/get/'
+    static addUrl = 'api/stock/add/'
+    
+}

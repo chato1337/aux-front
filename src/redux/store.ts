@@ -1,9 +1,11 @@
 import { configureStore } from '@reduxjs/toolkit'
+import InventorySlice from './InventorySlice'
 import settingsSlice from './settingsSlice'
 
 export const store = configureStore({
   reducer: {
-    settings: settingsSlice
+    settings: settingsSlice,
+    inventory: InventorySlice 
   },
 })
 

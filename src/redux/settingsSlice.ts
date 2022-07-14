@@ -9,7 +9,7 @@ const initialState: SettingsState = {
 }
 
 export const settingsSlice = createSlice({
-  name: 'counter',
+  name: 'settings',
   initialState,
   reducers: {
     increment: (state: any) => {

@@ -33,7 +33,7 @@ const Stock = () => {
 							</tr>
 						</thead>
 						<tbody>
-							{data.map((product: Inventory) => {
+							{ isSuccess && data.map((product: Inventory) => {
 								return (
 									<tr key={product.id}>
 										<td>{product.name}</td>
@@ -60,7 +60,7 @@ const Stock = () => {
                 closeModal={closeModal}
             >
                 <AddStockForm
-                    productData={productSelected ? productSelected : undefined}
+                    productData={productSelected}
                 />
             </SimpleModal>
 		</div>
