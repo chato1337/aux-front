@@ -85,11 +85,20 @@ const AddInventoryForm = ({ productData = InventoryConstant.defaultValue }: AddI
                     />
                 </div>
                 <div className="form-group">
+                    <label htmlFor="">Entry date:</label>
+                    <input
+                        {...register('entry_date', {required: true})}
+                        type="date"
+                        defaultValue={productData.entry_date}
+                        className={ errors.entry_date ? 'error' : '' }
+                    />
+                </div>
+                <div className="form-group">
                     <label htmlFor="">Expiration date:</label>
                     <input
                         {...register('expiration_date', {required: true})}
                         type="date"
-                        defaultValue={productData.unit}
+                        defaultValue={productData.expiration_date}
                         className={ errors.expiration_date ? 'error' : '' }
                     />
                 </div>

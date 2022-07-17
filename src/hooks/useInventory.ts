@@ -29,7 +29,8 @@ export const useInventory = () => {
     const { register, handleSubmit, reset, control, formState: { errors } } = useForm<Product>()
 
     const onSubmit = (data: Product) => {
-        console.log(data)
+        mutate(data)
+        // console.log(data)
         // const supplier = selectedOption as Option
 
         // if (supplier.value > 0) {
