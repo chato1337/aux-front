@@ -1,24 +1,39 @@
 import { useState } from "react"
 import { useForm } from "react-hook-form"
 import { useQuery, useMutation } from "react-query"
-import { Inventory } from "../models/Inventory.model"
+import { Product } from "../models/Inventory.model"
 import { InventoryService } from "../services/InventoryService"
 import { useModal } from './useModal';
+import { Option, useSelect } from "./useSelect"
+
+const initialSupplier: Option = {
+    value: 0,
+    label: 'select a supplier...'
+}
 
 export const useInventory = () => {
     const { data, isSuccess } = useQuery('inventory', InventoryService.getInventories)
-    const [productSelected, setProductSelected] = useState<null | Inventory>(null)
+    const [productSelected, setProductSelected] = useState<null | Product>(null)
     const { modalIsOpen, setModalIsOpen, closeModal } = useModal()
+    const { selectedOption, handleChange } = useSelect(initialSupplier)
 
-    const handleModal = (product: Inventory | null) => {
+    const handleModal = (product: Product | null) => {
         setModalIsOpen(true)
         setProductSelected(product)
     }
 
-    const { register, handleSubmit, reset, formState: {errors} } = useForm<Inventory>()
-    const onSubmit = (data: Inventory) => {
-        // InventoryService.addInventory(data)
-        mutate(data)
+    const { register, handleSubmit, reset, formState: { errors } } = useForm<Product>()
+
+    const onSubmit = (data: Product) => {
+        const supplier = selectedOption as Option
+
+        if (supplier.value > 0) {
+            const productData = { ...data, supplier: supplier.value }
+            mutate(productData)
+            // console.log(productData)
+        }else {
+            alert('select a supplier first!')
+        }
     }
 
     const { mutate } = useMutation(InventoryService.addInventory, {
@@ -41,6 +56,8 @@ export const useInventory = () => {
         errors,
         register,
         handleSubmit,
-        onSubmit
+        onSubmit,
+        selectedOption,
+        handleChange
     }
 }

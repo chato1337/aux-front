@@ -1,6 +1,6 @@
 import { Link, useLocation } from 'react-router-dom';
 import './SideBar.styles.scss'
-import { BsBoxSeam } from 'react-icons/bs'
+import { BsBoxSeam, BsUpcScan } from 'react-icons/bs'
 import { FiSettings } from 'react-icons/fi'
 import { RiInboxUnarchiveLine } from 'react-icons/ri'
 
@@ -10,9 +10,15 @@ const SideBar = () => {
     return (
 		<div className="sidebar-container">
 			<menu>
+				<li className={ location.pathname === '/dashboard/supplier' ? 'menu-active' : '' }>
+					<Link to='supplier'>
+						<BsBoxSeam />
+						Supplier
+					</Link>
+				</li>
 				<li className={ location.pathname === '/dashboard/inventory' ? 'menu-active' : '' }>
 					<Link to='inventory'>
-						<BsBoxSeam />
+						<BsUpcScan />
 						Inventory
 					</Link>
 				</li>

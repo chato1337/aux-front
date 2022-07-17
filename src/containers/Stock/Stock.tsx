@@ -2,7 +2,7 @@ import { BiAddToQueue } from "react-icons/bi";
 import { RiDeleteBinLine } from "react-icons/ri";
 import SimpleModal from "../../components/SimpleModal/SimpleModal";
 import { useInventory } from "../../hooks/useInventory";
-import { Inventory } from "../../models/Inventory.model";
+import { Product } from "../../models/Inventory.model";
 import AddStockForm from '../../components/AddStockForm/AddStockForm';
 import { useStock } from '../../hooks/useStock';
 
@@ -33,7 +33,7 @@ const Stock = () => {
 							</tr>
 						</thead>
 						<tbody>
-							{ isSuccess && data.map((product: Inventory) => {
+							{ isSuccess && data.map((product: Product) => {
 								return (
 									<tr key={product.id}>
 										<td>{product.name}</td>

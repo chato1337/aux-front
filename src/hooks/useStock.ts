@@ -1,6 +1,6 @@
 import { useForm } from 'react-hook-form';
 import { useModal } from './useModal';
-import { Inventory } from '../models/Inventory.model.d';
+import { Product } from '../models/Inventory.model.d';
 import { StockDTO } from '../models/Stock.model';
 import { useMutation, useQuery } from 'react-query';
 import { StockService } from '../services/StockService';
@@ -14,7 +14,7 @@ export const useStock = () => {
     const { modalIsOpen, setModalIsOpen, closeModal } = useModal()
     const productSelected = useSelector((state: RootState) => state.inventory.inventoryProduct)
     const dispatch = useDispatch()
-    const { data, isSuccess } = useQuery("stock", StockService.getStock)
+    const { data } = useQuery("stock", StockService.getStock)
 
     useEffect(() => {
         console.log(data)
@@ -28,7 +28,7 @@ export const useStock = () => {
         mutate(newStock)
     }
 
-    const handleModal = (product: Inventory) => {
+    const handleModal = (product: Product) => {
         setModalIsOpen(true)
         dispatch(setInventory(product))
     }

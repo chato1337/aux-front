@@ -1,9 +1,9 @@
 import { InventoryConstant } from '../../constants';
 import { useStock } from '../../hooks/useStock';
-import { Inventory } from '../../models/Inventory.model';
+import { Product } from '../../models/Inventory.model';
 
 type AddStockFormTypes = {
-    productData: Inventory | null
+    productData: Product | null
 }
 
 const AddStockForm = ({ productData = InventoryConstant.defaultValue }: AddStockFormTypes) => {

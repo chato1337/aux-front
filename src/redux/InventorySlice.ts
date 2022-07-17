@@ -1,8 +1,8 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
-import { Inventory } from '../models/Inventory.model.d';
+import { Product } from '../models/Inventory.model.d';
 
 export interface InventoryState {
-    inventoryProduct: Inventory | null
+    inventoryProduct: Product | null
 }
 
 const initialState: InventoryState = {
@@ -13,7 +13,7 @@ export const inventorySlice = createSlice({
     name: 'inventory',
     initialState,
     reducers: {
-        setInventory: (state: InventoryState, action: PayloadAction<Inventory>) => {
+        setInventory: (state: InventoryState, action: PayloadAction<Product>) => {
             state.inventoryProduct = action.payload
         },
         resetInventory: (state: InventoryState) => {
