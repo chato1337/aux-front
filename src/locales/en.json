@@ -1,5 +1,18 @@
 {
-    "supplier": "Suppliers",
+    "supplier": {
+        "title": "Suppliers",
+        "add": "Add Supplier",
+        "name": "Name",
+        "id": "ID",
+        "phone": "Phone",
+        "email": "Email",
+        "description": "Description/notes"
+    },
+    "actions": "Actions",
+    "table": {
+        "edit": "Edit",
+        "delete": "Delete"
+    },
     "inventory": "Inventory",
     "sales": "Sales",
     "settings": "Settings"

@@ -1,31 +1,68 @@
 import { useSupplier } from '../../hooks/useSupplier';
+import { Supplier } from '../../models/Supplier.model.d';
+import { useTranslation } from 'react-i18next';
 
-const AddSupplierForm = () => {
+type AddSupplierFormProps = {
+    supplierData?: Supplier 
+}
+
+const AddSupplierForm = ({ supplierData }: AddSupplierFormProps) => {
     const { handleSubmit, onSubmit, register, errors } = useSupplier()
-    
+    const [ t ] = useTranslation()
+
     return (
         <div>
             <h2>Add new Supplier</h2>
             <form onSubmit={handleSubmit(onSubmit)}>
                 <div className="form-group">
-                    <label htmlFor="name">Name:</label>
-                    <input id='name' type="text" {...register('name', {required: true})} className={ errors.name ? 'error' : '' } />
+                    <label htmlFor="name">{ t('supplier.name') }:</label>
+                    <input
+                        id='name'
+                        type="text"
+                        {...register('name', {required: true})}
+                        className={ errors.name ? 'error' : '' }
+                        defaultValue={supplierData?.name}
+                    />
                 </div>
                 <div className="form-group">
-                    <label htmlFor="ident">Identifier:</label>
-                    <input id='ident' type="text" {...register('identifier', {required: true})} />
+                    <label htmlFor="ident">{ t('supplier.id') }:</label>
+                    <input
+                        id='ident'
+                        type="text"
+                        {...register('identifier', {required: true})}
+                        className={ errors.identifier ? 'error' : '' }
+                        defaultValue={supplierData?.identifier}
+                    />
                 </div>
                 <div className="form-group">
-                    <label htmlFor="phone">Phone:</label>
-                    <input id='phone' type="text" {...register('phone', {required: true})} />
+                    <label htmlFor="phone">{ t('supplier.phone') }:</label>
+                    <input
+                        id='phone'
+                        type="text"
+                        {...register('phone', {required: true})}
+                        className={ errors.phone? 'error' : '' }
+                        defaultValue={supplierData?.phone}
+                    />
                 </div>
                 <div className="form-group">
-                    <label htmlFor="email">Email:</label>
-                    <input id='email' type="text" {...register('email', {required: true})} />
+                    <label htmlFor="email">{ t('supplier.email') }:</label>
+                    <input
+                        id='email'
+                        type="text"
+                        {...register('email', {required: true})}
+                        className={ errors.email ? 'error' : '' }
+                        defaultValue={supplierData?.email}
+                    />
                 </div>
                 <div className="form-group">
                     <label htmlFor="description">Description/notes:</label>
-                    <input id='description' type="text" {...register('other_details', {required: true})} />
+                    <input
+                        id='description'
+                        type="text"
+                        {...register('other_details', {required: true})}
+                        className={ errors.other_details ? 'error' : '' }
+                        defaultValue={supplierData?.other_details}
+                    />
                 </div>
                 <button type='submit'>Create Supplier</button>
             </form>

@@ -3,10 +3,13 @@ import { useForm } from 'react-hook-form';
 import { Supplier, SupplierDTO } from "../models/Supplier.model";
 import { useMutation, useQuery } from 'react-query';
 import { SupplierService } from '../services/SupplierService';
+import { useState } from "react";
 
 export const useSupplier = () => {
     const { modalIsOpen, setModalIsOpen, closeModal } = useModal()
     const { register, handleSubmit, reset, formState: {errors} } = useForm<Supplier>()
+    const [ supplierSelected, setSupplierSelected ] = useState<null | Supplier>(null)
+
     const { data, isSuccess } = useQuery("supplier", SupplierService.getSupplier)
     const onSubmit = (data: SupplierDTO) => {
         mutate(data)
@@ -20,7 +23,10 @@ export const useSupplier = () => {
         },
     })
 
-    const handleModal = () => setModalIsOpen(!modalIsOpen)
+    const handleModal = (sup: Supplier | null) => {
+        setModalIsOpen(!modalIsOpen)
+        setSupplierSelected(sup)
+    }
 
     return {
         modalIsOpen,
@@ -32,6 +38,7 @@ export const useSupplier = () => {
         errors,
         onSubmit,
         data,
-        isSuccess
+        isSuccess,
+        supplierSelected
     }
 }

@@ -11,6 +11,10 @@ const initialSupplier: Option = {
     label: 'select a supplier...'
 }
 
+export interface FormValues {
+    suppliers: Option[]
+}
+
 export const useInventory = () => {
     const { data, isSuccess } = useQuery('inventory', InventoryService.getInventories)
     const [productSelected, setProductSelected] = useState<null | Product>(null)
@@ -22,18 +26,19 @@ export const useInventory = () => {
         setProductSelected(product)
     }
 
-    const { register, handleSubmit, reset, formState: { errors } } = useForm<Product>()
+    const { register, handleSubmit, reset, control, formState: { errors } } = useForm<Product>()
 
     const onSubmit = (data: Product) => {
-        const supplier = selectedOption as Option
+        console.log(data)
+        // const supplier = selectedOption as Option
 
-        if (supplier.value > 0) {
-            const productData = { ...data, supplier: supplier.value }
-            mutate(productData)
-            // console.log(productData)
-        }else {
-            alert('select a supplier first!')
-        }
+        // if (supplier.value > 0) {
+        //     const productData = { ...data, supplier: supplier.value }
+        //     mutate(productData)
+        //     // console.log(productData)
+        // }else {
+        //     alert('select a supplier first!')
+        // }
     }
 
     const { mutate } = useMutation(InventoryService.addInventory, {
@@ -58,6 +63,7 @@ export const useInventory = () => {
         handleSubmit,
         onSubmit,
         selectedOption,
-        handleChange
+        handleChange,
+        control
     }
 }

@@ -15,7 +15,7 @@ const SideBar = () => {
 				<li className={ location.pathname === '/dashboard/supplier' ? 'menu-active' : '' }>
 					<Link to='supplier'>
 						<BsBoxSeam />
-						{ t('supplier') }
+						{ t('supplier.title') }
 					</Link>
 				</li>
 				<li className={ location.pathname === '/dashboard/inventory' ? 'menu-active' : '' }>
@@ -35,15 +35,6 @@ const SideBar = () => {
 						<FiSettings />
 						{ t('settings') }
 					</Link>
-				</li>
-				<li className={ location.pathname === '/dashboard/sales' ? 'menu-active' : '' }>
-					<Link to='sales'>Sales</Link>
-				</li>
-				<li className={ location.pathname === '/dashboard/report' ? 'menu-active' : '' }>
-					<Link to='report'>Report</Link>
-				</li>
-				<li className={ location.pathname === '/dashboard/about' ? 'menu-active' : '' }>
-					<Link to='about'>About</Link>
 				</li>
 			</menu>
 		</div>

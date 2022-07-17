@@ -2,17 +2,20 @@ import './AddInventoryForm.styles.scss'
 import { Product } from '../../models/Inventory.model.d';
 import { useInventory } from '../../hooks/useInventory';
 import { InventoryConstant } from '../../constants';
-import Select from "react-select";
+import Select, {SingleValue} from "react-select";
 import { useSupplier } from '../../hooks/useSupplier';
 import { SupplierService } from '../../services/SupplierService';
+import { Option } from '../../hooks/useSelect';
+import { Controller } from 'react-hook-form';
 
 type AddInventoryFormProps = {
     productData?: Product
 }
 
 const AddInventoryForm = ({ productData = InventoryConstant.defaultValue }: AddInventoryFormProps) => {
-    const { handleSubmit, onSubmit, register, errors, selectedOption, handleChange } = useInventory()
+    const { handleSubmit, onSubmit, register, errors, control } = useInventory()
     const { data, isSuccess } = useSupplier()
+    const suppliers = isSuccess ? SupplierService.genSupplierOpt(data) : []
 
     return (
         <div className='add-inventory-container'>
@@ -21,10 +24,18 @@ const AddInventoryForm = ({ productData = InventoryConstant.defaultValue }: AddI
                 <div className="form-group">
                     <label htmlFor="">Supplier:</label>
                     { isSuccess && (
-                        <Select
-                            defaultValue={selectedOption}
-                            onChange={handleChange}
-                            options={ SupplierService.genSupplierOpt(data) }
+                        <Controller
+                            name="supplier_id"
+                            control={control}
+                            defaultValue={productData.supplier_id}
+                            rules={{ required: true }}
+                            render={({ field: { value, onChange, onBlur } }) => (
+                                <Select
+                                    onChange={(el: SingleValue<Option>) => onChange(el?.value)}
+                                    defaultValue={suppliers.filter((item: Option) => item.value === value)}
+                                    options={ suppliers }
+                                />
+                            )}
                         />
                     ) }
                 </div>
@@ -49,7 +60,7 @@ const AddInventoryForm = ({ productData = InventoryConstant.defaultValue }: AddI
                 <div className="form-group">
                     <label htmlFor="">Price:</label>
                     <input
-                        {...register('category', {required: true})}
+                        {...register('price', {required: true})}
                         type="number"
                         defaultValue={productData.price}
                         className={ errors.price ? 'error' : '' }
@@ -59,7 +70,7 @@ const AddInventoryForm = ({ productData = InventoryConstant.defaultValue }: AddI
                     <label htmlFor="">Stock:</label>
                     <input
                         {...register('stock', {required: true})}
-                        type="text"
+                        type="number"
                         defaultValue={productData.stock}
                         className={ errors.stock ? 'error' : '' }
                     />

@@ -1,5 +1,5 @@
 export interface Product {
-    supplier_id: number,
+    supplier_id: number | string,
     id: number
     stock: number,
     name: string,

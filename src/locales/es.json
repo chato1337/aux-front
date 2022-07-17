@@ -1,5 +1,18 @@
 {
-    "supplier": "Proveedores",
+    "supplier": {
+        "title": "Proveedores",
+        "add": "Agregar proveedor",
+        "name": "Nombre",
+        "id": "ID",
+        "phone": "Telefono",
+        "email": "Email",
+        "description": "Descripción/Notas"
+    },
+    "actions": "Actions",
+    "table": {
+        "edit": "Editar",
+        "delete": "Eliminar"
+    },
     "inventory": "Inventario",
     "sales": "Punto de venta",
     "settings": "Ajustes"
