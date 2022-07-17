@@ -7,6 +7,7 @@ import reportWebVitals from './reportWebVitals';
 import { QueryClient, QueryClientProvider } from 'react-query';
 import { store } from './redux/store'
 import { Provider } from 'react-redux'
+import './i18n';
 
 const queryClient = new QueryClient()
 

@@ -1,34 +1,31 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
+import { resources } from '../i18n';
 
 export interface SettingsState {
-  value: number
+  language: string;
+  translations: any
 }
 
 const initialState: SettingsState = {
-  value: 0,
+  language: "en",
+  translations: {...resources}
 }
 
 export const settingsSlice = createSlice({
   name: 'settings',
   initialState,
   reducers: {
-    increment: (state: any) => {
-      // Redux Toolkit allows us to write "mutating" logic in reducers. It
-      // doesn't actually mutate the state because it uses the Immer library,
-      // which detects changes to a "draft state" and produces a brand new
-      // immutable state based off those changes
-      state.value += 1
-    },
-    decrement: (state: any) => {
-      state.value -= 1
-    },
-    incrementByAmount: (state: any, action: PayloadAction<number>) => {
-      state.value += action.payload
+    changeLang: (state: any, action: PayloadAction<string>) => {
+      state.language = action.payload
     },
   },
 })
 
+export const currentLang = (state: SettingsState) => {
+  return state.translations[state.language]
+}
+
 // Action creators are generated for each case reducer function
-export const { increment, decrement, incrementByAmount } = settingsSlice.actions
+export const { changeLang } = settingsSlice.actions
 
 export default settingsSlice.reducer

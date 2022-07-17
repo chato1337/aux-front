@@ -3,9 +3,11 @@ import './SideBar.styles.scss'
 import { BsBoxSeam, BsUpcScan } from 'react-icons/bs'
 import { FiSettings } from 'react-icons/fi'
 import { RiInboxUnarchiveLine } from 'react-icons/ri'
+import { useTranslation } from 'react-i18next';
 
 const SideBar = () => {
 	const location = useLocation()
+	const { t } = useTranslation();
 
     return (
 		<div className="sidebar-container">
@@ -13,25 +15,25 @@ const SideBar = () => {
 				<li className={ location.pathname === '/dashboard/supplier' ? 'menu-active' : '' }>
 					<Link to='supplier'>
 						<BsBoxSeam />
-						Supplier
+						{ t('supplier') }
 					</Link>
 				</li>
 				<li className={ location.pathname === '/dashboard/inventory' ? 'menu-active' : '' }>
 					<Link to='inventory'>
 						<BsUpcScan />
-						Inventory
+						{ t('inventory') }
 					</Link>
 				</li>
 				<li className={ location.pathname === '/dashboard/stock' ? 'menu-active' : '' }>
 					<Link to='stock'>
 						<RiInboxUnarchiveLine />
-						Stock
+						{ t('sales') }
 					</Link>
 				</li>
 				<li className={ location.pathname === '/dashboard/settings' ? 'menu-active' : '' }>
-					<Link to='inventory'>
+					<Link to='settings'>
 						<FiSettings />
-						Settings
+						{ t('settings') }
 					</Link>
 				</li>
 				<li className={ location.pathname === '/dashboard/sales' ? 'menu-active' : '' }>

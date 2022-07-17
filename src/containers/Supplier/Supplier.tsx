@@ -2,15 +2,18 @@ import AddSupplierForm from '../../components/AddSupplierForm/AddSupplierForm';
 import SimpleModal from '../../components/SimpleModal/SimpleModal'
 import { useSupplier } from '../../hooks/useSupplier';
 import { Supplier as SupplierModel } from '../../models/Supplier.model';
+import { useTranslation } from 'react-i18next';
 
 const Supplier = () => {
     const { modalIsOpen, closeModal, handleModal, data, isSuccess } = useSupplier()
+	const { t } = useTranslation();
 
     return (
 		<div className="supplier-container">
 			<div className="supplier-header">
 				<h1>Suppliers</h1>
 				<button onClick={handleModal}>add supplier</button>
+				<p>translation text here: {t('Welcome to React')}</p>
 			</div>
 			<div className="supplier-table">
 				<table>

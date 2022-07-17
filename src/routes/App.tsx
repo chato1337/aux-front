@@ -8,6 +8,7 @@ import InventoryComponent from '../containers/Inventory/Inventory';
 import Stock from '../containers/Stock/Stock';
 import ToolBar from '../components/ToolBar/ToolBar';
 import Supplier from '../containers/Supplier/Supplier';
+import Settings from '../containers/Settings/Settings';
 
 const App = () => {
     return (
@@ -20,6 +21,7 @@ const App = () => {
                         <Route path="inventory" element={<InventoryComponent />} />
                         <Route path="stock" element={<Stock />} />
                         <Route path="supplier" element={<Supplier />} />
+                        <Route path="settings" element={<Settings />} />
                     </Route>
                     <Route path="about" element={<About />} />
                     <Route path="*" element={<NotFound />} />
