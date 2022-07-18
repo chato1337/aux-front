@@ -30,3 +30,8 @@ export class SupplierConstant {
     static apiUrl = 'inventory/supplier/'
     static addUrl = 'inventory/supplier/add/'
 }
+
+export class CategoryConstant {
+    static apiUrl = 'inventory/category/'
+    static addUrl = 'inventory/category/add/'
+}

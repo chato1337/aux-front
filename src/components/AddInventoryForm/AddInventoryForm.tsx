@@ -7,6 +7,9 @@ import { useSupplier } from '../../hooks/useSupplier';
 import { SupplierService } from '../../services/SupplierService';
 import { Option } from '../../hooks/useSelect';
 import { Controller } from 'react-hook-form';
+import AddCategoryForm from '../AddCategoryForm/AddCategoryForm';
+import { useCategory } from '../../hooks/useCategory';
+import { CategoryService } from '../../services/CategoryService';
 
 type AddInventoryFormProps = {
     productData?: Product
@@ -15,11 +18,14 @@ type AddInventoryFormProps = {
 const AddInventoryForm = ({ productData = InventoryConstant.defaultValue }: AddInventoryFormProps) => {
     const { handleSubmit, onSubmit, register, errors, control } = useInventory()
     const { data, isSuccess } = useSupplier()
+    const { data: categoryData, isSuccess: isSuccessCategory } = useCategory()
+    const categories = isSuccessCategory ? CategoryService.genCategoryOpt(categoryData) : []
     const suppliers = isSuccess ? SupplierService.genSupplierOpt(data) : []
 
     return (
         <div className='add-inventory-container'>
             <h2>Add new product:</h2>
+            <AddCategoryForm />
             <form onSubmit={handleSubmit(onSubmit)}>
                 <div className="form-group">
                     <label htmlFor="">Supplier:</label>
@@ -50,12 +56,21 @@ const AddInventoryForm = ({ productData = InventoryConstant.defaultValue }: AddI
                 </div>
                 <div className="form-group">
                     <label htmlFor="">Category:</label>
-                    <input
-                        {...register('category', {required: true})}
-                        type="text"
-                        defaultValue={productData.category}
-                        className={ errors.category ? 'error' : '' }
-                    />
+                    { isSuccessCategory && (
+                        <Controller
+                            name="category"
+                            control={control}
+                            defaultValue={productData.category}
+                            rules={{ required: true }}
+                            render={({ field: { value, onChange, onBlur } }) => (
+                                <Select
+                                    onChange={ (el: SingleValue<Option>) => onChange(el?.value) }
+                                    defaultValue={ categories.filter((item: Option) => item.value === value) }
+                                    options={ categories }
+                                />
+                            )}
+                        />
+                    ) }
                 </div>
                 <div className="form-group">
                     <label htmlFor="">Price:</label>

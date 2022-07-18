@@ -10,3 +10,9 @@ export interface Product {
     entry_date: string
     is_active: boolean
 }
+
+export interface Category {
+    id: number,
+    name: string,
+    description: string
+}
