@@ -7,7 +7,8 @@
         "id": "ID",
         "phone": "Telefono",
         "email": "Email",
-        "description": "Descripción/Notas"
+        "description": "Descripción/Notas",
+        "createMsg1": "el proveedor"
     },
     "product": {
         "add": "Agregar nuevo producto",
@@ -18,13 +19,17 @@
         "entry_date": "Fecha de ingreso",
         "expiration_date": "Fecha de vencimiento",
         "submit": "Crear nuevo producto",
-        "edit": "Editar Producto"
+        "edit": "Editar Producto",
+        "createMsg1": "El producto"
     },
     "category": {
         "title": "Categoria",
         "description": "Descripción de la Categoria",
-        "add": "Agregar Categoria"
+        "add": "Agregar Categoria",
+        "createMsg1": "la categoria"
     },
+    "createMsg1": "el elemento",
+    "createMsg2": "fue creada de forma satisfactoria",
     "name": "Nombre",
     "actions": "Actions",
     "table": {

@@ -7,7 +7,8 @@
         "id": "ID",
         "phone": "Phone",
         "email": "Email",
-        "description": "Description/notes"
+        "description": "Description/notes",
+        "createMsg1": "the suppplier"
     },
     "product": {
         "add": "Add new product",
@@ -18,13 +19,17 @@
         "entry_date": "Entry Date",
         "expiration_date": "Expiration Date",
         "submit": "Create Product",
-        "edit": "Edit Product"
+        "edit": "Edit Product",
+        "createMsg1": "the product"
     },
     "category": {
         "title": "Category",
         "description": "Category Description",
-        "add": "Add new category"
+        "add": "Add new category",
+        "createMsg1": "the category"
     },
+    "createMsg1": "the item",
+    "createMsg2": "was created succcesfully",
     "name": "Name",
     "actions": "Actions",
     "table": {

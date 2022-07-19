@@ -7,6 +7,8 @@ import { useState } from "react";
 import { useToast } from "./useToast";
 import { useDispatch } from 'react-redux';
 import { setModal } from "../redux/settingsSlice";
+import { AxiosResponse } from "axios";
+import { useTranslation } from 'react-i18next';
 
 export const useCategory = () => {
     const { register, handleSubmit, reset, formState: { errors } } = useForm<Category>()
@@ -15,6 +17,7 @@ export const useCategory = () => {
     const { notify } = useToast()
     const queryClient = useQueryClient()
     const dispatch = useDispatch()
+    const [ t ] = useTranslation()
 
     const onSubmit = (data: any) => {
         mutate(data)
@@ -22,11 +25,12 @@ export const useCategory = () => {
 
     const { mutate } = useMutation(CategoryService.addCategory, {
         onSuccess(data, variables, context) {
-            console.log(data)
+            const res: AxiosResponse<Category> = data
+            const msg = `${ t('category.createMsg1') } ${res.data.name} ${ t('createMsg2') }`
             reset()
             queryClient.refetchQueries()
             closeModal()
-            notify('category created!')
+            notify(msg)
         },
     })
 

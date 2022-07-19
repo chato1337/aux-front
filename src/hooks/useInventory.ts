@@ -1,12 +1,15 @@
 import { useState } from "react"
 import { useForm } from "react-hook-form"
-import { useQuery, useMutation } from "react-query"
+import { useQuery, useMutation, useQueryClient } from "react-query"
 import { Product } from "../models/Inventory.model"
 import { InventoryService } from "../services/InventoryService"
 import { useModal } from './useModal';
 import { Option, useSelect } from "./useSelect"
 import { useDispatch } from 'react-redux';
 import { setModal } from "../redux/settingsSlice"
+import { useTranslation } from 'react-i18next';
+import { AxiosResponse } from 'axios';
+import { useToast } from './useToast';
 
 const initialSupplier: Option = {
     value: 0,
@@ -23,6 +26,9 @@ export const useInventory = () => {
     const { modalIsOpen, closeModal } = useModal()
     const { selectedOption, handleChange } = useSelect(initialSupplier)
     const dispatch = useDispatch()
+    const [ t ] = useTranslation()
+    const queryClient = useQueryClient()
+    const { notify } = useToast()
 
     const handleModal = (product: Product | null) => {
         dispatch(setModal(true))
@@ -41,11 +47,12 @@ export const useInventory = () => {
 
     const { mutate } = useMutation(InventoryService.addInventory, {
         onSuccess(data, variables, context) {
-            console.log(data)
-            console.log(variables)
-            console.log(context)
+            const res: AxiosResponse<Product> = data
+            const msg = `${ t('category.createMsg1') } ${res.data.name} ${ t('createMsg2') }`
             reset()
+            queryClient.refetchQueries()
             closeModal()
+            notify(msg)
         },
     })
 
