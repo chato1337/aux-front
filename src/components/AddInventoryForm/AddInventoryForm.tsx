@@ -36,7 +36,7 @@ const AddInventoryForm = ({ productData = InventoryConstant.defaultValue }: AddI
                         <Controller
                             name="supplier_id"
                             control={control}
-                            defaultValue={productData.supplier_id}
+                            defaultValue={productData.supplier.id}
                             rules={{ required: true }}
                             render={({ field: { value, onChange, onBlur } }) => (
                                 <Select
@@ -62,9 +62,9 @@ const AddInventoryForm = ({ productData = InventoryConstant.defaultValue }: AddI
                     <label htmlFor="">{ t('category.title') }:</label>
                     { isSuccessCategory && (
                         <Controller
-                            name="category"
+                            name="category_id"
                             control={control}
-                            defaultValue={productData.category}
+                            defaultValue={productData.category?.id}
                             rules={{ required: true }}
                             render={({ field: { value, onChange, onBlur } }) => (
                                 <Select

@@ -26,20 +26,14 @@ export const useInventory = () => {
         setProductSelected(product)
     }
 
-    const { register, handleSubmit, reset, control, formState: { errors } } = useForm<Product>()
+    const { register, handleSubmit, reset, control, formState: { errors, isDirty } } = useForm<Product>()
 
     const onSubmit = (data: Product) => {
-        mutate(data)
-        // console.log(data)
-        // const supplier = selectedOption as Option
-
-        // if (supplier.value > 0) {
-        //     const productData = { ...data, supplier: supplier.value }
-        //     mutate(productData)
-        //     // console.log(productData)
-        // }else {
-        //     alert('select a supplier first!')
-        // }
+        if(isDirty) {
+            mutate(data)
+        }else {
+            alert('update change something pls')
+        }
     }
 
     const { mutate } = useMutation(InventoryService.addInventory, {

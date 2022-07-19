@@ -41,7 +41,7 @@ const InventoryComponent = () => {
                                     return (
                                         <tr key={product.id}>
                                             <td>{product.name}</td>
-                                            <td>{product.category}</td>
+                                            <td>{product.category?.name}</td>
                                             <td>{product.stock}</td>
                                             <td>{product.unit}</td>
                                             <td className='action-cell'>
