@@ -10,6 +10,7 @@ import { Controller } from 'react-hook-form';
 import AddCategoryForm from '../AddCategoryForm/AddCategoryForm';
 import { useCategory } from '../../hooks/useCategory';
 import { CategoryService } from '../../services/CategoryService';
+import { useTranslation } from 'react-i18next';
 
 type AddInventoryFormProps = {
     productData?: Product
@@ -21,14 +22,16 @@ const AddInventoryForm = ({ productData = InventoryConstant.defaultValue }: AddI
     const { data: categoryData, isSuccess: isSuccessCategory } = useCategory()
     const categories = isSuccessCategory ? CategoryService.genCategoryOpt(categoryData) : []
     const suppliers = isSuccess ? SupplierService.genSupplierOpt(data) : []
+    const currentDate = new Date().toLocaleDateString()
+    const [ t ] = useTranslation()
 
     return (
         <div className='add-inventory-container'>
-            <h2>Add new product:</h2>
+            <h2>{ t('product.add') }:</h2>
             <AddCategoryForm />
             <form onSubmit={handleSubmit(onSubmit)}>
                 <div className="form-group">
-                    <label htmlFor="">Supplier:</label>
+                    <label htmlFor="">{ t('supplier.single') }:</label>
                     { isSuccess && (
                         <Controller
                             name="supplier_id"
@@ -46,16 +49,17 @@ const AddInventoryForm = ({ productData = InventoryConstant.defaultValue }: AddI
                     ) }
                 </div>
                 <div className="form-group">
-                    <label htmlFor="">Name:</label>
+                    <label htmlFor="">{ t('product.name') }:</label>
                     <input
-                        {...register('name', {required: true})}
+                        {...register('name', {required: true, maxLength: 64})}
                         type="text"
                         defaultValue={productData.name}
                         className={ errors.name ? 'error' : '' }
+                        maxLength={64}
                     />
                 </div>
                 <div className="form-group">
-                    <label htmlFor="">Category:</label>
+                    <label htmlFor="">{ t('category.title') }:</label>
                     { isSuccessCategory && (
                         <Controller
                             name="category"
@@ -73,25 +77,27 @@ const AddInventoryForm = ({ productData = InventoryConstant.defaultValue }: AddI
                     ) }
                 </div>
                 <div className="form-group">
-                    <label htmlFor="">Price:</label>
+                    <label htmlFor="">{ t('product.price') }:</label>
                     <input
-                        {...register('price', {required: true})}
+                        {...register('price', {required: true, min: 1})}
                         type="number"
+                        min={1}
                         defaultValue={productData.price}
                         className={ errors.price ? 'error' : '' }
                     />
                 </div>
                 <div className="form-group">
-                    <label htmlFor="">Stock:</label>
+                    <label htmlFor="">{ t('product.stock') }:</label>
                     <input
-                        {...register('stock', {required: true})}
+                        {...register('stock', {required: true, min: 1})}
                         type="number"
+                        min={1}
                         defaultValue={productData.stock}
                         className={ errors.stock ? 'error' : '' }
                     />
                 </div>
                 <div className="form-group">
-                    <label htmlFor="">Unit:</label>
+                    <label htmlFor="">{ t('product.unit') }:</label>
                     <input
                         {...register('unit', {required: true})}
                         type="text"
@@ -100,7 +106,7 @@ const AddInventoryForm = ({ productData = InventoryConstant.defaultValue }: AddI
                     />
                 </div>
                 <div className="form-group">
-                    <label htmlFor="">Entry date:</label>
+                    <label htmlFor="">{ t('product.entry_date') }:</label>
                     <input
                         {...register('entry_date', {required: true})}
                         type="date"
@@ -109,15 +115,16 @@ const AddInventoryForm = ({ productData = InventoryConstant.defaultValue }: AddI
                     />
                 </div>
                 <div className="form-group">
-                    <label htmlFor="">Expiration date:</label>
+                    <label htmlFor="">{ t('product.expiration_date') }:</label>
                     <input
                         {...register('expiration_date', {required: true})}
                         type="date"
+                        min={currentDate}
                         defaultValue={productData.expiration_date}
                         className={ errors.expiration_date ? 'error' : '' }
                     />
                 </div>
-                <button type="submit">Submit</button>
+                <button type="submit">{ t('product.add') }</button>
             </form>
         </div>
     )

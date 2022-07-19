@@ -1,13 +1,31 @@
 {
     "supplier": {
         "title": "Suppliers",
+        "single": "Supplier",
         "add": "Add Supplier",
-        "name": "Name",
+        "name": "Supplier name",
         "id": "ID",
         "phone": "Phone",
         "email": "Email",
         "description": "Description/notes"
     },
+    "product": {
+        "add": "Add new product",
+        "name": "Product name",
+        "price": "Price",
+        "stock": "Stock",
+        "unit": "Unit",
+        "entry_date": "Entry Date",
+        "expiration_date": "Expiration Date",
+        "submit": "Create Product",
+        "edit": "Edit Product"
+    },
+    "category": {
+        "title": "Category",
+        "description": "Category Description",
+        "add": "Add new category"
+    },
+    "name": "Name",
     "actions": "Actions",
     "table": {
         "edit": "Edit",

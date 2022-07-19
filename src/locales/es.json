@@ -1,6 +1,7 @@
 {
     "supplier": {
         "title": "Proveedores",
+        "single": "proveedor",
         "add": "Agregar proveedor",
         "name": "Nombre",
         "id": "ID",
@@ -8,6 +9,23 @@
         "email": "Email",
         "description": "Descripción/Notas"
     },
+    "product": {
+        "add": "Agregar nuevo producto",
+        "name": "Nombre del Producto",
+        "price": "Precio",
+        "stock": "Stock",
+        "unit": "Unidad",
+        "entry_date": "Fecha de ingreso",
+        "expiration_date": "Fecha de vencimiento",
+        "submit": "Crear nuevo producto",
+        "edit": "Editar Producto"
+    },
+    "category": {
+        "title": "Categoria",
+        "description": "Descripción de la Categoria",
+        "add": "Agregar Categoria"
+    },
+    "name": "Nombre",
     "actions": "Actions",
     "table": {
         "edit": "Editar",
