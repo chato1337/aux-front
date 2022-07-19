@@ -6,7 +6,7 @@ import { Category as CategoryModel } from '../../models/Inventory.model';
 
 const Category = () => {
     const [ t ] = useTranslation()
-    const { data, isSuccess, modalIsOpen, closeModal, handleModal, catetgorySelected } = useCategory()
+    const { data, isSuccess, modalIsOpen, closeModal, handleModal, catetgorySelected, handleDelete } = useCategory()
 
     return (
         <div className='category-container'>
@@ -31,7 +31,7 @@ const Category = () => {
                                         <td>{ item.description }</td>
                                         <td className='action-cell'>
                                             <button onClick={ () => handleModal(item) } >edit</button>
-                                            <button>delete</button>
+                                            <button onClick={ () => handleDelete(item) }>delete</button>
                                         </td>
                                     </tr>
                                 ))

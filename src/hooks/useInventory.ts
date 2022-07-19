@@ -5,6 +5,8 @@ import { Product } from "../models/Inventory.model"
 import { InventoryService } from "../services/InventoryService"
 import { useModal } from './useModal';
 import { Option, useSelect } from "./useSelect"
+import { useDispatch } from 'react-redux';
+import { setModal } from "../redux/settingsSlice"
 
 const initialSupplier: Option = {
     value: 0,
@@ -18,11 +20,12 @@ export interface FormValues {
 export const useInventory = () => {
     const { data, isSuccess } = useQuery('inventory', InventoryService.getInventories)
     const [productSelected, setProductSelected] = useState<null | Product>(null)
-    const { modalIsOpen, setModalIsOpen, closeModal } = useModal()
+    const { modalIsOpen, closeModal } = useModal()
     const { selectedOption, handleChange } = useSelect(initialSupplier)
+    const dispatch = useDispatch()
 
     const handleModal = (product: Product | null) => {
-        setModalIsOpen(true)
+        dispatch(setModal(true))
         setProductSelected(product)
     }
 

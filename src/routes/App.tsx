@@ -10,11 +10,13 @@ import ToolBar from '../components/ToolBar/ToolBar';
 import Supplier from '../containers/Supplier/Supplier';
 import Settings from '../containers/Settings/Settings';
 import Category from '../containers/Category/Category';
+import { ToastWrapper } from '../components/ToastWrapper/ToastWrapper';
 
 const App = () => {
     return (
         <div className='app-container'>
             <BrowserRouter>
+                <ToastWrapper />
                 <Routes>
                     <Route index element={<Home />} />
                     <Route path="/" element={<Home />} />

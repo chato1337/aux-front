@@ -4,12 +4,14 @@ import { Supplier, SupplierDTO } from "../models/Supplier.model";
 import { useMutation, useQuery } from 'react-query';
 import { SupplierService } from '../services/SupplierService';
 import { useState } from "react";
+import { useDispatch } from 'react-redux';
+import { setModal } from "../redux/settingsSlice";
 
 export const useSupplier = () => {
-    const { modalIsOpen, setModalIsOpen, closeModal } = useModal()
+    const { modalIsOpen, closeModal } = useModal()
     const { register, handleSubmit, reset, formState: {errors} } = useForm<Supplier>()
     const [ supplierSelected, setSupplierSelected ] = useState<null | Supplier>(null)
-
+    const dispactch = useDispatch()
     const { data, isSuccess } = useQuery("supplier", SupplierService.getSupplier)
     const onSubmit = (data: SupplierDTO) => {
         mutate(data)
@@ -24,7 +26,7 @@ export const useSupplier = () => {
     })
 
     const handleModal = (sup: Supplier | null) => {
-        setModalIsOpen(!modalIsOpen)
+        dispactch(setModal(true))
         setSupplierSelected(sup)
     }
 

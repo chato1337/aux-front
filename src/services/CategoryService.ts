@@ -10,7 +10,7 @@ export class CategoryService {
         return res.data
     }
 
-    static addInventory = (data: any) => {
+    static addCategory = (data: any) => {
         return axios.post(AuxConstants.baseUrl+CategoryConstant.addUrl, data)
     }
 

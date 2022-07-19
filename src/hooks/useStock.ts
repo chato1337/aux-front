@@ -8,10 +8,11 @@ import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from '../redux/store';
 import { setInventory } from '../redux/InventorySlice';
 import { useEffect } from 'react';
+import { setModal } from '../redux/settingsSlice';
 
 export const useStock = () => {
     const { register, reset, handleSubmit, formState: {errors} } = useForm<StockDTO>()
-    const { modalIsOpen, setModalIsOpen, closeModal } = useModal()
+    const { modalIsOpen, closeModal } = useModal()
     const productSelected = useSelector((state: RootState) => state.inventory.inventoryProduct)
     const dispatch = useDispatch()
     const { data } = useQuery("stock", StockService.getStock)
@@ -29,7 +30,7 @@ export const useStock = () => {
     }
 
     const handleModal = (product: Product) => {
-        setModalIsOpen(true)
+        dispatch(setModal(true))
         dispatch(setInventory(product))
     }
 
