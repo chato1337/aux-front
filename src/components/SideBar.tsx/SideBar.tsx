@@ -2,6 +2,7 @@ import { Link, useLocation } from 'react-router-dom';
 import './SideBar.styles.scss'
 import { BsBoxSeam, BsUpcScan } from 'react-icons/bs'
 import { FiSettings } from 'react-icons/fi'
+import { MdOutlineCategory } from 'react-icons/md'
 import { RiInboxUnarchiveLine } from 'react-icons/ri'
 import { useTranslation } from 'react-i18next';
 
@@ -12,6 +13,12 @@ const SideBar = () => {
     return (
 		<div className="sidebar-container">
 			<menu>
+				<li className={ location.pathname === '/dashboard/category' ? 'menu-active' : '' }>
+					<Link to='category'>
+						<MdOutlineCategory />
+						{ t('category.title') }
+					</Link>
+				</li>
 				<li className={ location.pathname === '/dashboard/supplier' ? 'menu-active' : '' }>
 					<Link to='supplier'>
 						<BsBoxSeam />

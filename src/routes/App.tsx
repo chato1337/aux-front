@@ -9,6 +9,7 @@ import Stock from '../containers/Stock/Stock';
 import ToolBar from '../components/ToolBar/ToolBar';
 import Supplier from '../containers/Supplier/Supplier';
 import Settings from '../containers/Settings/Settings';
+import Category from '../containers/Category/Category';
 
 const App = () => {
     return (
@@ -19,6 +20,7 @@ const App = () => {
                     <Route path="/" element={<Home />} />
                     <Route path="dashboard" element={<Dashboard />} >
                         <Route path="inventory" element={<InventoryComponent />} />
+                        <Route path="category" element={<Category />} />
                         <Route path="stock" element={<Stock />} />
                         <Route path="supplier" element={<Supplier />} />
                         <Route path="settings" element={<Settings />} />
