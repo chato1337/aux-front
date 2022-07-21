@@ -38,7 +38,7 @@ const AddSupplierForm = ({ supplierData }: AddSupplierFormProps) => {
                     <label htmlFor="phone">{ t('supplier.phone') }:</label>
                     <input
                         id='phone'
-                        type="text"
+                        type="phone"
                         {...register('phone', {required: true})}
                         className={ errors.phone? 'error' : '' }
                         defaultValue={supplierData?.phone}
@@ -48,7 +48,7 @@ const AddSupplierForm = ({ supplierData }: AddSupplierFormProps) => {
                     <label htmlFor="email">{ t('supplier.email') }:</label>
                     <input
                         id='email'
-                        type="text"
+                        type="email"
                         {...register('email', {required: true})}
                         className={ errors.email ? 'error' : '' }
                         defaultValue={supplierData?.email}

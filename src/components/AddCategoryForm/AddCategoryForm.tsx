@@ -29,7 +29,7 @@ const AddCategoryForm = ({ categoryData = CategoryConstant.defaultCategory }: Ad
                     <input
                         type="text"
                         {...register('description', {required: true, max: 300})}
-                        className={ errors.name ? 'error' : '' }
+                        className={ errors.description ? 'error' : '' }
                         defaultValue={ categoryData.description }
                     />
                 </div>

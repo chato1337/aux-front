@@ -11,10 +11,10 @@ import { AxiosResponse } from "axios";
 import { useTranslation } from 'react-i18next';
 
 export const useCategory = () => {
-    const { register, handleSubmit, reset, formState: { errors } } = useForm<Category>()
+    const { register, handleSubmit, reset, setError,formState: { errors } } = useForm<Category>()
     const { modalIsOpen, closeModal } = useModal()
     const [ catetgorySelected, setCategorySelected ] = useState<null | Category>(null)
-    const { notify } = useToast()
+    const { notify, notifyError } = useToast()
     const queryClient = useQueryClient()
     const dispatch = useDispatch()
     const [ t ] = useTranslation()
@@ -32,6 +32,13 @@ export const useCategory = () => {
             closeModal()
             notify(msg)
         },
+        onError(error: any) {
+            const errorList: Array<string> = error.response.data
+            errorList.forEach((msg: string) => {
+                setError("name", {type: "focus"}, {shouldFocus: true})
+                notifyError(msg)
+            })
+        }
     })
 
     const { data, isSuccess } = useQuery("category", CategoryService.getCategories)
