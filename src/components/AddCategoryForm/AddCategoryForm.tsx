@@ -36,7 +36,7 @@ const AddCategoryForm = ({ categoryData = CategoryConstant.defaultCategory }: Ad
                         defaultValue={ categoryData.description }
                     />
                 </div>
-                <button type='submit'>{ actionForm === "create" ? t('category.add') : t('category.edit') }</button>
+                <button className='btn btn-success' type='submit'>{ actionForm === "create" ? t('category.add') : t('category.edit') }</button>
             </form>
         </div>
     )

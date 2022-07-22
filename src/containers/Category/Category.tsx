@@ -5,6 +5,9 @@ import { useCategory } from '../../hooks/useCategory';
 import { Category as CategoryModel } from '../../models/Inventory.model';
 import { useDispatch } from 'react-redux';
 import { setActionForm } from '../../redux/settingsSlice';
+import { BiAddToQueue } from 'react-icons/bi';
+import { FaRegEdit } from 'react-icons/fa';
+import { RiDeleteBinLine } from 'react-icons/ri';
 
 const Category = () => {
     const [ t ] = useTranslation()
@@ -22,10 +25,17 @@ const Category = () => {
     }
 
     return (
-        <div className='category-container'>
-            <div className="category-header">
+        <div className='module-container'>
+            <div className="module-header">
                 <h2>{ t('category.title') }</h2>
-                <button onClick={() => handleCreate()} >{ t('category.add') }</button>
+                <button onClick={() => handleCreate()} >
+                    <BiAddToQueue />
+                    { t('category.add') }
+                </button>
+                <form>
+                    <input type="text" placeholder='product name' />
+                    <button>Search</button>
+                </form>
             </div>
             <div className="category-table">
                 <table>
@@ -43,8 +53,12 @@ const Category = () => {
                                         <td>{ item.name }</td>
                                         <td>{ item.description }</td>
                                         <td className='action-cell'>
-                                            <button onClick={ () => handleEdit(item) } >edit</button>
-                                            <button onClick={ () => handleDelete(item) }>delete</button>
+                                            <button className='btn btn-outline' onClick={ () => handleEdit(item) } >
+                                                <FaRegEdit />
+                                            </button>
+                                            <button className='btn btn-danger' onClick={ () => handleDelete(item) }>
+                                                <RiDeleteBinLine />
+                                            </button>
                                         </td>
                                     </tr>
                                 ))

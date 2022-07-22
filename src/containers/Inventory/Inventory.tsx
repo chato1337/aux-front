@@ -11,8 +11,8 @@ const InventoryComponent = () => {
     const { data, isSuccess, modalIsOpen, productSelected, closeModal, handleModal } = useInventory()
 
     return (
-        <div className='inventory-container'>
-            <div className='inventory-header'>
+        <div className='module-container'>
+            <div className='module-header'>
                 <h2>Inventory Products:</h2>
                 <button onClick={() => handleModal(null)}>
                     <BiAddToQueue />
@@ -45,10 +45,10 @@ const InventoryComponent = () => {
                                             <td>{product.stock}</td>
                                             <td>{product.unit}</td>
                                             <td className='action-cell'>
-                                                <button onClick={() => handleModal(product)}>
+                                                <button className='btn btn-outline' onClick={() => handleModal(product)}>
                                                     <FaRegEdit />
                                                 </button>
-                                                <button>
+                                                <button className='btn btn-danger'>
                                                     <RiDeleteBinLine />
                                                 </button>
                                             </td>
