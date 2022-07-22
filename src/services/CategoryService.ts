@@ -4,9 +4,18 @@ import { Category } from '../models/Inventory.model';
 import { Option } from "../hooks/useSelect"
 
 export class CategoryService {
-    static getCategories = async () => {
-        const res = await axios.get(AuxConstants.baseUrl+CategoryConstant.apiUrl)
-        return res.data
+    static getCategories = async (query: any) => {
+        const { queryKey } = query
+        const searchQuery = queryKey[1]
+
+        if (searchQuery) {
+            const url = `${AuxConstants.baseUrl}${CategoryConstant.apiUrl}?search=${searchQuery}`
+            const res = await axios.get(url)
+            return res.data
+        } else {
+            const res = await axios.get(AuxConstants.baseUrl+CategoryConstant.apiUrl)
+            return res.data
+        }
     }
 
     static addCategory = (data: any) => {

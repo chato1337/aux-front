@@ -27,7 +27,8 @@
         "description": "Category Description",
         "add": "Add new category",
         "edit": "Edit Category",
-        "createMsg1": "the category"
+        "createMsg1": "the category",
+        "search": "Category name"
     },
     "createMsg1": "the item",
     "createMsg2": "was created succcesfully",
@@ -39,5 +40,6 @@
     },
     "inventory": "Inventory",
     "sales": "Sales",
-    "settings": "Settings"
+    "settings": "Settings",
+    "search": "Search"
 }

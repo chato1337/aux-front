@@ -20,6 +20,7 @@ export const useCategory = () => {
     const dispatch = useDispatch()
     const [ t ] = useTranslation()
     const actionForm = useSelector((state: RootState) => state.settings.actionForm)
+    const searchQuery = useSelector((state: RootState) => state.settings.searchQuery)
 
     const onSubmit = (data: Category) => {
         if(!isDirty){
@@ -66,7 +67,7 @@ export const useCategory = () => {
         },
     })
 
-    const { data, isSuccess } = useQuery("category", CategoryService.getCategories)
+    const { data, isSuccess } = useQuery(["category", searchQuery], CategoryService.getCategories)
 
     const handleModal = (category: Category | null) => {
         dispatch(setCategorySelected(category))

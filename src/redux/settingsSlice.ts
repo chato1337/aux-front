@@ -3,13 +3,15 @@ import { createSlice, PayloadAction } from '@reduxjs/toolkit'
 export interface SettingsState {
   language: string;
   modal: boolean;
-  actionForm: "create" | "edit" | "delete"
+  actionForm: "create" | "edit" | "delete",
+  searchQuery: string | null
 }
 
 const initialState: SettingsState = {
   language: "en",
   modal: false,
-  actionForm: "create"
+  actionForm: "create",
+  searchQuery: null
 }
 
 export const settingsSlice = createSlice({
@@ -24,11 +26,14 @@ export const settingsSlice = createSlice({
     },
     setActionForm: (state: SettingsState, action: PayloadAction<"create" | "edit" | "delete">) => {
       state.actionForm = action.payload
+    },
+    setSearchQuery: (state: SettingsState, action: PayloadAction<string | null>) => {
+      state.searchQuery = action.payload
     }
   },
 })
 
 // Action creators are generated for each case reducer function
-export const { changeLang, setModal, setActionForm } = settingsSlice.actions
+export const { changeLang, setModal, setActionForm, setSearchQuery } = settingsSlice.actions
 
 export default settingsSlice.reducer

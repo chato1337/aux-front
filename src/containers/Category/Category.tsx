@@ -8,6 +8,7 @@ import { setActionForm } from '../../redux/settingsSlice';
 import { BiAddToQueue } from 'react-icons/bi';
 import { FaRegEdit } from 'react-icons/fa';
 import { RiDeleteBinLine } from 'react-icons/ri';
+import SearchForm from '../../components/SearchForm/SearchForm';
 
 const Category = () => {
     const [ t ] = useTranslation()
@@ -32,10 +33,7 @@ const Category = () => {
                     <BiAddToQueue />
                     { t('category.add') }
                 </button>
-                <form>
-                    <input type="text" placeholder='product name' />
-                    <button>Search</button>
-                </form>
+                <SearchForm />
             </div>
             <div className="category-table">
                 <table>

@@ -27,7 +27,8 @@
         "description": "Descripción de la Categoria",
         "add": "Agregar Categoria",
         "edit": "Editar Categoria",
-        "createMsg1": "la categoria"
+        "createMsg1": "la categoria",
+        "search": "Nombre de la categoria"
     },
     "createMsg1": "el elemento",
     "createMsg2": "fue creada de forma satisfactoria",
@@ -39,5 +40,6 @@
     },
     "inventory": "Inventario",
     "sales": "Punto de venta",
-    "settings": "Ajustes"
+    "settings": "Ajustes",
+    "search": "Buscar"
 }
