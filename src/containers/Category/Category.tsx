@@ -3,16 +3,29 @@ import AddCategoryForm from '../../components/AddCategoryForm/AddCategoryForm';
 import SimpleModal from '../../components/SimpleModal/SimpleModal';
 import { useCategory } from '../../hooks/useCategory';
 import { Category as CategoryModel } from '../../models/Inventory.model';
+import { useDispatch } from 'react-redux';
+import { setActionForm } from '../../redux/settingsSlice';
 
 const Category = () => {
     const [ t ] = useTranslation()
-    const { data, isSuccess, modalIsOpen, closeModal, handleModal, catetgorySelected, handleDelete } = useCategory()
+    const { data, isSuccess, modalIsOpen, closeModal, handleModal, categorySelected, handleDelete } = useCategory()
+    const dispatch = useDispatch()
+
+    const handleEdit = (category: CategoryModel) => {
+        dispatch(setActionForm("edit"))
+        handleModal(category)
+    }
+
+    const handleCreate = () => {
+        dispatch(setActionForm("create"))
+        handleModal(null)
+    }
 
     return (
         <div className='category-container'>
             <div className="category-header">
                 <h2>{ t('category.title') }</h2>
-                <button onClick={() => handleModal(null)} >{ t('category.add') }</button>
+                <button onClick={() => handleCreate()} >{ t('category.add') }</button>
             </div>
             <div className="category-table">
                 <table>
@@ -30,7 +43,7 @@ const Category = () => {
                                         <td>{ item.name }</td>
                                         <td>{ item.description }</td>
                                         <td className='action-cell'>
-                                            <button onClick={ () => handleModal(item) } >edit</button>
+                                            <button onClick={ () => handleEdit(item) } >edit</button>
                                             <button onClick={ () => handleDelete(item) }>delete</button>
                                         </td>
                                     </tr>
@@ -41,7 +54,7 @@ const Category = () => {
             </div>
             <SimpleModal modalIsOpen={ modalIsOpen } closeModal={ closeModal } >
                 <AddCategoryForm
-                    categoryData={ catetgorySelected ? catetgorySelected : undefined }
+                    categoryData={ categorySelected ? categorySelected : undefined }
                 />
             </SimpleModal>
         </div>

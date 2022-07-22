@@ -20,3 +20,8 @@ export interface Category {
     name: string,
     description: string
 }
+
+export interface ErrorCategoryResponse {
+    name: string[],
+    description: string[]
+}

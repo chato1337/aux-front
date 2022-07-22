@@ -1,4 +1,3 @@
-
 import axios from 'axios';
 import { AuxConstants, CategoryConstant } from '../constants/index';
 import { Category } from '../models/Inventory.model';
@@ -16,6 +15,10 @@ export class CategoryService {
 
     static genCategoryOpt = (supList: Category[]) => {
         return supList.map((sup: Category):Option => ({ value: sup.id, label: sup.name }))
+    }
+
+    static editCategory = (data: any) => {
+        return axios.put(AuxConstants.baseUrl+CategoryConstant.editUrl, data)
     }
 
 }

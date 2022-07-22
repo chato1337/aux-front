@@ -26,6 +26,7 @@ export class SupplierConstant {
 export class CategoryConstant {
     static apiUrl = 'inventory/category/'
     static addUrl = 'inventory/category/add/'
+    static editUrl = 'inventory/category/edit/'
     static defaultCategory: Category = {
         id: 0,
         name: '',

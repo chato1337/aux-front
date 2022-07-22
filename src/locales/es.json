@@ -26,6 +26,7 @@
         "title": "Categoria",
         "description": "Descripción de la Categoria",
         "add": "Agregar Categoria",
+        "edit": "Editar Categoria",
         "createMsg1": "la categoria"
     },
     "createMsg1": "el elemento",

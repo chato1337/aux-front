@@ -2,6 +2,8 @@ import { useCategory } from '../../hooks/useCategory';
 import { useTranslation } from 'react-i18next';
 import { Category } from '../../models/Inventory.model';
 import { CategoryConstant } from '../../constants';
+import { useSelector } from 'react-redux';
+import { RootState } from '../../redux/store';
 
 type AddCategoryFormProps = {
     categoryData?: Category 
@@ -10,10 +12,11 @@ type AddCategoryFormProps = {
 const AddCategoryForm = ({ categoryData = CategoryConstant.defaultCategory }: AddCategoryFormProps) => {
     const { register, handleSubmit, onSubmit, errors } = useCategory()
     const [ t ] = useTranslation()
+    const actionForm = useSelector((state: RootState) => state.settings.actionForm) 
 
     return (
         <div>
-            <h2>{ t('category.add') }</h2>
+            <h2>{ actionForm === "create" ? t('category.add') : t('category.edit') }</h2>
             <form onSubmit={handleSubmit(onSubmit)}>
                 <div className="form-group">
                     <label htmlFor="name">{ t('name') }:</label>
@@ -33,7 +36,7 @@ const AddCategoryForm = ({ categoryData = CategoryConstant.defaultCategory }: Ad
                         defaultValue={ categoryData.description }
                     />
                 </div>
-                <button type='submit'>{ t('category.add') }</button>
+                <button type='submit'>{ actionForm === "create" ? t('category.add') : t('category.edit') }</button>
             </form>
         </div>
     )
