@@ -33,7 +33,7 @@
     "createMsg1": "el elemento",
     "createMsg2": "fue creada de forma satisfactoria",
     "name": "Nombre",
-    "actions": "Actions",
+    "actions": "Acciones",
     "table": {
         "edit": "Editar",
         "delete": "Eliminar"
@@ -41,5 +41,7 @@
     "inventory": "Inventario",
     "sales": "Punto de venta",
     "settings": "Ajustes",
-    "search": "Buscar"
+    "search": "Buscar",
+    "previous": "Anterior",
+    "next": "Siguiente"
 }

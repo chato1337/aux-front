@@ -41,5 +41,7 @@
     "inventory": "Inventory",
     "sales": "Sales",
     "settings": "Settings",
-    "search": "Search"
+    "search": "Search",
+    "previous": "Previous",
+    "next": "Next"
 }

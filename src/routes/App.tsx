@@ -11,6 +11,7 @@ import Supplier from '../containers/Supplier/Supplier';
 import Settings from '../containers/Settings/Settings';
 import Category from '../containers/Category/Category';
 import { ToastWrapper } from '../components/ToastWrapper/ToastWrapper';
+import { ReactQueryDevtools } from 'react-query/devtools'
 
 const App = () => {
     return (
@@ -31,6 +32,7 @@ const App = () => {
                     <Route path="*" element={<NotFound />} />
                 </Routes>
                 <ToolBar />
+                <ReactQueryDevtools initialIsOpen={false} />
             </BrowserRouter>
         </div>
     )

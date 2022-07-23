@@ -4,14 +4,22 @@ export interface SettingsState {
   language: string;
   modal: boolean;
   actionForm: "create" | "edit" | "delete",
-  searchQuery: string | null
+  searchQuery: string | null,
+  limit: number,
+  offset: number,
+  count: number,
+  order: string | null
 }
 
 const initialState: SettingsState = {
   language: "en",
   modal: false,
   actionForm: "create",
-  searchQuery: null
+  searchQuery: null,
+  limit: 5,
+  offset: 0,
+  count: 0,
+  order: "name"
 }
 
 export const settingsSlice = createSlice({
@@ -29,11 +37,23 @@ export const settingsSlice = createSlice({
     },
     setSearchQuery: (state: SettingsState, action: PayloadAction<string | null>) => {
       state.searchQuery = action.payload
+    },
+    setLimit: (state: SettingsState, action: PayloadAction<number>) => {
+      state.limit = action.payload
+    },
+    setOffset: (state: SettingsState, action: PayloadAction<number>) => {
+      state.offset = action.payload
+    },
+    setCount: (state: SettingsState, action: PayloadAction<number>) => {
+      state.count = action.payload
+    },
+    setOrder: (state: SettingsState, action: PayloadAction<string | null>) => {
+      state.order = action.payload
     }
   },
 })
 
 // Action creators are generated for each case reducer function
-export const { changeLang, setModal, setActionForm, setSearchQuery } = settingsSlice.actions
+export const { changeLang, setModal, setActionForm, setSearchQuery, setLimit, setOffset, setCount, setOrder } = settingsSlice.actions
 
 export default settingsSlice.reducer

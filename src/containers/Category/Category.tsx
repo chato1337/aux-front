@@ -9,6 +9,8 @@ import { BiAddToQueue } from 'react-icons/bi';
 import { FaRegEdit } from 'react-icons/fa';
 import { RiDeleteBinLine } from 'react-icons/ri';
 import SearchForm from '../../components/SearchForm/SearchForm';
+import Pagination from '../../components/Pagination/Pagination';
+import Ordering from '../../components/Ordering/Ordering';
 
 const Category = () => {
     const [ t ] = useTranslation()
@@ -35,18 +37,21 @@ const Category = () => {
                 </button>
                 <SearchForm />
             </div>
-            <div className="category-table">
+            <div className="module-table">
                 <table>
                     <thead>
                         <tr>
-                            <th>{ t('name') }</th>
+                            <th>
+                                { t('name') }
+                                <Ordering orderField="name" />
+                            </th>
                             <th>{ t('category.description') }</th>
                             <th>{ t('actions') }</th>
                         </tr>
                     </thead>
                     <tbody>
                         { isSuccess && (
-                                data.map((item: CategoryModel) => (
+                                data.results.map((item: CategoryModel) => (
                                     <tr key={item.id}>
                                         <td>{ item.name }</td>
                                         <td>{ item.description }</td>
@@ -64,6 +69,7 @@ const Category = () => {
                     </tbody>
                 </table>
             </div>
+            <Pagination />
             <SimpleModal modalIsOpen={ modalIsOpen } closeModal={ closeModal } >
                 <AddCategoryForm
                     categoryData={ categorySelected ? categorySelected : undefined }
