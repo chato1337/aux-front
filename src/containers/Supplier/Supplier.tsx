@@ -3,18 +3,41 @@ import SimpleModal from '../../components/SimpleModal/SimpleModal'
 import { useSupplier } from '../../hooks/useSupplier';
 import { Supplier as SupplierModel } from '../../models/Supplier.model';
 import { useTranslation } from 'react-i18next';
+import { useDispatch } from 'react-redux';
+import { setActionForm } from '../../redux/settingsSlice';
+import { RiDeleteBinLine } from 'react-icons/ri';
+import { FaRegEdit } from 'react-icons/fa';
+import SearchForm from '../../components/SearchForm/SearchForm';
+import { BiAddToQueue } from 'react-icons/bi';
+import Pagination from '../../components/Pagination/Pagination';
 
 const Supplier = () => {
     const { modalIsOpen, closeModal, handleModal, data, isSuccess, supplierSelected } = useSupplier()
 	const { t } = useTranslation();
+	const dispatch = useDispatch()
+
+	const handleEdit = (supplier: SupplierModel) => {
+        dispatch(setActionForm("edit"))
+        handleModal(supplier)
+    }
+
+    const handleCreate = () => {
+        dispatch(setActionForm("create"))
+        handleModal(null)
+    }
+
 
     return (
-		<div className="supplier-container">
-			<div className="supplier-header">
-				<h1>{ t('supplier.title') }</h1>
-				<button onClick={() => handleModal(null)}>{ t('supplier.add') }</button>
+		<div className="module-container">
+			<div className="module-header">
+				<h2>{ t('supplier.title') }</h2>
+				<button onClick={() => handleCreate()}>
+					<BiAddToQueue />
+					{ t('supplier.add') }
+				</button>
+				<SearchForm placeholder={ t('supplier.name') } />
 			</div>
-			<div className="supplier-table">
+			<div className="module-table">
 				<table>
 					<thead>
 						<tr>
@@ -27,7 +50,7 @@ const Supplier = () => {
 					</thead>
 					<tbody>
                         {
-                            isSuccess && data.map((item: SupplierModel) => {
+                            isSuccess && data.results.map((item: SupplierModel) => {
                                 return(
                                     <tr key={item.id}>
                                         <td>{ item.name }</td>
@@ -35,8 +58,14 @@ const Supplier = () => {
                                         <td>{ item.phone }</td>
                                         <td>{ item.email }</td>
 										<td className='action-cell'>
-											<button onClick={() => handleModal(item)}>{ t('table.edit') }</button>
-											<button>{ t('table.delete') }</button>
+											<button className='btn btn-outline' onClick={() => handleEdit(item)}>
+												<FaRegEdit />
+												{ t('table.edit') }
+											</button>
+											<button className='btn btn-danger'>
+												<RiDeleteBinLine />
+												{ t('table.delete') }
+											</button>
 										</td>
                                     </tr>
                                 )
@@ -45,6 +74,7 @@ const Supplier = () => {
 					</tbody>
 				</table>
 			</div>
+			<Pagination />
 			<SimpleModal modalIsOpen={modalIsOpen} closeModal={closeModal}>
 				<AddSupplierForm supplierData={ supplierSelected ? supplierSelected : undefined } />
 			</SimpleModal>

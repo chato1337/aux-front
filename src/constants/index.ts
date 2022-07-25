@@ -13,6 +13,7 @@ export class StockConstant {
 export class SupplierConstant {
     static apiUrl = 'inventory/supplier/'
     static addUrl = 'inventory/supplier/add/'
+    static editUrl = 'inventory/supplier/edit/'
     static defaultSupplier: Supplier = {
         id: 0,
         name: '',

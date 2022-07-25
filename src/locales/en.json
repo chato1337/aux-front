@@ -8,7 +8,8 @@
         "phone": "Phone",
         "email": "Email",
         "description": "Description/notes",
-        "createMsg1": "the suppplier"
+        "createMsg1": "the suppplier",
+        "edit": "Edit Supplier"
     },
     "product": {
         "add": "Add new product",
@@ -43,5 +44,6 @@
     "settings": "Settings",
     "search": "Search",
     "previous": "Previous",
-    "next": "Next"
+    "next": "Next",
+    "formAlert": "Please edit any field first"
 }

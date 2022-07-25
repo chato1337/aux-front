@@ -11,6 +11,7 @@ import { useTranslation } from 'react-i18next';
 import { RootState } from "../redux/store";
 import { setCategorySelected } from "../redux/InventorySlice";
 import { useEffect } from "react";
+import { ApiError } from '../utils/index';
 
 export const useCategory = () => {
     const { register, handleSubmit, reset, setError, setValue, formState: { errors, isDirty } } = useForm<Category>()
@@ -30,14 +31,13 @@ export const useCategory = () => {
     //submit form
     const onSubmit = (data: Category) => {
         if(!isDirty){
-            notify("please edit any field first")
+            notify( t('formAlert') )
         }
 
         if (actionForm === "create" && isDirty) {
             mutate(data)
         }else if(actionForm === "edit" && isDirty){
             const editForm = { ...data, id: categorySelected?.id ?? 0 }
-            console.log("entro en edit", editForm)
             mutateEdit(editForm)
         }
     }
@@ -53,14 +53,7 @@ export const useCategory = () => {
             notify(msg)
         },
         onError(error: any) {
-            const errorList: { [key: string]: string[]; } = error.response.data
-
-            Object.keys(errorList).forEach((keyError: string) => {
-                // casting string to Object interface values
-                const keyName = keyError as "name" | "id" | "description"
-                setError(keyName, {type: "focus"}, {shouldFocus: true})
-                errorList[keyError].forEach((msg: string) => notifyError(msg))
-            })
+            ApiError.getErrorMsg(error, setError, notifyError)
         }
     })
     
@@ -72,6 +65,9 @@ export const useCategory = () => {
             queryClient.refetchQueries()
             closeModal()
             notify(msg)
+        },
+        onError(error: any) {
+            ApiError.getErrorMsg(error, setError, notifyError)
         },
     })
 

@@ -127,6 +127,11 @@ tbody {
 .action-cell {
     display: flex;
     justify-content: center;
+    button {
+        display: flex;
+        align-items: center;
+        justify-content: space-around;
+    }
 }
 
 .form-group {

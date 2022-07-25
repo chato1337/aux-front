@@ -2,15 +2,12 @@ import axios from 'axios';
 import { AuxConstants, CategoryConstant } from '../constants/index';
 import { Category } from '../models/Inventory.model';
 import { Option } from "../hooks/useSelect"
+import { ApiUtil } from '../utils';
 
 export class CategoryService {
     static getCategories = async (query: any) => {
-        const { queryKey } = query
-        const searchQuery = queryKey[1]
-        const limit = queryKey[2]
-        const offset = queryKey[3]
-        const order = queryKey[4]
-
+        const { searchQuery, limit, offset, order } = ApiUtil.getUrlParams(query)
+        
         if (searchQuery) {
             const url = `${AuxConstants.baseUrl}${CategoryConstant.apiUrl}?limit=${limit}&offset=${offset}&ordering=${order}&search=${searchQuery}`
             const res = await axios.get(url)

@@ -35,7 +35,7 @@ const Category = () => {
                     <BiAddToQueue />
                     { t('category.add') }
                 </button>
-                <SearchForm />
+                <SearchForm placeholder={ t("category.search") } />
             </div>
             <div className="module-table">
                 <table>
@@ -58,9 +58,11 @@ const Category = () => {
                                         <td className='action-cell'>
                                             <button className='btn btn-outline' onClick={ () => handleEdit(item) } >
                                                 <FaRegEdit />
+                                                { t('table.edit') }
                                             </button>
                                             <button className='btn btn-danger' onClick={ () => handleDelete(item) }>
                                                 <RiDeleteBinLine />
+                                                { t('table.delete') }
                                             </button>
                                         </td>
                                     </tr>

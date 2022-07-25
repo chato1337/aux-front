@@ -3,12 +3,13 @@
         "title": "Proveedores",
         "single": "proveedor",
         "add": "Agregar proveedor",
-        "name": "Nombre",
+        "name": "Nombre del proovedor",
         "id": "ID",
         "phone": "Telefono",
         "email": "Email",
         "description": "Descripción/Notas",
-        "createMsg1": "el proveedor"
+        "createMsg1": "el proveedor",
+        "edit":"Editar Proveedor"
     },
     "product": {
         "add": "Agregar nuevo producto",
@@ -43,5 +44,6 @@
     "settings": "Ajustes",
     "search": "Buscar",
     "previous": "Anterior",
-    "next": "Siguiente"
+    "next": "Siguiente",
+    "formAlert": "Por favor edite un campo primero"
 }
