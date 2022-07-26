@@ -5,16 +5,37 @@ import { useDispatch, useSelector } from 'react-redux';
 import { addProductCart, cleanProductCart } from "../redux/cartSlice";
 import { ChangeEvent, useState } from "react";
 import { RootState } from "../redux/store";
+import { setActionForm, setModal } from "../redux/settingsSlice";
 
 export const useCart = () => {
     const { data, isSuccess, handleModal, modalIsOpen, closeModal } = useInventory()
     const dispatch = useDispatch()
     const [ quantity, setQuantity ] = useState(0)
+    const [ cash, setCash ] = useState(0)
     const products = useSelector((state: RootState) => state.cart.products)
+
+	const total = products.reduce(
+		(prev, item: ProductCart) => item.subtotal + prev,
+		0
+	);
+
+    const handleSubmitPay = () => {
+        console.log(products)
+    }
+
+    const handleChangePay = (e: ChangeEvent<HTMLInputElement>) => {
+        const parseQuantity = parseInt(e.target.value)
+        setCash(parseQuantity)
+    }
 
     const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
         const parseQuantity = parseInt(e.target.value)
         setQuantity(parseQuantity)
+    }
+
+    const handlePay = () => {
+        dispatch(setActionForm("pay"))
+        dispatch(setModal(true))
     }
 
     const handleRemoveCart = (product: ProductCart) => {
@@ -73,6 +94,11 @@ export const useCart = () => {
         handleModal,
         modalIsOpen,
         closeModal,
-        handleCancelOrder
+        handleCancelOrder,
+        handlePay,
+        total,
+        cash,
+        handleChangePay,
+        handleSubmitPay
     }
 }

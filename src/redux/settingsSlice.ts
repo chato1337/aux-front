@@ -3,7 +3,7 @@ import { createSlice, PayloadAction } from '@reduxjs/toolkit'
 export interface SettingsState {
   language: string;
   modal: boolean;
-  actionForm: "create" | "edit" | "delete",
+  actionForm: "create" | "edit" | "delete" | "pay",
   searchQuery: string | null,
   limit: number,
   offset: number,
@@ -32,7 +32,7 @@ export const settingsSlice = createSlice({
     setModal: (state: SettingsState, action: PayloadAction<boolean>) => {
       state.modal = action.payload
     },
-    setActionForm: (state: SettingsState, action: PayloadAction<"create" | "edit" | "delete">) => {
+    setActionForm: (state: SettingsState, action: PayloadAction<"create" | "edit" | "delete" | "pay">) => {
       state.actionForm = action.payload
     },
     setSearchQuery: (state: SettingsState, action: PayloadAction<string | null>) => {

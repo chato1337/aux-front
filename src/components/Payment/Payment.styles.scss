@@ -1,0 +1,12 @@
+.payment-container {
+    span {
+        font-size: large;
+        font-weight: bold;
+        display: block;
+        margin-bottom: .5rem;
+    }
+
+    span.error {
+        color: red;
+    }
+}
