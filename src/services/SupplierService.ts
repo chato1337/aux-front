@@ -19,6 +19,13 @@ export class SupplierService{
         }
     }
 
+    static GetFullSuplier = async (query: any) => {
+        const { limit } = ApiUtil.getUrlParams(query)
+        const res = await axios.get(AuxConstants.baseUrl+SupplierConstant.fullUrl+'?limit='+limit)
+        
+        return res.data
+    }
+
     //TODO: fix this shit
     static addSupplier = (data: any) => {
         return axios.post(AuxConstants.baseUrl+SupplierConstant.addUrl, data)

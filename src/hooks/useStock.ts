@@ -13,7 +13,7 @@ import { setModal } from '../redux/settingsSlice';
 export const useStock = () => {
     const { register, reset, handleSubmit, formState: {errors} } = useForm<StockDTO>()
     const { modalIsOpen, closeModal } = useModal()
-    const productSelected = useSelector((state: RootState) => state.inventory.inventoryProduct)
+    const productSelected = useSelector((state: RootState) => state.inventory.productSelected)
     const dispatch = useDispatch()
     const { data } = useQuery("stock", StockService.getStock)
 

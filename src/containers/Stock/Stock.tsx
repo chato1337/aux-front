@@ -1,68 +1,149 @@
 import { BiAddToQueue } from "react-icons/bi";
 import { RiDeleteBinLine } from "react-icons/ri";
-import SimpleModal from "../../components/SimpleModal/SimpleModal";
-import { useInventory } from "../../hooks/useInventory";
 import { Product } from "../../models/Inventory.model";
-import AddStockForm from '../../components/AddStockForm/AddStockForm';
-import { useStock } from '../../hooks/useStock';
+import { useSelector, useDispatch } from 'react-redux';
+import { RootState } from "../../redux/store";
+import { useCart } from '../../hooks/useCart';
+import SearchForm from "../../components/SearchForm/SearchForm";
+import './Stock.styles.scss'
+import { ProductCart } from '../../models/cart.model.d';
+import Pagination from "../../components/Pagination/Pagination";
+import { setActionForm } from "../../redux/settingsSlice";
+import { FaMoneyBillAlt, FaRegEdit } from "react-icons/fa";
+import SimpleModal from "../../components/SimpleModal/SimpleModal";
+import AddInventoryForm from "../../components/AddInventoryForm/AddInventoryForm";
+import { ParserNumber } from "../../utils";
 
 const Stock = () => {
-	const { data, isSuccess } = useInventory();
-    const { modalIsOpen, handleModal, closeModal, productSelected } = useStock()
+	const products = useSelector((state: RootState) => state.cart.products)
+	const { data, isSuccess, handleAddCart, quantity, handleChange, handleRemoveCart, handleModal, modalIsOpen, closeModal, handleCancelOrder } = useCart()
+	const enableAdd = quantity > 0
+	const total = products.reduce((prev, item: ProductCart) => item.subtotal + prev, 0)
+	const enableCancel = products.length > 0
+	const dispatch = useDispatch()
+	const productSelected = useSelector((state: RootState) => state.inventory.productSelected)
+
+	const handleEdit = (product: Product) => {
+		dispatch(setActionForm("edit"))
+		handleModal(product)
+	}
 
 	return (
-		<div className="stock-container">
-			<div className="stock-header">
+		<div className="module-container">
+			<div className="module-header">
 				<h2>Stock-component</h2>
 			</div>
-			<div className="stock-products">
-				<h3>your products in stock</h3>
-				...not aviable yet :|
-			</div>
-			<div className="non-stock-products">
-				<h3>products aviables for stock</h3>
-				{isSuccess && (
+			<div className="module-body">
+				<div className="cart-search">
+					<div>
+						<h3>Product list:</h3>
+						<SearchForm placeholder="product name" />
+					</div>
 					<table>
 						<thead>
 							<tr>
-								<th>Name</th>
-								<th>Category</th>
-								<th>Stock</th>
-								<th>Unit</th>
-								<th>Actions</th>
+								<th>name</th>
+								<th>price</th>
+								<th>aviable</th>
+								<th>quantity</th>
+								<th>actions</th>
 							</tr>
 						</thead>
 						<tbody>
-							{ isSuccess && data.map((product: Product) => {
-								return (
-									<tr key={product.id}>
-										<td>{product.name}</td>
-										<td>{product.category.name}</td>
-										<td>{product.stock}</td>
-										<td>{product.unit}</td>
+							{ isSuccess && (
+								data.results.map((item: Product) => (
+									<tr key={item.id}>
+										<td>{ item.name }</td>
+										<td>{ ParserNumber.colDecimals(item.price) } $</td>
+										<td>{ item.stock }</td>
+										<td className="quantity-cell">
+											<input
+												type="number"
+												value={quantity}
+												onChange={ (e) => handleChange(e) }
+												max={item.stock}
+												min={1}
+											/>
+										</td>
 										<td className="action-cell">
-											<button onClick={() => handleModal(product)}>
+											<button disabled={!enableAdd} onClick={() => handleAddCart(item)}>
 												<BiAddToQueue />
 											</button>
-											<button>
-												<RiDeleteBinLine />
+											<button onClick={() => handleEdit(item)}>
+												<FaRegEdit />
 											</button>
 										</td>
 									</tr>
-								);
-							})}
+								))
+							) }
 						</tbody>
 					</table>
-				)}
+					<Pagination />
+				</div>
+				<div className="table-order">
+					<div>
+						<h3>New order:</h3>
+						<button
+							className="btn btn-danger"
+							onClick={handleCancelOrder}
+							disabled={!enableCancel}
+						>
+							<RiDeleteBinLine />
+							Cancel Order
+						</button>
+					</div>
+					<table>
+						<thead>
+							<tr>
+								<th>name</th>
+								<th>price</th>
+								<th>quantity</th>
+								<th>subtotal</th>
+								<th>actions</th>
+							</tr>
+						</thead>
+						<tbody>
+							{ products.length === 0 && (
+								<tr>
+									<td colSpan={5}>Not products yet 🧐</td>
+								</tr>
+							) }
+							{ products.map((product: ProductCart) => (
+								<tr key={product.id}>
+									<td>{ product.name }</td>
+									<td>{ ParserNumber.colDecimals(product.unit_price) } $</td>
+									<td>{ product.quantity }</td>
+									<td>{ ParserNumber.colDecimals(product.subtotal) } $</td>
+									<td className="action-cell">
+										<button onClick={() => handleRemoveCart(product) }>
+											<RiDeleteBinLine />
+										</button>
+									</td>
+								</tr>
+							)) }
+							<tr>
+								<td className="total-text" colSpan={4}>
+									Total
+								</td>
+								<td className="total-sum">
+									{ ParserNumber.colDecimals(total) } $
+								</td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+				<div className="payment-section">
+					<button className="btn btn-success">
+						<FaMoneyBillAlt />
+						Pay Now
+					</button>
+				</div>
 			</div>
-            <SimpleModal
-                modalIsOpen={modalIsOpen}
-                closeModal={closeModal}
-            >
-                <AddStockForm
-                    productData={productSelected}
-                />
-            </SimpleModal>
+			<SimpleModal modalIsOpen={modalIsOpen} closeModal={closeModal}>
+				<AddInventoryForm
+					productData={ productSelected ? productSelected : undefined }
+				/>
+			</SimpleModal>
 		</div>
 	);
 };

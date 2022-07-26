@@ -12,6 +12,7 @@ export class StockConstant {
 }
 export class SupplierConstant {
     static apiUrl = 'inventory/supplier/'
+    static fullUrl = 'inventory/supplier/full'
     static addUrl = 'inventory/supplier/add/'
     static editUrl = 'inventory/supplier/edit/'
     static defaultSupplier: Supplier = {
@@ -26,6 +27,7 @@ export class SupplierConstant {
 
 export class CategoryConstant {
     static apiUrl = 'inventory/category/'
+    static fullUrl = 'inventory/category/full/'
     static addUrl = 'inventory/category/add/'
     static editUrl = 'inventory/category/edit/'
     static defaultCategory: Category = {
@@ -37,7 +39,9 @@ export class CategoryConstant {
 
 export class InventoryConstant {
     static apiUrl = 'inventory/product/'
+    static fullUrl = 'inventory/product/full/'
     static addUrl = 'inventory/product/add/'
+    static editUrl = 'inventory/product/edit/'
     static defaultValue: Product = {
         name: '',
         id: 0,
@@ -50,7 +54,8 @@ export class InventoryConstant {
         supplier_id: 0,
         entry_date: '',
         expiration_date: '',
-        supplier: SupplierConstant.defaultSupplier
+        supplier: SupplierConstant.defaultSupplier,
+        description: ''
     }
     
 }

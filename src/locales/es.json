@@ -21,7 +21,8 @@
         "expiration_date": "Fecha de vencimiento",
         "submit": "Crear nuevo producto",
         "edit": "Editar Producto",
-        "createMsg1": "El producto"
+        "createMsg1": "El producto",
+        "title": "Productos"
     },
     "category": {
         "title": "Categoria",
@@ -45,5 +46,6 @@
     "search": "Buscar",
     "previous": "Anterior",
     "next": "Siguiente",
-    "formAlert": "Por favor edite un campo primero"
+    "formAlert": "Por favor edite un campo primero",
+    "description": "Descripción"
 }

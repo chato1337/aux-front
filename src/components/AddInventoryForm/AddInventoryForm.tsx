@@ -7,36 +7,37 @@ import { useSupplier } from '../../hooks/useSupplier';
 import { SupplierService } from '../../services/SupplierService';
 import { Option } from '../../hooks/useSelect';
 import { Controller } from 'react-hook-form';
-import AddCategoryForm from '../AddCategoryForm/AddCategoryForm';
 import { useCategory } from '../../hooks/useCategory';
 import { CategoryService } from '../../services/CategoryService';
 import { useTranslation } from 'react-i18next';
+import { useSelector } from 'react-redux';
+import { RootState } from '../../redux/store';
 
 type AddInventoryFormProps = {
     productData?: Product
 }
 
 const AddInventoryForm = ({ productData = InventoryConstant.defaultValue }: AddInventoryFormProps) => {
-    const { handleSubmit, onSubmit, register, errors, control } = useInventory()
-    const { data, isSuccess } = useSupplier()
-    const { data: categoryData, isSuccess: isSuccessCategory } = useCategory()
-    const categories = isSuccessCategory ? CategoryService.genCategoryOpt(categoryData) : []
-    const suppliers = isSuccess ? SupplierService.genSupplierOpt(data) : []
+    const { handleSubmit, onSubmit, register, errors, control, isDirty } = useInventory()
+    const { fullData, isSuccessFull } = useSupplier()
+    const { fullData: categoryData, isSuccessFull: isSuccessCategory } = useCategory()
+    const categories = isSuccessCategory ? CategoryService.genCategoryOpt(categoryData.results) : []
+    const suppliers = isSuccessFull ? SupplierService.genSupplierOpt(fullData.results) : []
     const currentDate = new Date().toLocaleDateString()
     const [ t ] = useTranslation()
+    const actionForm = useSelector((state: RootState) => state.settings.actionForm)
 
     return (
         <div className='add-inventory-container'>
-            <h2>{ t('product.add') }:</h2>
-            <AddCategoryForm />
+            <h2>{ actionForm === "create" ? t('product.add') : t('product.edit') }:</h2>
             <form onSubmit={handleSubmit(onSubmit)}>
                 <div className="form-group">
                     <label htmlFor="">{ t('supplier.single') }:</label>
-                    { isSuccess && (
+                    { isSuccessFull && (
                         <Controller
                             name="supplier_id"
                             control={control}
-                            defaultValue={productData.supplier.id}
+                            defaultValue={productData.supplier?.id}
                             rules={{ required: true }}
                             render={({ field: { value, onChange, onBlur } }) => (
                                 <Select
@@ -124,7 +125,16 @@ const AddInventoryForm = ({ productData = InventoryConstant.defaultValue }: AddI
                         className={ errors.expiration_date ? 'error' : '' }
                     />
                 </div>
-                <button type="submit">{ t('product.add') }</button>
+                <div className="form-group">
+                    <label htmlFor="">{ t('description') }:</label>
+                    <input
+                        {...register('description', {required: true})}
+                        type="text"
+                        defaultValue={productData.description}
+                        className={ errors.description ? 'error' : '' }
+                    />
+                </div>
+                <button disabled={!isDirty} className='btn btn-success' type="submit">{ actionForm === "create" ? t('product.add') : t('product.edit') }</button>
             </form>
         </div>
     )

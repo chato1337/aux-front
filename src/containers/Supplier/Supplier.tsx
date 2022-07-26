@@ -10,6 +10,7 @@ import { FaRegEdit } from 'react-icons/fa';
 import SearchForm from '../../components/SearchForm/SearchForm';
 import { BiAddToQueue } from 'react-icons/bi';
 import Pagination from '../../components/Pagination/Pagination';
+import Ordering from '../../components/Ordering/Ordering';
 
 const Supplier = () => {
     const { modalIsOpen, closeModal, handleModal, data, isSuccess, supplierSelected } = useSupplier()
@@ -41,7 +42,11 @@ const Supplier = () => {
 				<table>
 					<thead>
 						<tr>
-							<th>{ t('supplier.name') }</th>
+							<th>#</th>
+							<th>
+								{ t('supplier.name') }
+								<Ordering orderField='name' />
+							</th>
 							<th>{ t('supplier.id') }</th>
 							<th>{ t('supplier.phone') }</th>
 							<th>{ t('supplier.email') }</th>
@@ -52,7 +57,8 @@ const Supplier = () => {
                         {
                             isSuccess && data.results.map((item: SupplierModel) => {
                                 return(
-                                    <tr key={item.id}>
+                                    <tr key={ item.id }>
+										<td>{ item.id }</td>
                                         <td>{ item.name }</td>
                                         <td>{ item.identifier }</td>
                                         <td>{ item.phone }</td>

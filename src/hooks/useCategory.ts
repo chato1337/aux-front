@@ -78,6 +78,13 @@ export const useCategory = () => {
         { keepPreviousData: true }
     )
 
+    //fetch full categories
+    //TODO: use dinamic call
+    const { data: fullData, isSuccess: isSuccessFull } = useQuery(
+        ["full-category", searchQuery, data?.count, offset, order],
+        CategoryService.getFullCategories
+    )
+
     //preload next category
     useEffect(() => {
 			if (isSuccess) {
@@ -123,6 +130,8 @@ export const useCategory = () => {
         handleModal,
         categorySelected,
         handleDelete,
-        setValue
+        setValue,
+        fullData,
+        isSuccessFull
     }
 }

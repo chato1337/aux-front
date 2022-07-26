@@ -1,0 +1,78 @@
+import { useInventory } from "./useInventory"
+import { Product } from '../models/Inventory.model.d';
+import { ProductCart } from "../models/cart.model";
+import { useDispatch, useSelector } from 'react-redux';
+import { addProductCart, cleanProductCart } from "../redux/cartSlice";
+import { ChangeEvent, useState } from "react";
+import { RootState } from "../redux/store";
+
+export const useCart = () => {
+    const { data, isSuccess, handleModal, modalIsOpen, closeModal } = useInventory()
+    const dispatch = useDispatch()
+    const [ quantity, setQuantity ] = useState(0)
+    const products = useSelector((state: RootState) => state.cart.products)
+
+    const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
+        const parseQuantity = parseInt(e.target.value)
+        setQuantity(parseQuantity)
+    }
+
+    const handleRemoveCart = (product: ProductCart) => {
+        const removeCartProducts = products.filter((el: ProductCart) => el.id !== product.id)
+        dispatch(cleanProductCart(removeCartProducts))
+    }
+
+    const handleCancelOrder = () => {
+        if (products.length > 0) {
+            dispatch(cleanProductCart([]))
+        }
+    }
+
+    const handleAddCart = (product: Product) => {
+        const cartItem: ProductCart = {
+            id: product.id,
+            name: product.name,
+            quantity: quantity,
+            unit_price: product.price,
+            subtotal: product.price * quantity
+        }
+
+        const alreadyExist = products.some((el: ProductCart) => el.id === product.id)
+
+        if (quantity > 0 && !alreadyExist) {
+            dispatch(addProductCart(cartItem))
+            setQuantity(0)
+        
+        //if product already exist in cart
+        }else if(quantity > 0 && alreadyExist) {
+            //get stored product in products list
+            const storedProduct = products.find((item: ProductCart) => item.id === product.id)
+
+            //cast quantity stored & sum with older
+            const castQuantity = storedProduct?.quantity ?? 0
+            const sumQuantity = quantity + castQuantity
+
+            //updated product with quantity & subtotal
+            const updateCartItem: ProductCart = { ...cartItem, quantity: sumQuantity, subtotal: product.price * sumQuantity }
+
+            //get products without product exists
+            const cleanProducts = products.filter((item: ProductCart) => item.id !== product.id)
+
+            dispatch(cleanProductCart([...cleanProducts, updateCartItem]))
+            setQuantity(0)
+        }
+    }
+
+    return {
+        data,
+        isSuccess,
+        handleAddCart,
+        quantity,
+        handleChange,
+        handleRemoveCart,
+        handleModal,
+        modalIsOpen,
+        closeModal,
+        handleCancelOrder
+    }
+}

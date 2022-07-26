@@ -18,6 +18,12 @@ export class CategoryService {
         }
     }
 
+    static getFullCategories = async (query: any) => {
+        const { limit } = ApiUtil.getUrlParams(query)
+        const res = await axios.get(AuxConstants.baseUrl+CategoryConstant.fullUrl+'?limit='+limit)
+        return res.data
+    }
+
     static addCategory = (data: any) => {
         return axios.post(AuxConstants.baseUrl+CategoryConstant.addUrl, data)
     }

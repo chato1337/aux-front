@@ -3,13 +3,13 @@ import { Category, Product } from '../models/Inventory.model.d';
 import { Supplier } from '../models/Supplier.model.d';
 
 export interface InventoryState {
-    inventoryProduct: Product | null;
+    productSelected: Product | null;
     categorySelected: Category | null;
     supplierSelected: Supplier | null;
 }
 
 const initialState: InventoryState = {
-    inventoryProduct: null,
+    productSelected: null,
     categorySelected: null,
     supplierSelected: null
 }
@@ -18,11 +18,11 @@ export const inventorySlice = createSlice({
     name: 'inventory',
     initialState,
     reducers: {
-        setInventory: (state: InventoryState, action: PayloadAction<Product>) => {
-            state.inventoryProduct = action.payload
+        setInventory: (state: InventoryState, action: PayloadAction<Product | null>) => {
+            state.productSelected = action.payload
         },
         resetInventory: (state: InventoryState) => {
-            state.inventoryProduct = null
+            state.productSelected = null
         },
         setCategorySelected: (state: InventoryState, action: PayloadAction<Category | null>) => {
             state.categorySelected = action.payload

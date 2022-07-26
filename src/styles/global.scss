@@ -126,11 +126,21 @@ tbody {
 
 .action-cell {
     display: flex;
-    justify-content: center;
+    justify-content: space-evenly;
+    align-items: center;
+    padding-top: 6px;
     button {
         display: flex;
         align-items: center;
         justify-content: space-around;
+    }
+}
+
+.quantity-cell {
+    input {
+        margin: 0 auto;
+        text-align: center;
+        width: -webkit-fill-available;
     }
 }
 
@@ -164,5 +174,9 @@ tbody {
     div {
         display: flex;
         justify-content: space-between;
+    }
+    
+    .module-body {
+        display: block;
     }
 }

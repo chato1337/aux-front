@@ -77,6 +77,12 @@ export const useSupplier = () => {
         { keepPreviousData: true }
     )
 
+    const { data: fullData, isSuccess: isSuccessFull } = useQuery(
+        ['full-inventory', searchQuery, data?.count, offset, order],
+        SupplierService.GetFullSuplier
+    )
+
+
     //preload next supplier page
     useEffect(() => {
         if(isSuccess) {
@@ -117,6 +123,8 @@ export const useSupplier = () => {
         onSubmit,
         data,
         isSuccess,
-        supplierSelected
+        supplierSelected,
+        fullData,
+        isSuccessFull
     }
 }

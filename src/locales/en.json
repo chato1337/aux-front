@@ -21,7 +21,8 @@
         "expiration_date": "Expiration Date",
         "submit": "Create Product",
         "edit": "Edit Product",
-        "createMsg1": "the product"
+        "createMsg1": "the product",
+        "title": "Product"
     },
     "category": {
         "title": "Category",
@@ -45,5 +46,6 @@
     "search": "Search",
     "previous": "Previous",
     "next": "Next",
-    "formAlert": "Please edit any field first"
+    "formAlert": "Please edit any field first",
+    "description": "Description"
 }

@@ -14,6 +14,12 @@ export class ApiError {
 
 }
 
+export class ParserNumber {
+    static colDecimals = (value: number) => {
+        return new Intl.NumberFormat("es-CO").format(value)
+    }
+}
+
 export class ApiUtil {
     static getUrlParams = (query: any) => {
         const { queryKey } = query

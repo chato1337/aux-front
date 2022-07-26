@@ -12,7 +12,8 @@ export interface Product {
     unit: string,
     expiration_date: string
     entry_date: string
-    is_active: boolean
+    is_active: boolean,
+    description: string
 }
 
 export interface Category {

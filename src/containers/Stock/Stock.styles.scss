@@ -1,0 +1,33 @@
+.module-body {
+	.cart-search {
+		display: block;
+
+		div, table {
+			margin-bottom: .5rem;
+		}
+
+		div h3 {
+			display: flex;
+			align-items: center;
+			// margin-bottom: 1rem;
+		}
+	}
+	.table-order {
+		display: block;
+        margin-top: 1rem;
+		div{
+			margin-bottom: .5rem;
+			align-items: center;
+		}
+	}
+
+	.payment-section {
+		margin-top: 1rem;
+	}
+}
+
+.total-text {
+	text-align: right;
+	font-weight: bold;
+	padding-right: 1rem;
+}

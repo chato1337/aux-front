@@ -41,6 +41,7 @@ const Category = () => {
                 <table>
                     <thead>
                         <tr>
+                            <th>#</th>
                             <th>
                                 { t('name') }
                                 <Ordering orderField="name" />
@@ -52,7 +53,8 @@ const Category = () => {
                     <tbody>
                         { isSuccess && (
                                 data.results.map((item: CategoryModel) => (
-                                    <tr key={item.id}>
+                                    <tr key={ item.id }>
+                                        <td>{ item.id }</td>
                                         <td>{ item.name }</td>
                                         <td>{ item.description }</td>
                                         <td className='action-cell'>
