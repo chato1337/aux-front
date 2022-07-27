@@ -34,7 +34,7 @@ const SideBar = () => {
 				<li className={ location.pathname === '/dashboard/stock' ? 'menu-active' : '' }>
 					<Link to='stock'>
 						<RiInboxUnarchiveLine />
-						{ t('sales') }
+						{ t('sales.title') }
 					</Link>
 				</li>
 				<li className={ location.pathname === '/dashboard/settings' ? 'menu-active' : '' }>

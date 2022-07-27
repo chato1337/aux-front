@@ -14,6 +14,7 @@ import SimpleModal from "../../components/SimpleModal/SimpleModal";
 import AddInventoryForm from "../../components/AddInventoryForm/AddInventoryForm";
 import { ParserNumber } from "../../utils";
 import Payment from "../../components/Payment/Payment";
+import { useTranslation } from 'react-i18next';
 
 const Stock = () => {
 	const products = useSelector((state: RootState) => state.cart.products);
@@ -40,6 +41,8 @@ const Stock = () => {
 	const actionForm = useSelector(
 		(state: RootState) => state.settings.actionForm
 	);
+	
+	const [ t ] = useTranslation()
 
 	const handleEdit = (product: Product) => {
 		dispatch(setActionForm("edit"));
@@ -49,22 +52,22 @@ const Stock = () => {
 	return (
 		<div className="module-container">
 			<div className="module-header">
-				<h2>Stock-component</h2>
+				<h2>{ t('sales.name') }</h2>
 			</div>
 			<div className="module-body">
 				<div className="cart-search">
 					<div>
-						<h3>Product list:</h3>
-						<SearchForm placeholder="product name" />
+						<h3>{ t('product.product_list') }:</h3>
+						<SearchForm placeholder={ t('product.name') } />
 					</div>
 					<table>
 						<thead>
 							<tr>
-								<th>name</th>
-								<th>price</th>
-								<th>aviable</th>
-								<th>quantity</th>
-								<th>actions</th>
+								<th>{ t('name') }</th>
+								<th>{ t('product.price') }</th>
+								<th>{ t('sales.aviable') }</th>
+								<th>{ t('sales.quantity') }</th>
+								<th>{ t('actions') }</th>
 							</tr>
 						</thead>
 						<tbody>
@@ -102,30 +105,30 @@ const Stock = () => {
 				</div>
 				<div className="table-order">
 					<div>
-						<h3>New order:</h3>
+						<h3>{ t('sales.new_order') }:</h3>
 						<button
 							className="btn btn-danger"
 							onClick={handleCancelOrder}
 							disabled={!enableCancel}
 						>
 							<RiDeleteBinLine />
-							Cancel Order
+							{ t('sales.cancel') }
 						</button>
 					</div>
 					<table>
 						<thead>
 							<tr>
-								<th>name</th>
-								<th>price</th>
-								<th>quantity</th>
-								<th>subtotal</th>
-								<th>actions</th>
+								<th>{ t('name') }</th>
+								<th>{ t('product.price') }</th>
+								<th>{ t('sales.quantity') }</th>
+								<th>{ t('sales.subtotal') }</th>
+								<th>{ t('actions') }</th>
 							</tr>
 						</thead>
 						<tbody>
 							{products.length === 0 && (
 								<tr>
-									<td colSpan={5}>Not products yet 🧐</td>
+									<td colSpan={5}>{ t('sales.no_products') } 🧐</td>
 								</tr>
 							)}
 							{products.map((product: ProductCart) => (
@@ -143,7 +146,7 @@ const Stock = () => {
 							))}
 							<tr>
 								<td className="total-text" colSpan={4}>
-									Total
+									{ t('sales.total') }
 								</td>
 								<td className="total-sum">
 									{ParserNumber.colDecimals(total)} $
@@ -155,7 +158,7 @@ const Stock = () => {
 				<div className="payment-section">
 					<button className="btn btn-success" onClick={handlePay}>
 						<FaMoneyBillAlt />
-						Pay Now
+						{ t('sales.review') }
 					</button>
 				</div>
 			</div>

@@ -22,7 +22,8 @@
         "submit": "Create Product",
         "edit": "Edit Product",
         "createMsg1": "the product",
-        "title": "Product"
+        "title": "Product",
+        "product_list": "Product List"
     },
     "category": {
         "title": "Category",
@@ -41,7 +42,24 @@
         "delete": "Delete"
     },
     "inventory": "Inventory",
-    "sales": "Sales",
+    "sales": {
+        "title": "Sales",
+        "name": "Module sales commerce",
+        "aviable": "Aviable",
+        "quantity": "Quantity",
+        "new_order": "New Order",
+        "cancel": "Cancel Order",
+        "subtotal": "Sub Total",
+        "no_products": "No products yet",
+        "total": "Total",
+        "review": "Review Order",
+        "finish": "Finish transaction",
+        "cash": "Cash",
+        "credit": "Credit Card",
+        "pay": "Pay Now",
+        "method": "Payment Mehtod",
+        "change": "Change"
+    },
     "settings": "Settings",
     "search": "Search",
     "previous": "Previous",

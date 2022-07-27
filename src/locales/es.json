@@ -22,7 +22,8 @@
         "submit": "Crear nuevo producto",
         "edit": "Editar Producto",
         "createMsg1": "El producto",
-        "title": "Productos"
+        "title": "Productos",
+        "product_list": "Lista de Productos"
     },
     "category": {
         "title": "Categoria",
@@ -41,7 +42,24 @@
         "delete": "Eliminar"
     },
     "inventory": "Inventario",
-    "sales": "Punto de venta",
+    "sales": {
+        "title": "Punto de venta",
+        "name": "Modulo de punto de venta",
+        "aviable": "Disponible",
+        "quantity": "Cantidad",
+        "new_order": "Nueva orden",
+        "cancel": "Cancelar orden",
+        "subtotal": "Sub Total",
+        "no_products": "No hay productos todavia",
+        "total": "Total",
+        "review": "Confirmar orden",
+        "finish": "Finalizar transacción",
+        "cash": "Efectivo",
+        "credit": "Tarjeta de Credito",
+        "pay": "Pagar ahora",
+        "method": "Metodo de pago",
+        "change": "Cambio"
+    },
     "settings": "Ajustes",
     "search": "Buscar",
     "previous": "Anterior",

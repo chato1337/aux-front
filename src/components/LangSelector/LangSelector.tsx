@@ -13,7 +13,7 @@ const LangSelector = () => {
         <div>
             <button onClick={() => changeLanguage('es')}>es</button>
             <button onClick={() => changeLanguage('en')}>en</button>
-            <h1>{t('sales')}</h1>
+            <h1>{t('sales.name')}</h1>
         </div>
     )
 }

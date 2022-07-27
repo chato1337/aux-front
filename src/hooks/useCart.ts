@@ -24,8 +24,12 @@ export const useCart = () => {
     }
 
     const handleChangePay = (e: ChangeEvent<HTMLInputElement>) => {
-        const parseQuantity = parseInt(e.target.value)
-        setCash(parseQuantity)
+        if (e.target.value === "") {
+            setCash(0)
+        }else {
+            const parseQuantity = parseInt(e.target.value)
+            setCash(parseQuantity)
+        }
     }
 
     const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
