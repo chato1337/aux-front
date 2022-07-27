@@ -15,7 +15,7 @@ export const useSelect = (defaultOpt: Option | null = null) => {
 
     const handleChange = (selected: Option | Option[] | null) => {
         setSelectedOption(selected)
-    }    
+    }
 
     return {
         selectedOption,

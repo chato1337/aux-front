@@ -56,7 +56,7 @@ export const useCategory = () => {
             ApiError.getErrorMsg(error, setError, notifyError)
         }
     })
-    
+
     //put categories
     const { mutate: mutateEdit } = useMutation(CategoryService.editCategory, {
         onSuccess(data, variables, context) {

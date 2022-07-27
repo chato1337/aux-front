@@ -11,7 +11,7 @@ export const useSearch = () => {
     const dispatch = useDispatch()
     const searchQuery = useSelector((state: RootState) => state.settings.searchQuery)
     const queryClient = useQueryClient()
-    
+
     const handleSearch = () => {
         dispatch(setSearchQuery(value))
     }

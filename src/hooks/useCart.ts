@@ -6,6 +6,8 @@ import { addProductCart, cleanProductCart } from "../redux/cartSlice";
 import { ChangeEvent, useState } from "react";
 import { RootState } from "../redux/store";
 import { setActionForm, setModal } from "../redux/settingsSlice";
+import { useMutation } from 'react-query';
+import { StockService } from '../services/StockService';
 
 export const useCart = () => {
     const { data, isSuccess, handleModal, modalIsOpen, closeModal } = useInventory()
@@ -15,13 +17,19 @@ export const useCart = () => {
     const products = useSelector((state: RootState) => state.cart.products)
 
 	const total = products.reduce(
-		(prev, item: ProductCart) => item.subtotal + prev,
-		0
+		(prev, item: ProductCart) => item.subtotal + prev, 0
 	);
 
     const handleSubmitPay = () => {
         console.log(products)
+        mutate(products)
     }
+
+    const { mutate } = useMutation(StockService.addStock, {
+        onSuccess(data, variables, context) {
+            console.log(data)
+        },
+    })
 
     const handleChangePay = (e: ChangeEvent<HTMLInputElement>) => {
         if (e.target.value === "") {
@@ -67,7 +75,7 @@ export const useCart = () => {
         if (quantity > 0 && !alreadyExist) {
             dispatch(addProductCart(cartItem))
             setQuantity(0)
-        
+
         //if product already exist in cart
         }else if(quantity > 0 && alreadyExist) {
             //get stored product in products list

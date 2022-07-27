@@ -10,5 +10,5 @@ export class StockService{
     //TODO: fix this shit
     static addStock = (data: any) => {
         return axios.post(AuxConstants.baseUrl+StockConstant.addUrl, data)
-    } 
+    }
 }

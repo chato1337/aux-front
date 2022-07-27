@@ -5,14 +5,13 @@ export class AuxConstants {
     static baseUrl = 'http://localhost:8000/api/v1/'
 }
 
-
 export class StockConstant {
-    static apiUrl = 'stock/get/'
-    static addUrl = 'stock/add/'
+    static apiUrl = 'stock/bill/'
+    static addUrl = 'stock/bill/add/'
 }
 export class SupplierConstant {
     static apiUrl = 'inventory/supplier/'
-    static fullUrl = 'inventory/supplier/full'
+    static fullUrl = 'inventory/supplier/full/'
     static addUrl = 'inventory/supplier/add/'
     static editUrl = 'inventory/supplier/edit/'
     static defaultSupplier: Supplier = {
@@ -57,5 +56,5 @@ export class InventoryConstant {
         supplier: SupplierConstant.defaultSupplier,
         description: ''
     }
-    
+
 }

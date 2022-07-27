@@ -6,13 +6,13 @@ import { useSelector } from 'react-redux';
 import { RootState } from '../../redux/store';
 
 type AddCategoryFormProps = {
-    categoryData?: Category 
+    categoryData?: Category
 }
 
 const AddCategoryForm = ({ categoryData = CategoryConstant.defaultCategory }: AddCategoryFormProps) => {
     const { register, handleSubmit, onSubmit, errors } = useCategory()
     const [ t ] = useTranslation()
-    const actionForm = useSelector((state: RootState) => state.settings.actionForm) 
+    const actionForm = useSelector((state: RootState) => state.settings.actionForm)
 
     return (
         <div>
