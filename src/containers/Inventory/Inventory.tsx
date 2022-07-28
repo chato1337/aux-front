@@ -75,7 +75,7 @@ const InventoryComponent = () => {
                                             </td>
                                         </tr>
                                     )
-                                })       
+                                })
                             }
                         </tbody>
                     </table>

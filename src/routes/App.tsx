@@ -12,6 +12,7 @@ import Settings from '../containers/Settings/Settings';
 import Category from '../containers/Category/Category';
 import { ToastWrapper } from '../components/ToastWrapper/ToastWrapper';
 import { ReactQueryDevtools } from 'react-query/devtools'
+import Invoices from '../containers/Invoices/Invoices';
 
 const App = () => {
     return (
@@ -26,6 +27,7 @@ const App = () => {
                         <Route path="category" element={<Category />} />
                         <Route path="stock" element={<Stock />} />
                         <Route path="supplier" element={<Supplier />} />
+                        <Route path="invoice" element={<Invoices />} />
                         <Route path="settings" element={<Settings />} />
                     </Route>
                     <Route path="about" element={<About />} />

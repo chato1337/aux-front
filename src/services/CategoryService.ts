@@ -7,7 +7,7 @@ import { ApiUtil } from '../utils';
 export class CategoryService {
     static getCategories = async (query: any) => {
         const { searchQuery, limit, offset, order } = ApiUtil.getUrlParams(query)
-        
+
         if (searchQuery) {
             const url = `${AuxConstants.baseUrl}${CategoryConstant.apiUrl}?limit=${limit}&offset=${offset}&ordering=${order}&search=${searchQuery}`
             const res = await axios.get(url)

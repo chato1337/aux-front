@@ -16,7 +16,7 @@ const initialState: SettingsState = {
   modal: false,
   actionForm: "create",
   searchQuery: null,
-  limit: 5,
+  limit: 10,
   offset: 0,
   count: 0,
   order: "name"

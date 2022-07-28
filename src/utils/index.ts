@@ -8,7 +8,7 @@ export class ApiError {
             // casting string to Object interface values
             const keyName = keyError as "name" | "id" | "description"
             callbackForm(keyName, {type: "focus"}, {shouldFocus: true})
-            errorList[keyError].forEach((msg: string) => callbackNotify(msg))
+            errorList[keyError].forEach((msg: string) => callbackNotify(`${keyName}: ${msg}`))
         })
     }
 
@@ -27,7 +27,7 @@ export class ApiUtil {
         const limit = queryKey[2]
         const offset = queryKey[3]
         const order = queryKey[4]
-    
+
         return { searchQuery, limit, offset, order }
     }
 }

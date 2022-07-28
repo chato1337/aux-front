@@ -41,7 +41,7 @@ const Stock = () => {
 	const actionForm = useSelector(
 		(state: RootState) => state.settings.actionForm
 	);
-	
+
 	const [ t ] = useTranslation()
 
 	const handleEdit = (product: Product) => {

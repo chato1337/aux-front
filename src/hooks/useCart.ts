@@ -8,26 +8,38 @@ import { RootState } from "../redux/store";
 import { setActionForm, setModal } from "../redux/settingsSlice";
 import { useMutation } from 'react-query';
 import { StockService } from '../services/StockService';
+import { ApiError } from '../utils/index';
+import { useForm } from 'react-hook-form';
+import { useToast } from "./useToast";
+import { Bill } from '../models/Stock.model.d';
 
 export const useCart = () => {
-    const { data, isSuccess, handleModal, modalIsOpen, closeModal } = useInventory()
+    const { data, isSuccess, handleModal, modalIsOpen, closeModal } = useInventory(5)
     const dispatch = useDispatch()
     const [ quantity, setQuantity ] = useState(0)
     const [ cash, setCash ] = useState(0)
     const products = useSelector((state: RootState) => state.cart.products)
+    const { setError } = useForm()
+    const { notify, notifyError } = useToast()
+    const [ showForm, setShowForm ] = useState(true)
 
 	const total = products.reduce(
 		(prev, item: ProductCart) => item.subtotal + prev, 0
 	);
 
     const handleSubmitPay = () => {
-        console.log(products)
         mutate(products)
     }
 
     const { mutate } = useMutation(StockService.addStock, {
         onSuccess(data, variables, context) {
-            console.log(data)
+            setShowForm(false)
+            const res: Bill = data
+            const msg = `the transaction #${res.id} by ${res.total} $ was created succesfully`
+            notify(msg)
+        },
+        onError(error) {
+            ApiError.getErrorMsg(error, setError, notifyError)
         },
     })
 
@@ -46,6 +58,7 @@ export const useCart = () => {
     }
 
     const handlePay = () => {
+        setShowForm(true)
         dispatch(setActionForm("pay"))
         dispatch(setModal(true))
     }
@@ -111,6 +124,7 @@ export const useCart = () => {
         total,
         cash,
         handleChangePay,
-        handleSubmitPay
+        handleSubmitPay,
+        showForm
     }
 }

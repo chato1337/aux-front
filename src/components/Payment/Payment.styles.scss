@@ -9,4 +9,13 @@
     span.error {
         color: red;
     }
+
+    .invoice-review {
+        display: flex;
+        justify-content: center;
+        padding: 20px 0;
+        background-color: #d6d6d6;
+        border: 1px solid #bab6b6;
+        border-radius: 5px;
+    }
 }

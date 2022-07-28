@@ -7,9 +7,9 @@ import { useState } from 'react';
 import { useQueryClient } from 'react-query';
 
 export const useSearch = () => {
-    const [ value, setValue ] = useState("")
-    const dispatch = useDispatch()
     const searchQuery = useSelector((state: RootState) => state.settings.searchQuery)
+    const [ value, setValue ] = useState(searchQuery ? searchQuery : "")
+    const dispatch = useDispatch()
     const queryClient = useQueryClient()
 
     const handleSearch = () => {

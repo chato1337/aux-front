@@ -1,6 +1,7 @@
 import { useCart } from '../../hooks/useCart';
 import { ParserNumber } from '../../utils';
 import { GiPayMoney } from 'react-icons/gi'
+import { AiOutlinePrinter } from 'react-icons/ai'
 import './Payment.styles.scss'
 import { useSelect } from '../../hooks/useSelect';
 import Select from "react-select";
@@ -8,7 +9,7 @@ import { Option } from '../../hooks/useSelect'
 import { useTranslation } from 'react-i18next';
 
 const Payment = () => {
-    const { total, cash, handleChangePay, handleSubmitPay } = useCart()
+    const { total, cash, handleChangePay, handleSubmitPay, showForm, handleCancelOrder } = useCart()
     const [ t ] = useTranslation()
     const change = cash - total
     const canPay = change < 0
@@ -29,10 +30,12 @@ const Payment = () => {
                     options={ payOptions }
                 />
             </div>
-            <div className="form-group">
-                <label htmlFor="">{ t('sales.cash') }</label>
-                <input type="number" value={cash === 0 ? '' : cash} onChange={ (e) => handleChangePay(e) } />
-            </div>
+            { showForm && (
+                <div className="form-group">
+                    <label htmlFor="">{ t('sales.cash') }</label>
+                    <input type="number" value={cash === 0 ? '' : cash} onChange={ (e) => handleChangePay(e) } />
+                </div>
+            ) }
             <div className="form-group">
                 <label htmlFor="total">{ t('sales.total') }:</label>
                 <input
@@ -45,10 +48,21 @@ const Payment = () => {
                 />
             </div>
             <span className={ canPay ? 'error' : '' }>{ t('sales.change') }: { ParserNumber.colDecimals(change) } $</span>
-            <button disabled={canPay} onClick={handleSubmitPay} className='btn btn-success'>
-                <GiPayMoney />
-                { t('sales.pay') }
-            </button>
+            { showForm && (
+                <button disabled={canPay} onClick={handleSubmitPay} className='btn btn-success'>
+                    <GiPayMoney />
+                    { t('sales.pay') }
+                </button>
+            ) }
+            { !showForm && (
+                <div className="invoice-review">
+                    <button>
+                        <AiOutlinePrinter />
+                        Print Invoice
+                    </button>
+                    <button onClick={ handleCancelOrder }>Close</button>
+                </div>
+            ) }
         </div>
     );
 };

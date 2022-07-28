@@ -23,7 +23,7 @@ export interface FormValues {
     suppliers: Option[]
 }
 
-export const useInventory = () => {
+export const useInventory = (pageLimit: number | null = null) => {
     const productSelected = useSelector((state: RootState) => state.inventory.productSelected)
     const { modalIsOpen, closeModal } = useModal()
     const { selectedOption, handleChange } = useSelect(initialSupplier)
@@ -33,10 +33,13 @@ export const useInventory = () => {
     const { notify, notifyError } = useToast()
     const actionForm = useSelector((state: RootState) => state.settings.actionForm)
     const searchQuery = useSelector((state: RootState) => state.settings.searchQuery)
-    const limit = useSelector((state: RootState) => state.settings.limit)
+    const storedLimit = useSelector((state: RootState) => state.settings.limit)
+    const limit = pageLimit ? pageLimit : storedLimit
     const offset = useSelector((state: RootState) => state.settings.offset)
     const count = useSelector((state: RootState) => state.settings.count)
     const order = useSelector((state: RootState) => state.settings.order)
+
+    console.log(limit)
 
     const handleModal = (product: Product | null) => {
         dispatch(setModal(true))
