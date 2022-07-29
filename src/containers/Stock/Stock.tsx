@@ -1,4 +1,3 @@
-import { BiAddToQueue } from "react-icons/bi";
 import { RiDeleteBinLine } from "react-icons/ri";
 import { Product } from "../../models/Inventory.model";
 import { useSelector, useDispatch } from "react-redux";
@@ -9,21 +8,19 @@ import "./Stock.styles.scss";
 import { ProductCart } from "../../models/cart.model.d";
 import Pagination from "../../components/Pagination/Pagination";
 import { setActionForm } from "../../redux/settingsSlice";
-import { FaMoneyBillAlt, FaRegEdit } from "react-icons/fa";
+import { FaMoneyBillAlt } from "react-icons/fa";
 import SimpleModal from "../../components/SimpleModal/SimpleModal";
 import AddInventoryForm from "../../components/AddInventoryForm/AddInventoryForm";
 import { ParserNumber } from "../../utils";
 import Payment from "../../components/Payment/Payment";
 import { useTranslation } from 'react-i18next';
+import ProductRow from "../../components/ProductRow/ProductRow";
 
 const Stock = () => {
 	const products = useSelector((state: RootState) => state.cart.products);
 	const {
 		data,
 		isSuccess,
-		handleAddCart,
-		quantity,
-		handleChange,
 		handleRemoveCart,
 		handleModal,
 		modalIsOpen,
@@ -32,7 +29,6 @@ const Stock = () => {
 		handlePay,
 		total
 	} = useCart();
-	const enableAdd = quantity > 0;
 	const enableCancel = products.length > 0;
 	const dispatch = useDispatch();
 	const productSelected = useSelector(
@@ -73,31 +69,7 @@ const Stock = () => {
 						<tbody>
 							{isSuccess &&
 								data.results.map((item: Product) => (
-									<tr key={item.id}>
-										<td>{item.name}</td>
-										<td>{ParserNumber.colDecimals(item.price)} $</td>
-										<td>{item.stock}</td>
-										<td className="quantity-cell">
-											<input
-												type="number"
-												value={quantity}
-												onChange={(e) => handleChange(e)}
-												max={item.stock}
-												min={1}
-											/>
-										</td>
-										<td className="action-cell">
-											<button
-												disabled={!enableAdd}
-												onClick={() => handleAddCart(item)}
-											>
-												<BiAddToQueue />
-											</button>
-											<button onClick={() => handleEdit(item)}>
-												<FaRegEdit />
-											</button>
-										</td>
-									</tr>
+									<ProductRow key={item.id} product={item} handleEdit={handleEdit} />
 								))}
 						</tbody>
 					</table>
@@ -128,7 +100,7 @@ const Stock = () => {
 						<tbody>
 							{products.length === 0 && (
 								<tr>
-									<td colSpan={5}>{ t('sales.no_products') } 🧐</td>
+									<td className="no-results" colSpan={5}>{ t('sales.no_products') } 🧐</td>
 								</tr>
 							)}
 							{products.map((product: ProductCart) => (

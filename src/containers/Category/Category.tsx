@@ -3,7 +3,7 @@ import AddCategoryForm from '../../components/AddCategoryForm/AddCategoryForm';
 import SimpleModal from '../../components/SimpleModal/SimpleModal';
 import { useCategory } from '../../hooks/useCategory';
 import { Category as CategoryModel } from '../../models/Inventory.model';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { setActionForm } from '../../redux/settingsSlice';
 import { BiAddToQueue } from 'react-icons/bi';
 import { FaRegEdit } from 'react-icons/fa';
@@ -11,11 +11,13 @@ import { RiDeleteBinLine } from 'react-icons/ri';
 import SearchForm from '../../components/SearchForm/SearchForm';
 import Pagination from '../../components/Pagination/Pagination';
 import Ordering from '../../components/Ordering/Ordering';
+import { RootState } from '../../redux/store';
 
 const Category = () => {
     const [ t ] = useTranslation()
     const { data, isSuccess, modalIsOpen, closeModal, handleModal, categorySelected, handleDelete } = useCategory()
     const dispatch = useDispatch()
+    const searchQuery = useSelector((state: RootState) => state.settings.searchQuery)
 
     const handleEdit = (category: CategoryModel) => {
         dispatch(setActionForm("edit"))
@@ -70,6 +72,11 @@ const Category = () => {
                                     </tr>
                                 ))
                             ) }
+                        { isSuccess && data.results.length === 0 && (
+                            <tr>
+                                <td className='no-results' colSpan={4}>No results for: "{searchQuery}" 🧐</td>
+                            </tr>
+                        ) }
                     </tbody>
                 </table>
             </div>

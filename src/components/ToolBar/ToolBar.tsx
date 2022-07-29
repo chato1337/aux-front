@@ -5,10 +5,12 @@ const ToolBar = () => {
   return (
     <div className='toolbar-container'>
         <menu>
-            <ul>
-                <Link to="/dashboard/inventory">Inventory</Link>
-                <Link to="/dashboard/stock">Stock</Link>
-            </ul>
+            <li>
+              <Link to="/dashboard/inventory">Inventory</Link>
+            </li>
+            <li>
+              <Link to="/dashboard/stock">Stock</Link>
+            </li>
         </menu>
     </div>
   )
