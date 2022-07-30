@@ -23,7 +23,7 @@ export interface FormValues {
     suppliers: Option[]
 }
 
-export const useInventory = (pageLimit: number | null = null) => {
+export const useInventory = () => {
     const productSelected = useSelector((state: RootState) => state.inventory.productSelected)
     const { modalIsOpen, closeModal } = useModal()
     const { selectedOption, handleChange } = useSelect(initialSupplier)
@@ -33,13 +33,10 @@ export const useInventory = (pageLimit: number | null = null) => {
     const { notify, notifyError } = useToast()
     const actionForm = useSelector((state: RootState) => state.settings.actionForm)
     const searchQuery = useSelector((state: RootState) => state.settings.searchQuery)
-    const storedLimit = useSelector((state: RootState) => state.settings.limit)
-    const limit = pageLimit ? pageLimit : storedLimit
+    const limit = useSelector((state: RootState) => state.settings.limit)
     const offset = useSelector((state: RootState) => state.settings.offset)
     const count = useSelector((state: RootState) => state.settings.count)
     const order = useSelector((state: RootState) => state.settings.order)
-
-    console.log(limit)
 
     const handleModal = (product: Product | null) => {
         dispatch(setModal(true))
@@ -49,7 +46,6 @@ export const useInventory = (pageLimit: number | null = null) => {
     const { register, handleSubmit, reset, control, setError, formState: { errors, isDirty } } = useForm<Product>()
 
     const onSubmit = (data: Product) => {
-        console.log('entro?')
         if(!isDirty) {
             notify( t('formAlert') )
         }

@@ -54,25 +54,27 @@ const Stock = () => {
 				<div className="cart-search">
 					<div>
 						<h3>{ t('product.product_list') }:</h3>
-						<SearchForm placeholder={ t('product.name') } />
+						<SearchForm placeholder={ t('product.name') } numberResults={5} />
 					</div>
-					<table>
-						<thead>
-							<tr>
-								<th>{ t('name') }</th>
-								<th>{ t('product.price') }</th>
-								<th>{ t('sales.aviable') }</th>
-								<th>{ t('sales.quantity') }</th>
-								<th>{ t('actions') }</th>
-							</tr>
-						</thead>
-						<tbody>
-							{isSuccess &&
-								data.results.map((item: Product) => (
-									<ProductRow key={item.id} product={item} handleEdit={handleEdit} />
-								))}
-						</tbody>
-					</table>
+					<div className="stock-table">
+						<table>
+							<thead>
+								<tr>
+									<th>{ t('name') }</th>
+									<th>{ t('product.price') }</th>
+									<th>{ t('sales.aviable') }</th>
+									<th>{ t('sales.quantity') }</th>
+									<th>{ t('actions') }</th>
+								</tr>
+							</thead>
+							<tbody>
+								{isSuccess &&
+									data.results.map((item: Product) => (
+										<ProductRow key={item.id} product={item} handleEdit={handleEdit} />
+									))}
+							</tbody>
+						</table>
+					</div>
 					<Pagination />
 				</div>
 				<div className="table-order">

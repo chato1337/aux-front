@@ -24,6 +24,11 @@
 	.payment-section {
 		margin-top: 1rem;
 	}
+
+	.stock-table {
+		max-height: 245px;
+		overflow: auto;
+	}
 }
 
 .total-text {

@@ -14,7 +14,7 @@ import { useToast } from "./useToast";
 import { Bill } from '../models/Stock.model.d';
 
 export const useCart = () => {
-    const { data, isSuccess, handleModal, modalIsOpen, closeModal } = useInventory(5)
+    const { data, isSuccess, handleModal, modalIsOpen, closeModal } = useInventory()
     const dispatch = useDispatch()
     const [ quantity, setQuantity ] = useState(0)
     const [ cash, setCash ] = useState(0)
