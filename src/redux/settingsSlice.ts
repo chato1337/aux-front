@@ -8,7 +8,7 @@ export interface SettingsState {
   limit: number,
   offset: number,
   count: number,
-  order: string | null
+  order: string
 }
 
 const initialState: SettingsState = {
@@ -19,7 +19,7 @@ const initialState: SettingsState = {
   limit: 10,
   offset: 0,
   count: 0,
-  order: "name"
+  order: "id"
 }
 
 export const settingsSlice = createSlice({
@@ -47,7 +47,7 @@ export const settingsSlice = createSlice({
     setCount: (state: SettingsState, action: PayloadAction<number>) => {
       state.count = action.payload
     },
-    setOrder: (state: SettingsState, action: PayloadAction<string | null>) => {
+    setOrder: (state: SettingsState, action: PayloadAction<string>) => {
       state.order = action.payload
     }
   },

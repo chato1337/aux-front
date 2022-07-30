@@ -65,5 +65,6 @@
     "previous": "Anterior",
     "next": "Siguiente",
     "formAlert": "Por favor edite un campo primero",
-    "description": "Descripción"
+    "description": "Descripción",
+    "id": "#"
 }

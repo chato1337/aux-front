@@ -43,12 +43,21 @@ const Category = () => {
                 <table>
                     <thead>
                         <tr>
-                            <th>#</th>
                             <th>
-                                { t('name') }
-                                <Ordering orderField="name" />
+                                <Ordering orderField='id'>
+                                    { t('id') }
+                                </Ordering>
                             </th>
-                            <th>{ t('category.description') }</th>
+                            <th>
+                                <Ordering orderField="name">
+                                    { t('name') }
+                                </Ordering>
+                            </th>
+                            <th>
+                                <Ordering orderField='description'>
+                                    { t('category.description') }
+                                </Ordering>
+                            </th>
                             <th>{ t('actions') }</th>
                         </tr>
                     </thead>

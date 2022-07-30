@@ -1,4 +1,3 @@
-import { useState } from 'react'
 import { BiArrowToTop, BiArrowToBottom } from 'react-icons/bi'
 import { useQueryClient } from 'react-query';
 import { useDispatch, useSelector } from 'react-redux';
@@ -8,39 +7,47 @@ import { RootState } from '../../redux/store';
 import './Ordering.styles.scss'
 
 type OrderingProps = {
-    orderField: string
+    orderField: string,
+    children: JSX.Element
 }
 
-const Ordering = ({ orderField }: OrderingProps) => {
-    const [ orderToggle, setOrderToggle ] = useState(true)
+const Ordering = ({ orderField, children }: OrderingProps) => {
     const dispatch = useDispatch()
     const queryClient = useQueryClient()
     const order = useSelector((state:RootState) => state.settings.order)
+    const matchSymbol = order.match(/-/g)
+    const withoutSymbol = order.replace(/-/g, "")
     const isSelected = orderField === order || order === `-${orderField}`
+    const isEnabled = withoutSymbol === orderField
 
     const handleToggle = () => {
-        setOrderToggle(!orderToggle)
+        if(matchSymbol){
+            dispatch(setOrder(withoutSymbol))
+        }else {
+            dispatch(setOrder("-"+order))
+        }
+    }
+
+    const handleChangeOrder = (orderName: string) => {
+        dispatch(setOrder(orderName))
     }
 
     useEffect(() => {
-        if (orderToggle) {
-            dispatch(setOrder(orderField))
-        }else {
-            dispatch(setOrder("-"+orderField))
-        }
-    }, [orderToggle, orderField, dispatch])
-
-    useEffect(() => {
         // prevent unnecesaries requests
-        if(order !== orderField){
+        if(isEnabled){
             queryClient.refetchQueries()
         }
-    }, [queryClient, order, orderField])
+    }, [queryClient, order, isEnabled])
 
 	return (
-        <button className={`toggle-btn btn ${ isSelected ? 'btn-primary' : 'btn-outline' }`} onClick={handleToggle}>
-            { orderToggle ? <BiArrowToBottom /> : <BiArrowToTop /> }
-        </button>
+        <div>
+            <button className={`toggle-btn btn ${ isSelected ? 'btn-primary' : 'btn-outline' }`} onClick={() => handleChangeOrder(orderField)}>
+                { children }
+            </button>
+            <button disabled={!isEnabled} onClick={handleToggle}>
+                { matchSymbol && withoutSymbol === orderField ? <BiArrowToBottom /> : <BiArrowToTop /> }
+            </button>
+        </div>
 	);
 }
 

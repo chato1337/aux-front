@@ -44,8 +44,9 @@ const Supplier = () => {
 						<tr>
 							<th>#</th>
 							<th>
-								{ t('supplier.name') }
-								<Ordering orderField='name' />
+								<Ordering orderField='name'>
+									{ t('supplier.name') }
+								</Ordering>
 							</th>
 							<th>{ t('supplier.id') }</th>
 							<th>{ t('supplier.phone') }</th>
