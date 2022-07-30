@@ -40,11 +40,15 @@ const Ordering = ({ orderField, children }: OrderingProps) => {
     }, [queryClient, order, isEnabled])
 
 	return (
-        <div>
-            <button className={`toggle-btn btn ${ isSelected ? 'btn-primary' : 'btn-outline' }`} onClick={() => handleChangeOrder(orderField)}>
+        <div className='ordering-container'>
+            <button className={`ordering-selected ${ isSelected ? 'active' : '' }`} onClick={() => handleChangeOrder(orderField)}>
                 { children }
             </button>
-            <button disabled={!isEnabled} onClick={handleToggle}>
+            <button
+                className={`ordering-selected ${ isEnabled ? 'active' : '' } ${matchSymbol && withoutSymbol === orderField ? 'unselected' : ''}`}
+                disabled={!isEnabled}
+                onClick={handleToggle}
+            >
                 { matchSymbol && withoutSymbol === orderField ? <BiArrowToBottom /> : <BiArrowToTop /> }
             </button>
         </div>

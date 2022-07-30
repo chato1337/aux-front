@@ -1,4 +1,36 @@
-.toggle-btn {
-    padding: .1rem 1rem;
-    margin-right: 1rem;
+div.ordering-container {
+    justify-content: space-around;
+	.ordering-selected {
+        font-size: 14px;
+        font-weight: bold;
+        cursor: pointer;
+		background: transparent;
+        border-radius: 0;
+        border: none;
+        box-shadow: none;
+        border-bottom: 1px solid rgba(0, 212, 255, 0.5956757703081232);
+
+        &.active {
+            background: linear-gradient(
+                0deg,
+                rgba(0, 159, 191, 1) 0%,
+                rgba(0, 212, 255, 0.5956757703081232) 5%,
+                rgba(0, 212, 255, 0.013042717086834688) 100%
+            );
+            border-bottom: none;
+        }
+
+        &.unselected {
+            background: linear-gradient(
+                180deg,
+                rgba(0, 159, 191, 1) 0%,
+                rgba(0, 212, 255, 0.5956757703081232) 5%,
+                rgba(0, 212, 255, 0.013042717086834688) 100%
+            );
+        }
+
+        &:disabled {
+            cursor: not-allowed;
+        }
+	}
 }

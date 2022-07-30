@@ -42,15 +42,31 @@ const Supplier = () => {
 				<table>
 					<thead>
 						<tr>
-							<th>#</th>
+							<th>
+								<Ordering orderField='id'>
+									{ t('id') }
+								</Ordering>
+							</th>
 							<th>
 								<Ordering orderField='name'>
 									{ t('supplier.name') }
 								</Ordering>
 							</th>
-							<th>{ t('supplier.id') }</th>
-							<th>{ t('supplier.phone') }</th>
-							<th>{ t('supplier.email') }</th>
+							<th>
+								<Ordering orderField='identifier'>
+									{ t('supplier.id') }
+								</Ordering>
+							</th>
+							<th>
+								<Ordering orderField='phone'>
+									{ t('supplier.phone') }
+								</Ordering>
+							</th>
+							<th>
+								<Ordering orderField='email'>
+									{ t('supplier.email') }
+								</Ordering>
+							</th>
 							<th>{ t('actions') }</th>
 						</tr>
 					</thead>
