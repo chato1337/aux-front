@@ -3,6 +3,7 @@ import SearchForm from "../../components/SearchForm/SearchForm";
 import { useInvoice } from "../../hooks/useInvoice";
 import { Bill } from '../../models/Stock.model.d';
 import { ParserNumber } from "../../utils";
+import { DateTime } from "luxon"
 
 const Invoices = () => {
 	const { data, isSuccess } = useInvoice();
@@ -20,7 +21,7 @@ const Invoices = () => {
                             <th>#:</th>
                             <th>Total:</th>
                             <th>Seller:</th>
-                            {/* <th>date:</th> */}
+                            <th>date:</th>
                             <th>Actions:</th>
                         </tr>
                     </thead>
@@ -31,7 +32,7 @@ const Invoices = () => {
                                     <td>{ item.id }</td>
                                     <td>{ ParserNumber.colDecimals(item.total) } $</td>
                                     <td>{ item.seller.first_name } {item.seller.last_name}</td>
-                                    {/* <td>{ item.created_at.toDateString() }</td> */}
+                                    <td>{ DateTime.fromISO(item.created_at).toLocaleString(DateTime.DATETIME_MED) }</td>
                                     <td>
                                         <button>Detail</button>
                                     </td>

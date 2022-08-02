@@ -10,7 +10,8 @@ type SimpleModalProps = {
 
 const defaultStyles = {
     content: {
-        padding: 0
+        padding: 0,
+        height: 'fit-content'
     },
 };
 

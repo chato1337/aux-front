@@ -31,3 +31,18 @@ export class ApiUtil {
         return { searchQuery, limit, offset, order }
     }
 }
+
+export class dateUtil {
+    static isoParse = (date: Date) => {
+        const dtf = new Intl.DateTimeFormat("es-ES", {
+            calendar: "gregory",
+            numberingSystem: "latn",
+            day: "numeric",
+            month: "numeric",
+            year: "numeric",
+            timeZone: "Atlantic/Canary"
+        });
+
+        return dtf.format(date);
+    }
+}

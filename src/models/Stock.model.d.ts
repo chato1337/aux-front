@@ -6,7 +6,7 @@ export interface Bill {
     orders:       Order[];
     customer:     Customer;
     seller:       Seller;
-    created_at:   Date;
+    created_at:   string;
     payment_type: string;
     total:        number;
 }
@@ -18,7 +18,7 @@ export interface Order {
     discount:   number;
     total:      number;
     tax:        number;
-    created_at: Date;
+    created_at: string;
     bill:       number;
 }
 

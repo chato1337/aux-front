@@ -10,6 +10,16 @@ div.ordering-container {
         box-shadow: none;
         border-bottom: 1px solid rgba(0, 212, 255, 0.5956757703081232);
 
+        &:hover {
+            background: linear-gradient(
+                0deg,
+                rgba(0, 159, 191, 1) 0%,
+                rgba(0, 212, 255, 0.5956757703081232) 5%,
+                rgba(0, 212, 255, 0.013042717086834688) 100%
+            );
+            transition: 1s;
+        }
+
         &.active {
             background: linear-gradient(
                 0deg,

@@ -28,6 +28,9 @@
 	.stock-table {
 		max-height: 250px;
 		overflow: auto;
+		table {
+			box-shadow: none;
+		}
 	}
 }
 

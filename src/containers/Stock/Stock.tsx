@@ -108,9 +108,9 @@ const Stock = () => {
 							{products.map((product: ProductCart) => (
 								<tr key={product.id}>
 									<td>{product.name}</td>
-									<td>{ParserNumber.colDecimals(product.unit_price)} $</td>
-									<td>{product.quantity}</td>
-									<td>{ParserNumber.colDecimals(product.subtotal)} $</td>
+									<td className="text-center">{ParserNumber.colDecimals(product.unit_price)} $</td>
+									<td className="text-center">{product.quantity}</td>
+									<td className="text-center">{ParserNumber.colDecimals(product.subtotal)} $</td>
 									<td className="action-cell">
 										<button onClick={() => handleRemoveCart(product)}>
 											<RiDeleteBinLine />
@@ -122,7 +122,7 @@ const Stock = () => {
 								<td className="total-text" colSpan={4}>
 									{ t('sales.total') }
 								</td>
-								<td className="total-sum">
+								<td className="total-sum text-center">
 									{ParserNumber.colDecimals(total)} $
 								</td>
 							</tr>

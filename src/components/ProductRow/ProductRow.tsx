@@ -16,8 +16,8 @@ const ProductRow = ({ product, handleEdit }: ProductRowProps) => {
 	return (
         <tr key={product.id}>
             <td>{product.name}</td>
-            <td>{ParserNumber.colDecimals(product.price)} $</td>
-            <td>{product.stock}</td>
+            <td className="text-center">{ParserNumber.colDecimals(product.price)} $</td>
+            <td className="text-center">{product.stock}</td>
             <td className="quantity-cell">
                 <input
                     type="number"
