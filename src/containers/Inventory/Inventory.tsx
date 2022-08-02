@@ -44,13 +44,21 @@ const InventoryComponent = () => {
                     <table>
                         <thead>
                             <tr>
-                                <th>#</th>
+                                <th>
+                                    <Ordering orderField='id'>
+                                        { t('id') }
+                                    </Ordering>
+                                </th>
                                 <th>
                                     <Ordering orderField="name">
                                         { t('product.name') }
                                     </Ordering>
                                 </th>
-                                <th>{ t('category.title') }</th>
+                                <th>
+                                    <Ordering orderField='category'>
+                                        { t('category.title') }
+                                    </Ordering>
+                                </th>
                                 <th>{ t('product.stock') }</th>
                                 <th>{ t('product.unit') }</th>
                                 <th>{ t('actions') }</th>
