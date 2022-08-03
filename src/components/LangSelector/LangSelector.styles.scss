@@ -1,0 +1,19 @@
+.lang-selector-container {
+    button {
+        box-shadow: none;
+        padding: 0 .5rem;
+        background-color: transparent;
+
+        &:first-child {
+            margin-right: .4rem;
+        }
+
+        &:hover {
+            background: rgba(0, 123, 255, 0.499);
+        }
+    }
+
+    .active {
+        background: rgba(0, 123, 255, 1);
+    }
+}

@@ -13,6 +13,7 @@ import Category from '../containers/Category/Category';
 import { ToastWrapper } from '../components/ToastWrapper/ToastWrapper';
 import { ReactQueryDevtools } from 'react-query/devtools'
 import Invoices from '../containers/Invoices/Invoices';
+import Login from '../containers/Login/Login';
 
 const App = () => {
     return (
@@ -30,6 +31,7 @@ const App = () => {
                         <Route path="invoice" element={<Invoices />} />
                         <Route path="settings" element={<Settings />} />
                     </Route>
+                    <Route path="login" element={<Login />} />
                     <Route path="about" element={<About />} />
                     <Route path="*" element={<NotFound />} />
                 </Routes>

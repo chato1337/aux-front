@@ -1,0 +1,11 @@
+.settings-container {
+    .settings-body {
+        display: grid;
+        grid-template-columns: 30% 70%;
+
+        .content {
+            justify-content: flex-start;
+            margin: .5rem 0;
+        }
+    }
+}
