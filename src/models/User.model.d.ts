@@ -3,7 +3,17 @@ export interface Customer {
     user:       User;
     full_name:  string;
     leverage:   string;
-    created_at: Date;
+    created_at: string;
+}
+
+export interface Login {
+    email: string,
+    password: string
+}
+
+export interface UserResponse {
+    user: User,
+    token: string
 }
 
 export interface User {
@@ -14,7 +24,7 @@ export interface User {
     phone:      string;
     password:   string;
     is_active:  boolean;
-    created_at: Date;
+    created_at: string;
 }
 
 export interface Role {
@@ -29,5 +39,5 @@ export interface Seller {
     first_name: string;
     last_name:  string;
     address:    string;
-    created_at: Date;
+    created_at: string;
 }

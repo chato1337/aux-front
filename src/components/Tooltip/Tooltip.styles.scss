@@ -1,0 +1,30 @@
+@import '../../styles/variables.scss';
+
+.tooltip-container {
+    position: relative;
+    button {
+        box-shadow: none;
+        border: none;
+        background-color: transparent;
+        color: $gray-color;
+    }
+
+    .tooltip-content {
+        position: absolute;
+        width: -webkit-fill-available;
+        top: 40px;
+
+        menu {
+            background-color: $deep-gray;
+            border-radius: 15px;
+            display: block;
+            text-align: center;
+        }
+
+        menu ul {
+            cursor: pointer;
+            justify-content: center;
+            font-size: 12px;
+        }
+    }
+}

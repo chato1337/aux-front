@@ -20,8 +20,8 @@ select {
     border: 1px solid #ced4da;
     color: #495057;
     border-radius: 0.25rem;
-    box-shadow: 10px 10px 30px #bebebe,
-    -10px -10px 30px #ffffff;
+    // box-shadow: 10px 10px 30px #bebebe,
+    // -10px -10px 30px #ffffff;
     transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;
 }
 
@@ -36,7 +36,7 @@ input {
     background-clip: padding-box;
     border: 1px solid #ced4da;
     border-radius: 0.25rem;
-    box-shadow: $shadow-low;
+    // box-shadow: $shadow-low;
     transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;
     &:disabled {
         cursor: not-allowed;
@@ -166,7 +166,11 @@ tbody {
 .form-group {
 	margin: 16px 8px;
 	display: grid;
+    align-items: center;
 	grid-template-columns: 20% 80%;
+    label {
+        font-weight: bold;
+    }
     .error {
         border-color: #e4655f;
         box-shadow: 0 0 6px rgb(228 101 95 / 20%);

@@ -30,6 +30,6 @@ export const accountSlice = createSlice({
     }
 })
 
-export const { setUser, setOrganization } = accountSlice.actions
+export const { setUser, setOrganization, setToken } = accountSlice.actions
 
 export default accountSlice.reducer

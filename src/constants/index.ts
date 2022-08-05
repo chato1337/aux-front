@@ -5,6 +5,10 @@ export class AuxConstants {
     static baseUrl = 'http://localhost:8000/api/v1/'
 }
 
+export class AccountConstant {
+    static apiUrl = 'user/login/'
+}
+
 export class StockConstant {
     static apiUrl = 'stock/bill/'
     static addUrl = 'stock/bill/add/'

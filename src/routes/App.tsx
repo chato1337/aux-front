@@ -14,8 +14,31 @@ import { ToastWrapper } from '../components/ToastWrapper/ToastWrapper';
 import { ReactQueryDevtools } from 'react-query/devtools'
 import Invoices from '../containers/Invoices/Invoices';
 import Login from '../containers/Login/Login';
+import ProtectedRoute from '../containers/ProtectedRoute/ProtectedRoute';
+import { useDispatch } from 'react-redux';
+// import { RootState } from '../redux/store';
+import { useEffect } from 'react';
+import { AccountService } from '../services/AccountService'
+import { setToken, setUser } from '../redux/accountSlice';
+import DashboardStart from '../components/DashboardStart/DashboardStart';
 
 const App = () => {
+    // const user = useSelector((state: RootState) => state.account.user)
+    const dispatch = useDispatch()
+
+    //restore session from local storage
+    useEffect(() => {
+        if (AccountService.getUser()) {
+            dispatch(setUser(AccountService.getUser()))
+        }
+    }, [dispatch])
+
+    useEffect(() => {
+        if (AccountService.getToken()) {
+            dispatch(setToken(AccountService.getToken()))
+        }
+    }, [dispatch])
+
     return (
         <div className='app-container'>
             <BrowserRouter>
@@ -23,7 +46,15 @@ const App = () => {
                 <Routes>
                     <Route index element={<Home />} />
                     <Route path="/" element={<Home />} />
-                    <Route path="dashboard" element={<Dashboard />} >
+                    <Route
+                        path="dashboard"
+                        element={
+                            <ProtectedRoute>
+                                <Dashboard />
+                            </ProtectedRoute>
+                        }
+                    >
+                        <Route index element={ <DashboardStart /> } />
                         <Route path="inventory" element={<InventoryComponent />} />
                         <Route path="category" element={<Category />} />
                         <Route path="stock" element={<Stock />} />
