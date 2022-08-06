@@ -1,10 +1,11 @@
 import { User } from "../models/User.model";
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
+import { Organization } from '../models/Organization.model.d';
 
 
 export interface AccountState {
     user: User | null,
-    organization: any,
+    organization: Organization | null,
     token: string | null
 }
 
@@ -21,7 +22,7 @@ export const accountSlice = createSlice({
         setUser: (state: AccountState, action: PayloadAction<User | null>) => {
             state.user = action.payload
         },
-        setOrganization: (state: AccountState, action: any) => {
+        setOrganization: (state: AccountState, action: PayloadAction<Organization | null>) => {
             state.organization = action.payload
         },
         setToken: (state: AccountState, action: PayloadAction<string | null>) => {

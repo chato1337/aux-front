@@ -7,6 +7,11 @@ export class AuxConstants {
 
 export class AccountConstant {
     static apiUrl = 'user/login/'
+    static addUrl = 'user/add/'
+}
+
+export class OrganizationConstant {
+    static addUrl = 'user/organization/add/'
 }
 
 export class StockConstant {

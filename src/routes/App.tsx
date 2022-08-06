@@ -21,6 +21,8 @@ import { useEffect } from 'react';
 import { AccountService } from '../services/AccountService'
 import { setToken, setUser } from '../redux/accountSlice';
 import DashboardStart from '../components/DashboardStart/DashboardStart';
+import Register from '../containers/Register/Register';
+import NewOrganization from '../containers/NewOrganization/NewOrganization';
 
 const App = () => {
     // const user = useSelector((state: RootState) => state.account.user)
@@ -63,6 +65,8 @@ const App = () => {
                         <Route path="settings" element={<Settings />} />
                     </Route>
                     <Route path="login" element={<Login />} />
+                    <Route path="register" element={<Register />} />
+                    <Route path="organization" element={<NewOrganization />} />
                     <Route path="about" element={<About />} />
                     <Route path="*" element={<NotFound />} />
                 </Routes>

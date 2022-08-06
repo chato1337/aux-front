@@ -175,6 +175,10 @@ tbody {
         border-color: #e4655f;
         box-shadow: 0 0 6px rgb(228 101 95 / 20%);
     }
+
+    &.two-rows {
+        grid-template-columns: 20% 40% 40%;
+    }
 }
 
 .module-container {

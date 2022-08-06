@@ -14,8 +14,10 @@ const Login = () => {
   const navigate = useNavigate()
 
   useEffect(() => {
-    if (user) {
-      navigate('/dashboard')
+    if (user && user.status === 'to-activate') {
+      navigate('/organization', {replace: true})
+    }else if(user && user.status !== 'to-activate') {
+      navigate('/dashboard', {replace: true})
     }
   }, [user, navigate])
 

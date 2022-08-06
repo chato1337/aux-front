@@ -32,7 +32,7 @@ const ProtectedRoute = ({
         }
     }, [dispatch])
 
-    if (user) {
+    if (user && user.status !== 'to-activate') {
         return children
     }else {
         return <Navigate to={redirectPath} replace />

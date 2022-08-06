@@ -25,6 +25,7 @@ export interface User {
     password:   string;
     is_active:  boolean;
     created_at: string;
+    status: string;
 }
 
 export interface Role {
@@ -40,4 +41,10 @@ export interface Seller {
     last_name:  string;
     address:    string;
     created_at: string;
+}
+
+export interface Owner extends User {
+    first_name: string;
+    last_name: string;
+    address: string;
 }
