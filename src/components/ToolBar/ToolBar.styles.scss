@@ -25,11 +25,26 @@
 
         li {
             padding: 10px;
+            position: relative;
+            width: 90px;
+            display: flex;
+            justify-content: center;
         }
 
         li a {
             color: $first-color;
             text-decoration: none;
+            width: 60px;
+            height: auto;
+            display: block;
+            position: absolute;
+            bottom: 8px;
+            text-align: center;
+        }
+        li a img {
+            height: 100%;
+            width: 100%;
+            filter: drop-shadow(5px 5px 15px #bebebe);
         }
     }
 }

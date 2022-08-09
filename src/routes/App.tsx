@@ -6,7 +6,6 @@ import NotFound from '../pages/NotFound/NotFound';
 import Dashboard from '../pages/Dashboard/Dashboard';
 import InventoryComponent from '../containers/Inventory/Inventory';
 import Stock from '../containers/Stock/Stock';
-import ToolBar from '../components/ToolBar/ToolBar';
 import Supplier from '../containers/Supplier/Supplier';
 import Settings from '../containers/Settings/Settings';
 import Category from '../containers/Category/Category';
@@ -70,7 +69,6 @@ const App = () => {
                     <Route path="about" element={<About />} />
                     <Route path="*" element={<NotFound />} />
                 </Routes>
-                <ToolBar />
                 <ReactQueryDevtools initialIsOpen={false} />
             </BrowserRouter>
         </div>

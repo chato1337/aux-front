@@ -1,5 +1,6 @@
 import PannelNavbar from '../../components/PannelNavbar/PannelNavbar'
-import SideBar from '../../components/SideBar.tsx/SideBar'
+import SideBar from '../../components/SideBar/SideBar'
+import ToolBar from '../../components/ToolBar/ToolBar'
 import './Pannel.styles.scss'
 
 const Pannel = ({ children }: { children: JSX.Element }) => {
@@ -14,6 +15,7 @@ const Pannel = ({ children }: { children: JSX.Element }) => {
           {children}
         </div>
       </div>
+      <ToolBar />
     </div>
   )
 }
