@@ -6,6 +6,7 @@ import { useEffect } from 'react';
 import { RootState } from '../../redux/store';
 import { AccountService } from '../../services/AccountService';
 import { setToken, setUser } from '../../redux/accountSlice';
+import { USER_STATUS } from '../../models/User.model.d';
 
 type ProtectedRouterProps = {
     children: JSX.Element
@@ -32,7 +33,7 @@ const ProtectedRoute = ({
         }
     }, [dispatch])
 
-    if (user && user.status !== 'to-activate') {
+    if (user && user.status !== USER_STATUS.to_activate) {
         return children
     }else {
         return <Navigate to={redirectPath} replace />

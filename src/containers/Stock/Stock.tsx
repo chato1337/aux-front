@@ -7,7 +7,7 @@ import SearchForm from "../../components/SearchForm/SearchForm";
 import "./Stock.styles.scss";
 import { ProductCart } from "../../models/cart.model.d";
 import Pagination from "../../components/Pagination/Pagination";
-import { setActionForm } from "../../redux/settingsSlice";
+import { FORM_OPTION, setActionForm } from "../../redux/settingsSlice";
 import { FaMoneyBillAlt } from "react-icons/fa";
 import SimpleModal from "../../components/SimpleModal/SimpleModal";
 import AddInventoryForm from "../../components/AddInventoryForm/AddInventoryForm";
@@ -41,7 +41,7 @@ const Stock = () => {
 	const [ t ] = useTranslation()
 
 	const handleEdit = (product: Product) => {
-		dispatch(setActionForm("edit"));
+		dispatch(setActionForm(FORM_OPTION.edit));
 		handleModal(product);
 	};
 
@@ -137,7 +137,7 @@ const Stock = () => {
 				</div>
 			</div>
 			<SimpleModal modalIsOpen={modalIsOpen} closeModal={closeModal}>
-				{actionForm === "pay" ? (
+				{actionForm === FORM_OPTION.pay ? (
 					<Payment />
 				) : (
 					<AddInventoryForm

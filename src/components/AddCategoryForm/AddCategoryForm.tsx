@@ -4,6 +4,7 @@ import { Category } from '../../models/Inventory.model';
 import { CategoryConstant } from '../../constants';
 import { useSelector } from 'react-redux';
 import { RootState } from '../../redux/store';
+import { FORM_OPTION } from '../../redux/settingsSlice';
 
 type AddCategoryFormProps = {
     categoryData?: Category
@@ -16,7 +17,7 @@ const AddCategoryForm = ({ categoryData = CategoryConstant.defaultCategory }: Ad
 
     return (
         <div>
-            <h2>{ actionForm === "create" ? t('category.add') : t('category.edit') }</h2>
+            <h2>{ actionForm === FORM_OPTION.create ? t('category.add') : t('category.edit') }</h2>
             <form onSubmit={handleSubmit(onSubmit)}>
                 <div className="form-group">
                     <label htmlFor="name">{ t('name') }:</label>
@@ -36,7 +37,7 @@ const AddCategoryForm = ({ categoryData = CategoryConstant.defaultCategory }: Ad
                         defaultValue={ categoryData.description }
                     />
                 </div>
-                <button className='btn btn-success' type='submit'>{ actionForm === "create" ? t('category.add') : t('category.edit') }</button>
+                <button className='btn btn-success' type='submit'>{ actionForm === FORM_OPTION.create ? t('category.add') : t('category.edit') }</button>
             </form>
         </div>
     )

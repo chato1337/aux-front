@@ -6,7 +6,7 @@ import { InventoryService } from "../services/InventoryService"
 import { useModal } from './useModal';
 import { Option, useSelect } from "./useSelect"
 import { useDispatch, useSelector } from 'react-redux';
-import { setCount, setModal } from "../redux/settingsSlice"
+import { FORM_OPTION, setCount, setModal } from "../redux/settingsSlice"
 import { useTranslation } from 'react-i18next';
 import { AxiosResponse } from 'axios';
 import { useToast } from './useToast';
@@ -50,9 +50,9 @@ export const useInventory = () => {
             notify( t('formAlert') )
         }
 
-        if (actionForm === "create" && isDirty) {
+        if (actionForm === FORM_OPTION.create && isDirty) {
             mutate(data)
-        } else if(actionForm === "edit") {
+        } else if(actionForm === FORM_OPTION.edit) {
             const editForm = { ...data, id: productSelected?.id }
             mutateEdit(editForm)
         }

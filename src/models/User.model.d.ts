@@ -6,14 +6,16 @@ export interface Customer {
     created_at: string;
 }
 
-export interface Login {
-    email: string,
-    password: string
-}
+export interface Login extends Pick<User, 'email' | 'password'> {}
 
 export interface UserResponse {
     user: User,
     token: string
+}
+
+export enum USER_STATUS {
+	to_activate = 'to-activate',
+	active = 'active'
 }
 
 export interface User {
@@ -25,12 +27,19 @@ export interface User {
     password:   string;
     is_active:  boolean;
     created_at: string;
-    status: string;
+    status: USER_STATUS;
+}
+
+export enum ROLES {
+	customer = 'customer',
+	owner = 'owner',
+	salesman = 'salesman',
+	admin = 'admin'
 }
 
 export interface Role {
     id:          number;
-    name:        string;
+    name:        ROLES;
     description: string;
 }
 

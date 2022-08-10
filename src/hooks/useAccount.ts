@@ -1,7 +1,7 @@
 import { useModal } from './useModal';
 import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { setModal } from '../redux/settingsSlice';
+import { FORM_OPTION, setModal } from '../redux/settingsSlice';
 import { useForm } from 'react-hook-form';
 import { RootState } from '../redux/store';
 import { useMutation } from 'react-query';
@@ -37,7 +37,7 @@ export const useAccount = () => {
     }
 
     const onSubmit = (data: Owner) => {
-        if (isDirty && actionForm === 'create') {
+        if (isDirty && actionForm === FORM_OPTION.create) {
             mutate(data)
         }else {
             console.log(data)

@@ -3,9 +3,10 @@ import { Supplier } from '../../models/Supplier.model.d';
 import { useTranslation } from 'react-i18next';
 import { useSelector } from 'react-redux';
 import { RootState } from '../../redux/store';
+import { FORM_OPTION } from '../../redux/settingsSlice';
 
 type AddSupplierFormProps = {
-    supplierData?: Supplier 
+    supplierData?: Supplier
 }
 
 const AddSupplierForm = ({ supplierData }: AddSupplierFormProps) => {
@@ -15,7 +16,7 @@ const AddSupplierForm = ({ supplierData }: AddSupplierFormProps) => {
 
     return (
         <div>
-            <h2>{ actionForm === "create" ? t('supplier.add') : t('supplier.edit') }</h2>
+            <h2>{ actionForm === FORM_OPTION.create ? t('supplier.add') : t('supplier.edit') }</h2>
             <form onSubmit={handleSubmit(onSubmit)}>
                 <div className="form-group">
                     <label htmlFor="name">{ t('supplier.name') }:</label>
@@ -67,7 +68,7 @@ const AddSupplierForm = ({ supplierData }: AddSupplierFormProps) => {
                         defaultValue={supplierData?.other_details}
                     />
                 </div>
-                <button className='btn btn-success' type='submit'>{ actionForm === "create" ? t('supplier.add') : t('supplier.edit') }</button>
+                <button className='btn btn-success' type='submit'>{ actionForm === FORM_OPTION.create ? t('supplier.add') : t('supplier.edit') }</button>
             </form>
         </div>
     )

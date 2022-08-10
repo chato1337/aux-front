@@ -6,6 +6,8 @@ import ShopImg from '../../assets/toolbar/shop.png'
 import './ToolBar.styles.scss'
 
 const ToolBar = () => {
+  const delayAnimation = 0.2
+
   return (
     <div className='toolbar-container'>
         <menu>
@@ -16,7 +18,7 @@ const ToolBar = () => {
                   alt="products"
                   whileHover={{
                     scale: 1.2,
-                    transition: { duration: 0.5 }
+                    transition: { duration: delayAnimation }
                   }}
                 />
                 <small>Products</small>
@@ -29,20 +31,20 @@ const ToolBar = () => {
                   alt="shop"
                   whileHover={{
                     scale: 1.2,
-                    transition: { duration: 1 }
+                    transition: { duration: delayAnimation }
                   }}
                 />
                 <small>Sales</small>
               </Link>
             </li>
             <li>
-              <Link to="/dashboard/stock">
+              <Link to="/dashboard/supplier">
                 <motion.img
                   src={SupplierImg}
                   alt="suppliers"
                   whileHover={{
                     scale: 1.2,
-                    transition: { duration: 1 }
+                    transition: { duration: delayAnimation }
                   }}
                 />
                 <small>Suppliers</small>

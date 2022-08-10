@@ -5,7 +5,7 @@ import { CategoryService } from '../services/CategoryService';
 import { useModal } from "./useModal";
 import { useToast } from "./useToast";
 import { useDispatch, useSelector } from 'react-redux';
-import { setCount, setModal } from "../redux/settingsSlice";
+import { FORM_OPTION, setCount, setModal } from "../redux/settingsSlice";
 import { AxiosResponse } from "axios";
 import { useTranslation } from 'react-i18next';
 import { RootState } from "../redux/store";
@@ -34,9 +34,9 @@ export const useCategory = () => {
             notify( t('formAlert') )
         }
 
-        if (actionForm === "create" && isDirty) {
+        if (actionForm === FORM_OPTION.create && isDirty) {
             mutate(data)
-        }else if(actionForm === "edit" && isDirty){
+        }else if(actionForm === FORM_OPTION.edit && isDirty){
             const editForm = { ...data, id: categorySelected?.id ?? 0 }
             mutateEdit(editForm)
         }

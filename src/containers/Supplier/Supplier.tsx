@@ -4,7 +4,7 @@ import { useSupplier } from '../../hooks/useSupplier';
 import { Supplier as SupplierModel } from '../../models/Supplier.model';
 import { useTranslation } from 'react-i18next';
 import { useDispatch } from 'react-redux';
-import { setActionForm } from '../../redux/settingsSlice';
+import { FORM_OPTION, setActionForm } from '../../redux/settingsSlice';
 import { RiDeleteBinLine } from 'react-icons/ri';
 import { FaRegEdit } from 'react-icons/fa';
 import SearchForm from '../../components/SearchForm/SearchForm';
@@ -18,12 +18,12 @@ const Supplier = () => {
 	const dispatch = useDispatch()
 
 	const handleEdit = (supplier: SupplierModel) => {
-        dispatch(setActionForm("edit"))
+        dispatch(setActionForm(FORM_OPTION.edit))
         handleModal(supplier)
     }
 
     const handleCreate = () => {
-        dispatch(setActionForm("create"))
+        dispatch(setActionForm(FORM_OPTION.create))
         handleModal(null)
     }
 

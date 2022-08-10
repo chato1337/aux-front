@@ -5,7 +5,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { addProductCart, cleanProductCart } from "../redux/cartSlice";
 import { ChangeEvent, useState } from "react";
 import { RootState } from "../redux/store";
-import { setActionForm, setModal } from "../redux/settingsSlice";
+import { FORM_OPTION, setActionForm, setModal } from "../redux/settingsSlice";
 import { useMutation } from 'react-query';
 import { StockService } from '../services/StockService';
 import { ApiError } from '../utils/index';
@@ -59,7 +59,7 @@ export const useCart = () => {
 
     const handlePay = () => {
         setShowForm(true)
-        dispatch(setActionForm("pay"))
+        dispatch(setActionForm(FORM_OPTION.pay))
         dispatch(setModal(true))
     }
 

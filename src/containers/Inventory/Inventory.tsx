@@ -9,7 +9,7 @@ import { Product } from '../../models/Inventory.model.d';
 import { useTranslation } from 'react-i18next';
 import SearchForm from '../../components/SearchForm/SearchForm';
 import { useDispatch } from 'react-redux';
-import { setActionForm } from '../../redux/settingsSlice';
+import { FORM_OPTION, setActionForm } from '../../redux/settingsSlice';
 import Pagination from '../../components/Pagination/Pagination';
 import Ordering from '../../components/Ordering/Ordering';
 
@@ -19,12 +19,12 @@ const InventoryComponent = () => {
     const dispatch = useDispatch()
 
     const handleEdit = (product: Product) => {
-        dispatch(setActionForm("edit"))
+        dispatch(setActionForm(FORM_OPTION.edit))
         handleModal(product)
     }
 
     const handleCreate = () => {
-        dispatch(setActionForm("create"))
+        dispatch(setActionForm(FORM_OPTION.create))
         handleModal(null)
     }
 

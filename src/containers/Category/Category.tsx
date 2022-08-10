@@ -4,7 +4,7 @@ import SimpleModal from '../../components/SimpleModal/SimpleModal';
 import { useCategory } from '../../hooks/useCategory';
 import { Category as CategoryModel } from '../../models/Inventory.model';
 import { useDispatch, useSelector } from 'react-redux';
-import { setActionForm } from '../../redux/settingsSlice';
+import { FORM_OPTION, setActionForm } from '../../redux/settingsSlice';
 import { BiAddToQueue } from 'react-icons/bi';
 import { FaRegEdit } from 'react-icons/fa';
 import { RiDeleteBinLine } from 'react-icons/ri';
@@ -20,12 +20,12 @@ const Category = () => {
     const searchQuery = useSelector((state: RootState) => state.settings.searchQuery)
 
     const handleEdit = (category: CategoryModel) => {
-        dispatch(setActionForm("edit"))
+        dispatch(setActionForm(FORM_OPTION.edit))
         handleModal(category)
     }
 
     const handleCreate = () => {
-        dispatch(setActionForm("create"))
+        dispatch(setActionForm(FORM_OPTION.create))
         handleModal(null)
     }
 

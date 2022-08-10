@@ -12,6 +12,7 @@ import { CategoryService } from '../../services/CategoryService';
 import { useTranslation } from 'react-i18next';
 import { useSelector } from 'react-redux';
 import { RootState } from '../../redux/store';
+import { FORM_OPTION } from '../../redux/settingsSlice';
 
 type AddInventoryFormProps = {
     productData?: Product
@@ -29,7 +30,7 @@ const AddInventoryForm = ({ productData = InventoryConstant.defaultValue }: AddI
 
     return (
         <div className='add-inventory-container'>
-            <h2>{ actionForm === "create" ? t('product.add') : t('product.edit') }:</h2>
+            <h2>{ actionForm === FORM_OPTION.create ? t('product.add') : t('product.edit') }:</h2>
             <form onSubmit={handleSubmit(onSubmit)}>
                 <div className="form-group">
                     <label htmlFor="">{ t('supplier.single') }:</label>
@@ -134,7 +135,7 @@ const AddInventoryForm = ({ productData = InventoryConstant.defaultValue }: AddI
                         className={ errors.description ? 'error' : '' }
                     />
                 </div>
-                <button disabled={!isDirty} className='btn btn-success' type="submit">{ actionForm === "create" ? t('product.add') : t('product.edit') }</button>
+                <button disabled={!isDirty} className='btn btn-success' type="submit">{ actionForm === FORM_OPTION.create ? t('product.add') : t('product.edit') }</button>
             </form>
         </div>
     )

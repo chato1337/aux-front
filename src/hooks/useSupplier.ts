@@ -5,7 +5,7 @@ import { useMutation, useQuery, useQueryClient } from 'react-query';
 import { SupplierService } from '../services/SupplierService';
 import { useEffect } from "react";
 import { useDispatch, useSelector } from 'react-redux';
-import { setCount, setModal } from "../redux/settingsSlice";
+import { FORM_OPTION, setCount, setModal } from "../redux/settingsSlice";
 import { AxiosResponse } from 'axios';
 import { useTranslation } from 'react-i18next';
 import { useToast } from './useToast';
@@ -34,9 +34,9 @@ export const useSupplier = () => {
             notify( t('formAlert') )
         }
 
-        if(actionForm === "create" && isDirty) {
+        if(actionForm === FORM_OPTION.create && isDirty) {
             mutate(data)
-        }else if(actionForm === "edit" && isDirty) {
+        }else if(actionForm === FORM_OPTION.edit && isDirty) {
             const editForm = {...data, id: supplierSelected?.id}
             mutateEdit(editForm)
         }
