@@ -8,7 +8,7 @@ import { useMutation } from 'react-query';
 import { UserService } from '../services/UserService';
 import { Owner, UserResponse } from '../models/User.model.d';
 import { AxiosResponse } from 'axios';
-import { setToken, setUser } from '../redux/accountSlice';
+import { setToken, setStaff } from '../redux/accountSlice';
 import { AccountService } from '../services/AccountService';
 import { useNavigate } from 'react-router-dom';
 
@@ -23,8 +23,8 @@ export const useAccount = () => {
     const { mutate } = useMutation(UserService.addUser, {
         onSuccess(data) {
             const res: AxiosResponse<UserResponse> = data
-            dispatch(setUser(res.data.user))
-            AccountService.store(res.data.user)
+            dispatch(setStaff(res.data.staff))
+            AccountService.store(res.data.staff)
             dispatch(setToken(res.data.token))
             AccountService.storeToken(res.data.token)
             navigate('/organization', {replace: true})

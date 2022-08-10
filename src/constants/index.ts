@@ -8,6 +8,7 @@ export class AuxConstants {
 export class AccountConstant {
     static apiUrl = 'user/login/'
     static addUrl = 'user/add/'
+	static staffUrl = 'user/staff/'
 }
 
 export class OrganizationConstant {
@@ -15,8 +16,8 @@ export class OrganizationConstant {
 }
 
 export class StockConstant {
-    static apiUrl = 'stock/bill/'
-    static addUrl = 'stock/bill/add/'
+    static apiUrl = 'stock/invoice/'
+    static addUrl = 'stock/invoice/add/'
 }
 export class SupplierConstant {
     static apiUrl = 'inventory/supplier/'

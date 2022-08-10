@@ -5,7 +5,7 @@ import { useDispatch } from 'react-redux';
 import { useEffect } from 'react';
 import { RootState } from '../../redux/store';
 import { AccountService } from '../../services/AccountService';
-import { setToken, setUser } from '../../redux/accountSlice';
+import { setToken, setStaff } from '../../redux/accountSlice';
 import { USER_STATUS } from '../../models/User.model.d';
 
 type ProtectedRouterProps = {
@@ -17,13 +17,13 @@ const ProtectedRoute = ({
     redirectPath = '/login',
     children
 }: ProtectedRouterProps) => {
-    const user = useSelector((state: RootState) => state.account.user)
+    const staff = useSelector((state: RootState) => state.account.staff)
     const dispatch = useDispatch()
 
     // restore session from local storage
     useEffect(() => {
         if (AccountService.getUser()) {
-            dispatch(setUser(AccountService.getUser()))
+            dispatch(setStaff(AccountService.getUser()))
         }
     }, [dispatch])
 
@@ -33,7 +33,7 @@ const ProtectedRoute = ({
         }
     }, [dispatch])
 
-    if (user && user.status !== USER_STATUS.to_activate) {
+    if (staff && staff.user.status !== USER_STATUS.to_activate) {
         return children
     }else {
         return <Navigate to={redirectPath} replace />

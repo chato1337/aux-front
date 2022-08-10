@@ -1,4 +1,4 @@
-import { User } from "./User.model";
+import { Staff, User } from "./User.model";
 
 export interface Organization {
     id: number;
@@ -10,6 +10,6 @@ export interface Organization {
 }
 
 export interface OrganizationResponse {
-    user: User;
+    staff: Staff;
     organization: Organization
 }

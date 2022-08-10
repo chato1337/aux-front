@@ -9,7 +9,7 @@ import { useNavigate } from "react-router-dom";
 
 const Register = () => {
 	const dispatch = useDispatch();
-	const user = useSelector((state: RootState) => state.account.user);
+	const staff = useSelector((state: RootState) => state.account.staff);
 	const navigate = useNavigate();
 
 	useEffect(() => {
@@ -17,10 +17,10 @@ const Register = () => {
 	}, [dispatch]);
 
 	useEffect(() => {
-		if (user && user.status === "to-activate") {
+		if (staff && staff.user.status === "to-activate") {
 			navigate("/organization", { replace: true });
 		}
-	}, [navigate, user]);
+	}, [navigate, staff]);
 
 	return (
 		<div className="register-container">

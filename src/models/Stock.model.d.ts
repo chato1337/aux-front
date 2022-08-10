@@ -1,7 +1,7 @@
 import { Product } from './Inventory.model.d';
 import { Customer, Seller } from './User.model'
 
-export interface Bill {
+export interface Invoice {
     id:           number;
     orders:       Order[];
     customer:     Customer;
@@ -19,7 +19,7 @@ export interface Order {
     total:      number;
     tax:        number;
     created_at: string;
-    bill:       number;
+    invoice:       number;
 }
 
 export interface StockDTO extends Omit<Stock, 'id'>{}

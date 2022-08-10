@@ -9,7 +9,7 @@ export interface Customer {
 export interface Login extends Pick<User, 'email' | 'password'> {}
 
 export interface UserResponse {
-    user: User,
+    staff: Staff,
     token: string
 }
 
@@ -43,7 +43,7 @@ export interface Role {
     description: string;
 }
 
-export interface Seller {
+export interface Staff {
     id:         number;
     user:       User;
     first_name: string;

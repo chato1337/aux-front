@@ -5,7 +5,7 @@ import { AccountService } from '../services/AccountService';
 import { AxiosResponse } from 'axios';
 import { UserResponse } from '../models/User.model.d';
 import { useDispatch } from 'react-redux';
-import { setToken, setUser } from '../redux/accountSlice';
+import { setToken, setStaff } from '../redux/accountSlice';
 import { useNavigate } from 'react-router-dom';
 
 export const useAuth = () => {
@@ -17,8 +17,8 @@ export const useAuth = () => {
         onSuccess(data) {
             const res: AxiosResponse<UserResponse> = data
             // store data into redux state and local storage
-            dispatch(setUser(res.data.user))
-            AccountService.store(res.data.user)
+            dispatch(setStaff(res.data.staff))
+            AccountService.store(res.data.staff)
             dispatch(setToken(res.data.token))
             AccountService.storeToken(res.data.token)
             navigate('/dashboard', {replace: true})
@@ -35,7 +35,7 @@ export const useAuth = () => {
 
     const handleLogout = () => {
         //remove data from localstorage and redux state
-        dispatch(setUser(null))
+        dispatch(setStaff(null))
         dispatch(setToken(null))
         AccountService.removeUser()
         AccountService.removeToken()

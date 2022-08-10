@@ -1,26 +1,26 @@
-import { User } from "../models/User.model";
+import { Staff } from "../models/User.model";
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { Organization } from '../models/Organization.model.d';
 
 
 export interface AccountState {
-    user: User | null,
+    staff: Staff | null,
     organization: Organization | null,
-    token: string | null
+    token: string | null,
 }
 
 const initialState: AccountState = {
-    user: null,
+    staff: null,
     organization: null,
-    token: null
+    token: null,
 }
 
 export const accountSlice = createSlice({
     name: 'account',
     initialState,
     reducers: {
-        setUser: (state: AccountState, action: PayloadAction<User | null>) => {
-            state.user = action.payload
+        setStaff: (state: AccountState, action: PayloadAction<Staff | null>) => {
+            state.staff = action.payload
         },
         setOrganization: (state: AccountState, action: PayloadAction<Organization | null>) => {
             state.organization = action.payload
@@ -31,6 +31,6 @@ export const accountSlice = createSlice({
     }
 })
 
-export const { setUser, setOrganization, setToken } = accountSlice.actions
+export const { setStaff, setOrganization, setToken } = accountSlice.actions
 
 export default accountSlice.reducer

@@ -1,7 +1,7 @@
 import Pagination from "../../components/Pagination/Pagination";
 import SearchForm from "../../components/SearchForm/SearchForm";
 import { useInvoice } from "../../hooks/useInvoice";
-import { Bill } from '../../models/Stock.model.d';
+import { Invoice } from '../../models/Stock.model.d';
 import { ParserNumber } from "../../utils";
 import { DateTime } from "luxon"
 
@@ -27,7 +27,7 @@ const Invoices = () => {
                     </thead>
                     <tbody>
                         { isSuccess && (
-                            data.results.map((item: Bill) => (
+                            data.results.map((item: Invoice) => (
                                 <tr key={item.id}>
                                     <td>{ item.id }</td>
                                     <td>{ ParserNumber.colDecimals(item.total) } $</td>

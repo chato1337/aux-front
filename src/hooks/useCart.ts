@@ -11,7 +11,7 @@ import { StockService } from '../services/StockService';
 import { ApiError } from '../utils/index';
 import { useForm } from 'react-hook-form';
 import { useToast } from "./useToast";
-import { Bill } from '../models/Stock.model.d';
+import { Invoice } from '../models/Stock.model.d';
 
 export const useCart = () => {
     const { data, isSuccess, handleModal, modalIsOpen, closeModal } = useInventory()
@@ -34,7 +34,7 @@ export const useCart = () => {
     const { mutate } = useMutation(StockService.addStock, {
         onSuccess(data, variables, context) {
             setShowForm(false)
-            const res: Bill = data
+            const res: Invoice = data
             const msg = `the transaction #${res.id} by ${res.total} $ was created succesfully`
             notify(msg)
         },

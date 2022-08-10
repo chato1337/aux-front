@@ -4,7 +4,7 @@ import { RootState } from "../../redux/store";
 
 const AddUserForm = () => {
 	const { onSubmit, handleSubmit, register } = useAccount();
-    const user = useSelector((state: RootState) => state.account.user)
+    const staff = useSelector((state: RootState) => state.account.staff)
 
 	return (
 		<div>
@@ -36,7 +36,7 @@ const AddUserForm = () => {
                     <input
                         id="email"
                         type="email"
-                        defaultValue={ user?.email }
+                        defaultValue={ staff?.user.email }
                         {...register('email', {required: true})}
                     />
                 </div>
@@ -45,7 +45,7 @@ const AddUserForm = () => {
                     <input
                         id="phone"
                         type="phone"
-                        defaultValue={ user?.phone }
+                        defaultValue={ staff?.user.phone }
                         {...register('phone', {required: true})}
                     />
                 </div>
@@ -54,7 +54,7 @@ const AddUserForm = () => {
                     <input
                         id="password"
                         type="password"
-                        defaultValue={ user?.password }
+                        defaultValue={ staff?.user.password }
                         {...register('password', {required: true})}
                     />
                 </div>

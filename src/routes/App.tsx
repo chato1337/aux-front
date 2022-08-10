@@ -18,7 +18,7 @@ import { useDispatch } from 'react-redux';
 // import { RootState } from '../redux/store';
 import { useEffect } from 'react';
 import { AccountService } from '../services/AccountService'
-import { setToken, setUser } from '../redux/accountSlice';
+import { setToken, setStaff } from '../redux/accountSlice';
 import DashboardStart from '../components/DashboardStart/DashboardStart';
 import Register from '../containers/Register/Register';
 import NewOrganization from '../containers/NewOrganization/NewOrganization';
@@ -30,7 +30,7 @@ const App = () => {
     //restore session from local storage
     useEffect(() => {
         if (AccountService.getUser()) {
-            dispatch(setUser(AccountService.getUser()))
+            dispatch(setStaff(AccountService.getUser()))
         }
     }, [dispatch])
 
