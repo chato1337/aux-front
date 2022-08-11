@@ -56,6 +56,12 @@ export const useCustomer = () => {
 		{ keepPreviousData: true }
 	)
 
+	//fetch full customer list
+	const { data: fullData, isSuccess: isSuccessFull } = useQuery(
+        ["full-category", searchQuery, data?.count, offset, order],
+        CustomerService.getFullCustomers
+    )
+
 	//submit form & choice the endpoint to use
 	const onSubmit = (data: CustomerDTO) => {
 		if(!isDirty) {
@@ -88,7 +94,7 @@ export const useCustomer = () => {
 		}
 	}, [
 		count,
-		data.count,
+		data,
 		dispatch,
 		isSuccess,
 		limit,
@@ -111,6 +117,8 @@ export const useCustomer = () => {
 		handleChange,
 		selectedOption,
 		control,
-		handleModal
+		handleModal,
+		fullData,
+		isSuccessFull
 	}
 }

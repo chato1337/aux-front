@@ -10,6 +10,7 @@ export interface Cart {
 	total: number;
 	seller: number;
 	customer: number;
-	payment_type: string
+	payment_type: string;
+	cash: number;
 	products: ProductCart[];
 }

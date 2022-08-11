@@ -12,16 +12,15 @@ import { ApiError } from '../utils/index';
 import { useForm } from 'react-hook-form';
 import { useToast } from "./useToast";
 import { Invoice } from '../models/Stock.model.d';
-import { useSelect, Option } from "./useSelect";
+import { Option } from "./useSelect";
 import { useTranslation } from "react-i18next";
 
 export const useCart = () => {
     const { data, isSuccess, handleModal, modalIsOpen, closeModal } = useInventory()
     const dispatch = useDispatch()
     const [ quantity, setQuantity ] = useState(0)
-    const [ cash, setCash ] = useState(0)
     const products = useSelector((state: RootState) => state.cart.products)
-    const { setError } = useForm()
+    const { setError, register, handleSubmit, control, watch, formState: {errors, isDirty} } = useForm<Cart>()
     const { notify, notifyError } = useToast()
     const [ showForm, setShowForm ] = useState(true)
 	const [ t ] = useTranslation()
@@ -29,7 +28,6 @@ export const useCart = () => {
         { value: "cash", label: t('sales.cash') },
         { value: "credit", label: t('sales.credit') }
     ]
-    const { selectedOption, handleChange: handleChangeSelect } = useSelect(payOptions[0])
 
 	//total price sell
 	const total = products.reduce(
@@ -38,16 +36,14 @@ export const useCart = () => {
 
 	const staff = useSelector((state: RootState) => state.account.staff)
 
-    const handleSubmitPay = () => {
+    const onSubmit = (data: Cart) => {
 		const cartData: Cart = {
+			...data,
 			products,
+			seller: staff?.id ?? 1,
 			total,
-			seller: staff?.id || 1,
-			customer: 1,
-			//TODO: store overload option $selected_option
-			payment_type: 'cash'
 		}
-        mutate(cartData)
+		mutate(cartData)
     }
 
     const { mutate } = useMutation(StockService.addStock, {
@@ -61,15 +57,6 @@ export const useCart = () => {
             ApiError.getErrorMsg(error, setError, notifyError)
         },
     })
-
-    const handleChangePay = (e: ChangeEvent<HTMLInputElement>) => {
-        if (e.target.value === "") {
-            setCash(0)
-        }else {
-            const parseQuantity = parseInt(e.target.value)
-            setCash(parseQuantity)
-        }
-    }
 
     const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
         const parseQuantity = parseInt(e.target.value)
@@ -141,12 +128,14 @@ export const useCart = () => {
         handleCancelOrder,
         handlePay,
         total,
-        cash,
-        handleChangePay,
-        handleSubmitPay,
+        onSubmit,
         showForm,
-		selectedOption,
-		handleChangeSelect,
-		payOptions
+		payOptions,
+		register,
+		errors,
+		isDirty,
+		handleSubmit,
+		control,
+		watch
     }
 }
