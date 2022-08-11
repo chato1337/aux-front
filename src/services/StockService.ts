@@ -1,5 +1,6 @@
 import axios from "axios"
 import { AuxConstants, StockConstant } from "../constants"
+import { Cart } from "../models/cart.model"
 import { ApiUtil } from "../utils"
 
 export class StockService{
@@ -17,7 +18,7 @@ export class StockService{
 }
 
     //TODO: fix this shit
-    static addStock = async (data: any) => {
+    static addStock = async (data: Cart) => {
         const res = await axios.post(AuxConstants.baseUrl+StockConstant.addUrl, data)
         return res.data
     }

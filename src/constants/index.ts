@@ -15,6 +15,11 @@ export class OrganizationConstant {
     static addUrl = 'user/organization/add/'
 }
 
+export class CustomerConstant {
+	static apiUrl = 'user/customer/'
+	static addUrl = 'user/customer/add/'
+}
+
 export class StockConstant {
     static apiUrl = 'stock/invoice/'
     static addUrl = 'stock/invoice/add/'

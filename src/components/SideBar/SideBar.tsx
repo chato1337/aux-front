@@ -6,6 +6,7 @@ import { MdOutlineCategory } from 'react-icons/md'
 import { RiInboxUnarchiveLine } from 'react-icons/ri'
 import { useTranslation } from 'react-i18next';
 import { FaFileInvoiceDollar } from 'react-icons/fa';
+import { ImUsers } from 'react-icons/im'
 
 const SideBar = () => {
 	const location = useLocation()
@@ -42,6 +43,12 @@ const SideBar = () => {
 					<Link to='invoice'>
 						<FaFileInvoiceDollar />
 						{ t('invoice.title') }
+					</Link>
+				</li>
+				<li className={ location.pathname === '/dashboard/customer' ? 'menu-active' : '' }>
+					<Link to='customer'>
+						<ImUsers />
+						Customers
 					</Link>
 				</li>
 				<li className={ location.pathname === '/dashboard/settings' ? 'menu-active' : '' }>

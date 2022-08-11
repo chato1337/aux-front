@@ -1,11 +1,10 @@
 import { Navigate } from 'react-router-dom'
 import { useSelector } from 'react-redux';
-// import { RootState } from '../../app/store';
 import { useDispatch } from 'react-redux';
 import { useEffect } from 'react';
 import { RootState } from '../../redux/store';
 import { AccountService } from '../../services/AccountService';
-import { setToken, setStaff } from '../../redux/accountSlice';
+import { setToken, setStaff, setOrganization } from '../../redux/accountSlice';
 import { USER_STATUS } from '../../models/User.model.d';
 
 type ProtectedRouterProps = {
@@ -30,6 +29,12 @@ const ProtectedRoute = ({
     useEffect(() => {
         if (AccountService.getToken()) {
             dispatch(setToken(AccountService.getToken()))
+        }
+    }, [dispatch])
+
+    useEffect(() => {
+        if (AccountService.getOrganization()) {
+            dispatch(setOrganization(AccountService.getOrganization()))
         }
     }, [dispatch])
 

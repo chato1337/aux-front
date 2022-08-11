@@ -5,3 +5,11 @@ export interface ProductCart {
     unit_price: number
     subtotal: number,
 }
+
+export interface Cart {
+	total: number;
+	seller: number;
+	customer: number;
+	payment_type: string
+	products: ProductCart[];
+}

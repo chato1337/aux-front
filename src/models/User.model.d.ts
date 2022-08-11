@@ -1,3 +1,5 @@
+import { Organization } from './Organization.model.d';
+
 export interface Customer {
     id:         number;
     user:       User;
@@ -5,6 +7,8 @@ export interface Customer {
     leverage:   string;
     created_at: string;
 }
+
+export interface CustomerDTO extends Customer, Pick<User, 'email' | 'phone' | 'id_type' | 'identifier'>{}
 
 export interface Login extends Pick<User, 'email' | 'password'> {}
 
@@ -18,6 +22,12 @@ export enum USER_STATUS {
 	active = 'active'
 }
 
+export enum ID_TYPES {
+	'CC',
+	'TI',
+	'NIT'
+}
+
 export interface User {
     id:         number;
     role:       Role;
@@ -27,7 +37,10 @@ export interface User {
     password:   string;
     is_active:  boolean;
     created_at: string;
+	id_type: string;
+	identifier: number;
     status: USER_STATUS;
+	organization: Organization[]
 }
 
 export enum ROLES {

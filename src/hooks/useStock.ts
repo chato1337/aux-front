@@ -26,7 +26,7 @@ export const useStock = () => {
             ...formData,
             inventory_id: productSelected?.id ?? -1
         }
-        mutate(newStock)
+        // mutate(newStock)
     }
 
     const handleModal = (product: Product) => {

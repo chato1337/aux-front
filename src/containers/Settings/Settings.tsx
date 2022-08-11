@@ -4,8 +4,9 @@ import { useAccount } from "../../hooks/useAccount";
 import AddUserForm from "../../components/AddUserForm/AddUserForm";
 import "./Settings.styles.scss";
 import AddOrganizationForm from "../../components/AddOrganizationForm/AddOrganizationForm";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { FORM_OPTION, setActionForm } from "../../redux/settingsSlice";
+import { RootState } from "../../redux/store";
 
 const Settings = () => {
 	const { modalIsOpen, closeModal, handleModal, form } = useAccount();
@@ -14,6 +15,9 @@ const Settings = () => {
 		dispatch(setActionForm(FORM_OPTION.edit));
 		handleModal("organization");
 	};
+
+	const organization = useSelector((state: RootState) => state.account.organization)
+	const staff = useSelector((state: RootState) => state.account.staff)
 
 	return (
 		<div className="module-container settings-container">
@@ -31,14 +35,14 @@ const Settings = () => {
 					<label>User:</label>
 				</div>
 				<div className="content">
-					myUser{" "}
+					<span>{ `${staff?.first_name} ${staff?.last_name}` }</span>
 					<button onClick={() => handleModal("user")}>edit</button>
 				</div>
 				<div className="title">
 					<label>Organization:</label>
 				</div>
 				<div className="content">
-					myOrg{" "}
+					<span>{ organization?.name }</span>
 					<button onClick={() => handleSettingsModal()}>edit</button>
 				</div>
 			</div>

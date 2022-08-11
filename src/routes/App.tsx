@@ -18,10 +18,11 @@ import { useDispatch } from 'react-redux';
 // import { RootState } from '../redux/store';
 import { useEffect } from 'react';
 import { AccountService } from '../services/AccountService'
-import { setToken, setStaff } from '../redux/accountSlice';
+import { setToken, setStaff, setOrganization } from '../redux/accountSlice';
 import DashboardStart from '../components/DashboardStart/DashboardStart';
 import Register from '../containers/Register/Register';
 import NewOrganization from '../containers/NewOrganization/NewOrganization';
+import Customer from '../containers/Customer/Customer';
 
 const App = () => {
     // const user = useSelector((state: RootState) => state.account.user)
@@ -37,6 +38,12 @@ const App = () => {
     useEffect(() => {
         if (AccountService.getToken()) {
             dispatch(setToken(AccountService.getToken()))
+        }
+    }, [dispatch])
+
+    useEffect(() => {
+        if (AccountService.getOrganization()) {
+            dispatch(setOrganization(AccountService.getOrganization()))
         }
     }, [dispatch])
 
@@ -62,6 +69,7 @@ const App = () => {
                         <Route path="supplier" element={<Supplier />} />
                         <Route path="invoice" element={<Invoices />} />
                         <Route path="settings" element={<Settings />} />
+                        <Route path="customer" element={<Customer />} />
                     </Route>
                     <Route path="login" element={<Login />} />
                     <Route path="register" element={<Register />} />

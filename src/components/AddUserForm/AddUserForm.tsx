@@ -8,6 +8,7 @@ const AddUserForm = () => {
 
 	return (
 		<div>
+			{ staff && <h1>Edit User:</h1> }
 			<form onSubmit={handleSubmit(onSubmit)}>
                 <div className="form-group two-rows">
                     <label>Name:</label>
@@ -15,11 +16,13 @@ const AddUserForm = () => {
                         id="first_name"
                         type="text"
                         placeholder="first name"
+						defaultValue={ staff?.first_name }
                         {...register('first_name', {required: true})}
                     />
                     <input
                         type="text"
                         placeholder="last name"
+						defaultValue={ staff?.last_name }
                         {...register('last_name', {required: true})}
                     />
                 </div>
@@ -28,6 +31,7 @@ const AddUserForm = () => {
                     <input
                         id="address"
                         type="address"
+						defaultValue={ staff?.address }
                         {...register('address', {required: true})}
                     />
                 </div>
@@ -58,7 +62,7 @@ const AddUserForm = () => {
                         {...register('password', {required: true})}
                     />
                 </div>
-                <button type="submit">Submit</button>
+                <button type="submit">{ staff ? 'Edit' : 'Create' }</button>
 			</form>
 		</div>
 	);

@@ -1,6 +1,6 @@
 import { useInventory } from "./useInventory"
 import { Product } from '../models/Inventory.model.d';
-import { ProductCart } from "../models/cart.model";
+import { Cart, ProductCart } from "../models/cart.model";
 import { useDispatch, useSelector } from 'react-redux';
 import { addProductCart, cleanProductCart } from "../redux/cartSlice";
 import { ChangeEvent, useState } from "react";
@@ -12,6 +12,8 @@ import { ApiError } from '../utils/index';
 import { useForm } from 'react-hook-form';
 import { useToast } from "./useToast";
 import { Invoice } from '../models/Stock.model.d';
+import { useSelect, Option } from "./useSelect";
+import { useTranslation } from "react-i18next";
 
 export const useCart = () => {
     const { data, isSuccess, handleModal, modalIsOpen, closeModal } = useInventory()
@@ -22,13 +24,30 @@ export const useCart = () => {
     const { setError } = useForm()
     const { notify, notifyError } = useToast()
     const [ showForm, setShowForm ] = useState(true)
+	const [ t ] = useTranslation()
+	const payOptions: Option[] = [
+        { value: "cash", label: t('sales.cash') },
+        { value: "credit", label: t('sales.credit') }
+    ]
+    const { selectedOption, handleChange: handleChangeSelect } = useSelect(payOptions[0])
 
+	//total price sell
 	const total = products.reduce(
 		(prev, item: ProductCart) => item.subtotal + prev, 0
 	);
 
+	const staff = useSelector((state: RootState) => state.account.staff)
+
     const handleSubmitPay = () => {
-        mutate(products)
+		const cartData: Cart = {
+			products,
+			total,
+			seller: staff?.id || 1,
+			customer: 1,
+			//TODO: store overload option $selected_option
+			payment_type: 'cash'
+		}
+        mutate(cartData)
     }
 
     const { mutate } = useMutation(StockService.addStock, {
@@ -125,6 +144,9 @@ export const useCart = () => {
         cash,
         handleChangePay,
         handleSubmitPay,
-        showForm
+        showForm,
+		selectedOption,
+		handleChangeSelect,
+		payOptions
     }
 }

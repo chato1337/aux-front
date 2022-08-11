@@ -2,22 +2,15 @@ import { useCart } from '../../hooks/useCart';
 import { ParserNumber } from '../../utils';
 import { GiPayMoney } from 'react-icons/gi'
 import { AiOutlinePrinter } from 'react-icons/ai'
-import './Payment.styles.scss'
-import { useSelect } from '../../hooks/useSelect';
 import Select from "react-select";
-import { Option } from '../../hooks/useSelect'
 import { useTranslation } from 'react-i18next';
+import './Payment.styles.scss'
 
 const Payment = () => {
-    const { total, cash, handleChangePay, handleSubmitPay, showForm, handleCancelOrder } = useCart()
+    const { total, cash, handleChangePay, handleSubmitPay, showForm, handleCancelOrder, selectedOption, payOptions, handleChangeSelect } = useCart()
     const [ t ] = useTranslation()
     const change = cash - total
     const canPay = change < 0
-    const payOptions: Option[] = [
-        { value: "cash", label: t('sales.cash') },
-        { value: "credit", label: t('sales.credit') }
-    ]
-    const { selectedOption, handleChange } = useSelect(payOptions[0])
 
 	return (
         <div className="payment-container">
@@ -26,7 +19,7 @@ const Payment = () => {
                 <label htmlFor="">{ t('sales.method') }:</label>
                 <Select
                     defaultValue={ selectedOption }
-                    onChange={handleChange}
+                    onChange={ handleChangeSelect }
                     options={ payOptions }
                 />
             </div>
