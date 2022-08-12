@@ -54,7 +54,7 @@ const SideBar = () => {
 				<li className={ location.pathname === '/dashboard/settings' ? 'menu-active' : '' }>
 					<Link to='settings'>
 						<FiSettings />
-						{ t('settings') }
+						{ t('settings.title') }
 					</Link>
 				</li>
 			</menu>

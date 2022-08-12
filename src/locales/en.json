@@ -79,7 +79,20 @@
 	"total": "Total",
 	"created_at": "Created at",
 	"detail": "Detail",
-    "settings": "Settings",
+    "settings": {
+		"title": "Settings",
+		"lang": "Leguage"
+	},
+	"user": {
+		"title": "User",
+		"edit": "Edit user",
+		"address": "Address",
+		"create": "Create user",
+		"password": "Password"
+	},
+	"organization": {
+		"title": "Organization"
+	},
     "search": "Search",
     "previous": "Previous",
     "next": "Next",

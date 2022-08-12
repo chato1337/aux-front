@@ -79,7 +79,20 @@
 	"total": "Total",
 	"created_at": "Creado en",
 	"detail": "Detalles",
-    "settings": "Ajustes",
+    "settings": {
+		"title": "Ajustes",
+		"lang": "Idioma"
+	},
+	"user": {
+		"title": "Usuario",
+		"edit": "Editar usuario",
+		"address": "Direccion",
+		"create": "Crear usuario",
+		"password": "Contraseña"
+	},
+	"organization": {
+		"title": "Organización"
+	},
     "search": "Buscar",
     "previous": "Anterior",
     "next": "Siguiente",

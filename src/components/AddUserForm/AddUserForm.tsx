@@ -1,17 +1,19 @@
 import { useAccount } from "../../hooks/useAccount";
 import { useSelector } from 'react-redux';
 import { RootState } from "../../redux/store";
+import { useTranslation } from 'react-i18next';
 
 const AddUserForm = () => {
 	const { onSubmit, handleSubmit, register } = useAccount();
     const staff = useSelector((state: RootState) => state.account.staff)
+	const [ t ] = useTranslation()
 
 	return (
 		<div>
-			{ staff && <h1>Edit User:</h1> }
+			{ staff && <h2>{ t("user.edit") }:</h2> }
 			<form onSubmit={handleSubmit(onSubmit)}>
                 <div className="form-group two-rows">
-                    <label>Name:</label>
+                    <label>{ t("customer.full_name") }:</label>
                     <input
                         id="first_name"
                         type="text"
@@ -27,7 +29,7 @@ const AddUserForm = () => {
                     />
                 </div>
                 <div className="form-group">
-                    <label htmlFor="address">Address</label>
+                    <label htmlFor="address">{ t("user.address") }</label>
                     <input
                         id="address"
                         type="address"
@@ -36,7 +38,7 @@ const AddUserForm = () => {
                     />
                 </div>
                 <div className="form-group">
-                    <label htmlFor="email">Email</label>
+                    <label htmlFor="email">{ t("supplier.email") }</label>
                     <input
                         id="email"
                         type="email"
@@ -45,7 +47,7 @@ const AddUserForm = () => {
                     />
                 </div>
                 <div className="form-group">
-                    <label htmlFor="phone">Phone</label>
+                    <label htmlFor="phone">{ t('supplier.phone') }</label>
                     <input
                         id="phone"
                         type="phone"
@@ -54,7 +56,7 @@ const AddUserForm = () => {
                     />
                 </div>
                 <div className="form-group">
-                    <label htmlFor="password">Password</label>
+                    <label htmlFor="password">{ t('user.password') }</label>
                     <input
                         id="password"
                         type="password"
@@ -62,7 +64,7 @@ const AddUserForm = () => {
                         {...register('password', {required: true})}
                     />
                 </div>
-                <button type="submit">{ staff ? 'Edit' : 'Create' }</button>
+                <button type="submit">{ staff ? t("user.edit") : t("user.create") }</button>
 			</form>
 		</div>
 	);
