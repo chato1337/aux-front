@@ -4,7 +4,10 @@ import { RootState } from '../redux/store';
 import { StockService } from '../services/StockService';
 import { useDispatch } from 'react-redux';
 import { useEffect } from 'react';
-import { setCount } from '../redux/settingsSlice';
+import { setCount, setModal } from '../redux/settingsSlice';
+import { useModal } from './useModal';
+import { Invoice } from '../models/Stock.model.d';
+import { setInvoice } from '../redux/cartSlice';
 
 export const useInvoice = () => {
     const searchQuery = useSelector((state: RootState) => state.settings.searchQuery)
@@ -14,12 +17,18 @@ export const useInvoice = () => {
     const order = useSelector((state: RootState) => state.settings.order)
     const dispatch = useDispatch()
     const queryClient = useQueryClient()
+	const { modalIsOpen, closeModal } = useModal()
 
     const { data, isSuccess } = useQuery(
         ["invoice", searchQuery, limit, offset, order],
         StockService.getStock,
         { keepPreviousData: true }
     )
+
+	const handleModal = (invoce: Invoice | null) => {
+		dispatch(setModal(true))
+		dispatch(setInvoice(invoce))
+	}
 
     //preload next category
     useEffect(() => {
@@ -48,6 +57,9 @@ export const useInvoice = () => {
 
     return {
         data,
-        isSuccess
+        isSuccess,
+		modalIsOpen,
+		closeModal,
+		handleModal
     }
 }

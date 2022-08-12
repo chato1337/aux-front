@@ -1,0 +1,17 @@
+@import '../../styles/variables.scss';
+
+.invoice-detail-container {
+	.invoice-detail-content {
+		display: grid;
+		grid-template-columns: 30% 70%;
+		margin: 1rem 0;
+		span {
+			border: 1px solid $deep-gray;
+			padding: .4rem .2rem;
+		}
+		span:nth-of-type(odd) {
+			background-color: $gray-color;
+			font-weight: bolder;
+		}
+	}
+}

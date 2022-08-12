@@ -51,15 +51,25 @@
         "cancel": "Cancelar orden",
         "subtotal": "Sub Total",
         "no_products": "No hay productos todavia",
-        "total": "Total",
         "review": "Confirmar orden",
         "finish": "Finalizar transacción",
         "cash": "Efectivo",
         "credit": "Tarjeta de Credito",
         "pay": "Pagar ahora",
         "method": "Metodo de pago",
-        "change": "Cambio"
+        "change": "Cambio",
+		"unit_price": "Valor unitario"
     },
+	"invoice": {
+		"title": "Recibo",
+		"plural": "Recibos",
+		"seller": "Vendedor",
+		"customer": "Cliente",
+		"search": "Número de factura"
+	},
+	"total": "Total",
+	"created_at": "Creado en",
+	"detail": "Detalles",
     "settings": "Ajustes",
     "search": "Buscar",
     "previous": "Anterior",

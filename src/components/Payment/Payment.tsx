@@ -89,7 +89,7 @@ const Payment = () => {
 				</div>
 			)}
 			<div className="form-group">
-				<label htmlFor="total">{t("sales.total")}:</label>
+				<label htmlFor="total">{t("total")}:</label>
 				<input
 					id="total"
 					type="number"

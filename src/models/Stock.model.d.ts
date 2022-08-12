@@ -1,11 +1,11 @@
 import { Product } from './Inventory.model.d';
-import { Customer, Seller } from './User.model'
+import { Customer, Staff } from './User.model'
 
 export interface Invoice {
     id:           number;
     orders:       Order[];
     customer:     Customer;
-    seller:       Seller;
+    seller:       Staff;
     created_at:   string;
     payment_type: string;
     total:        number;

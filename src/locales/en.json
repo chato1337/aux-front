@@ -51,18 +51,25 @@
         "cancel": "Cancel Order",
         "subtotal": "Sub Total",
         "no_products": "No products yet",
-        "total": "Total",
         "review": "Review Order",
         "finish": "Finish transaction",
         "cash": "Cash",
         "credit": "Credit Card",
         "pay": "Pay Now",
         "method": "Payment Mehtod",
-        "change": "Change"
+        "change": "Change",
+		"unit_price": "Unit price"
     },
     "invoice": {
-        "title": "Invoices"
+		"title": "Invoice",
+		"plural": "Invoices",
+		"seller": "Seller",
+		"customer": "Customer",
+		"search": "Invoice number"
     },
+	"total": "Total",
+	"created_at": "Created at",
+	"detail": "Detail",
     "settings": "Settings",
     "search": "Search",
     "previous": "Previous",
