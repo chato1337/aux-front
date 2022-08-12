@@ -67,6 +67,13 @@
 		"customer": "Customer",
 		"search": "Invoice number"
     },
+	"customer": {
+		"title": "Customer",
+		"plural": "Customers",
+		"full_name": "Full name",
+		"leverage": "Leverage"
+	},
+	"edit": "Edit",
 	"total": "Total",
 	"created_at": "Created at",
 	"detail": "Detail",

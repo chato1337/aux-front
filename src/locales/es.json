@@ -67,6 +67,13 @@
 		"customer": "Cliente",
 		"search": "Número de factura"
 	},
+	"customer": {
+		"title": "Cliente",
+		"plural": "Clientes",
+		"full_name": "Nombre completo",
+		"leverage": "Ventaja"
+	},
+	"edit": "Editar",
 	"total": "Total",
 	"created_at": "Creado en",
 	"detail": "Detalles",

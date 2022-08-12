@@ -9,6 +9,7 @@ import { FORM_OPTION, setActionForm } from '../../redux/settingsSlice';
 import { DateTime } from 'luxon';
 import Pagination from '../../components/Pagination/Pagination';
 import SearchForm from '../../components/SearchForm/SearchForm';
+import Ordering from '../../components/Ordering/Ordering';
 
 const Customer = () => {
 	const { data, isSuccess, modalIsOpen, closeModal, handleModal } = useCustomer()
@@ -39,27 +40,41 @@ const Customer = () => {
 					<thead>
 						<tr>
 							<th>
-								fullname
+								<Ordering orderField='id'>
+									{ t('id') }
+								</Ordering>
 							</th>
 							<th>
-								leverage
+								<Ordering orderField='fullname'>
+									{ t('customer.full_name') }
+								</Ordering>
 							</th>
 							<th>
-								crated at
+								<Ordering orderField='leverage'>
+									{ t("customer.leverage") }
+								</Ordering>
 							</th>
 							<th>
-								actions
+								<Ordering orderField='created_at'>
+									{ t("created_at") }
+								</Ordering>
+							</th>
+							<th>
+								{ t("actions") }
 							</th>
 						</tr>
 					</thead>
 					<tbody>
 						{ isSuccess && data.results.map((item: CustomerModel) => (
 							<tr key={item.id}>
+								<td>{item.id}</td>
 								<td>{item.full_name}</td>
 								<td>{item.leverage}</td>
 								<td>{ DateTime.fromISO(item.created_at).toLocaleString(DateTime.DATETIME_MED) }</td>
 								<td className='action-cell'>
-									<button onClick={() => handleEdit(item)}>Edit</button>
+									<button onClick={() => handleEdit(item)}>
+										{ t('edit') }
+									</button>
 								</td>
 							</tr>
 						)) }
