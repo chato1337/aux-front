@@ -28,12 +28,12 @@ const Customer = () => {
 	return (
 		<div className="module-container">
 			<div className="module-header">
-				<h2>Customers</h2>
+				<h2>{ t("customer.plural") }</h2>
 				<button onClick={() => handleCreate()} >
                     <BiAddToQueue />
-                    { t('category.add') }
+                    { t('customer.add') }
                 </button>
-				<SearchForm placeholder='customer name' />
+				<SearchForm placeholder={ t("customer.search") } />
 			</div>
 			<div className="module-table">
 				<table>

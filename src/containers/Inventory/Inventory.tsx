@@ -69,10 +69,14 @@ const InventoryComponent = () => {
                                 data.results.map((product: Product) => {
                                     return (
                                         <tr key={ product.id }>
-                                            <td>{ product.id }</td>
+                                            <td className='text-center'>
+												{ product.id }
+											</td>
                                             <td>{ product.name }</td>
                                             <td>{ product.category?.name }</td>
-                                            <td>{ product.stock }</td>
+                                            <td className='text-center'>
+												{ product.stock }
+											</td>
                                             <td>{ product.unit }</td>
                                             <td className='action-cell'>
                                                 <button className='btn btn-outline' onClick={() => handleEdit(product)}>

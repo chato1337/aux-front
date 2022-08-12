@@ -48,7 +48,7 @@ const SideBar = () => {
 				<li className={ location.pathname === '/dashboard/customer' ? 'menu-active' : '' }>
 					<Link to='customer'>
 						<ImUsers />
-						Customers
+						{ t('customer.plural') }
 					</Link>
 				</li>
 				<li className={ location.pathname === '/dashboard/settings' ? 'menu-active' : '' }>

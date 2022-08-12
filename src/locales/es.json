@@ -3,7 +3,7 @@
         "title": "Proveedores",
         "single": "proveedor",
         "add": "Agregar proveedor",
-        "name": "Nombre del proovedor",
+        "name": "Nombre del proveedor",
         "id": "ID",
         "phone": "Telefono",
         "email": "Email",
@@ -71,7 +71,9 @@
 		"title": "Cliente",
 		"plural": "Clientes",
 		"full_name": "Nombre completo",
-		"leverage": "Ventaja"
+		"leverage": "Ventaja",
+		"add": "Agregar cliente",
+		"search": "Buscar cliente"
 	},
 	"edit": "Editar",
 	"total": "Total",

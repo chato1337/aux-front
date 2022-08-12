@@ -65,7 +65,9 @@ const Category = () => {
                         { isSuccess && (
                                 data.results.map((item: CategoryModel) => (
                                     <tr key={ item.id }>
-                                        <td>{ item.id }</td>
+                                        <td className='text-center'>
+											{ item.id }
+										</td>
                                         <td>{ item.name }</td>
                                         <td>{ item.description }</td>
                                         <td className='action-cell'>

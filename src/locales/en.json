@@ -71,7 +71,9 @@
 		"title": "Customer",
 		"plural": "Customers",
 		"full_name": "Full name",
-		"leverage": "Leverage"
+		"leverage": "Leverage",
+		"add": "Add customer",
+		"search": "Search customer"
 	},
 	"edit": "Edit",
 	"total": "Total",

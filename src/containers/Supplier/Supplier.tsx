@@ -75,10 +75,16 @@ const Supplier = () => {
                             isSuccess && data.results.map((item: SupplierModel) => {
                                 return(
                                     <tr key={ item.id }>
-										<td>{ item.id }</td>
+										<td className='text-center'>
+											{ item.id }
+										</td>
                                         <td>{ item.name }</td>
-                                        <td>{ item.identifier }</td>
-                                        <td>{ item.phone }</td>
+                                        <td className='text-center'>
+											{ item.identifier }
+										</td>
+                                        <td className='text-center'>
+											{ item.phone }
+										</td>
                                         <td>{ item.email }</td>
 										<td className='action-cell'>
 											<button className='btn btn-outline' onClick={() => handleEdit(item)}>
