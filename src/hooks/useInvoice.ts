@@ -19,7 +19,7 @@ export const useInvoice = () => {
     const queryClient = useQueryClient()
 	const { modalIsOpen, closeModal } = useModal()
 
-    const { data, isSuccess } = useQuery(
+    const { data, isSuccess, isLoading } = useQuery(
         ["invoice", searchQuery, limit, offset, order],
         StockService.getStock,
         { keepPreviousData: true }
@@ -60,6 +60,7 @@ export const useInvoice = () => {
         isSuccess,
 		modalIsOpen,
 		closeModal,
-		handleModal
+		handleModal,
+		isLoading
     }
 }

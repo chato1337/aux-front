@@ -10,9 +10,10 @@ import { DateTime } from 'luxon';
 import Pagination from '../../components/Pagination/Pagination';
 import SearchForm from '../../components/SearchForm/SearchForm';
 import Ordering from '../../components/Ordering/Ordering';
+import LoadingSpinner from '../../components/LoadingSpinner/LoadingSpinner';
 
 const Customer = () => {
-	const { data, isSuccess, modalIsOpen, closeModal, handleModal } = useCustomer()
+	const { data, isSuccess, modalIsOpen, closeModal, handleModal, isLoading } = useCustomer()
 	const [ t ] = useTranslation()
 	const dispatch = useDispatch()
 	const handleCreate = () => {
@@ -78,6 +79,13 @@ const Customer = () => {
 								</td>
 							</tr>
 						)) }
+						{ isLoading && (
+							<tr>
+								<td colSpan={5}>
+									<LoadingSpinner />
+								</td>
+							</tr>
+						) }
 					</tbody>
 				</table>
 			</div>

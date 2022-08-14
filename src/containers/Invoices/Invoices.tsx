@@ -8,9 +8,10 @@ import { useTranslation } from "react-i18next";
 import Ordering from "../../components/Ordering/Ordering";
 import SimpleModal from "../../components/SimpleModal/SimpleModal";
 import InvoiceDetail from "../../components/InvoiceDetail/InvoiceDetail";
+import LoadingSpinner from "../../components/LoadingSpinner/LoadingSpinner";
 
 const Invoices = () => {
-	const { data, isSuccess, handleModal, modalIsOpen, closeModal } = useInvoice();
+	const { data, isSuccess, handleModal, modalIsOpen, closeModal, isLoading } = useInvoice();
     const [ t ] = useTranslation()
 
 	return (
@@ -74,6 +75,13 @@ const Invoices = () => {
                                 </tr>
                             ))
                         ) }
+						{ isLoading && (
+							<tr>
+								<td colSpan={6}>
+									<LoadingSpinner />
+								</td>
+							</tr>
+						) }
                     </tbody>
                 </table>
             </div>

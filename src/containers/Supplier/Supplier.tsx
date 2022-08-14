@@ -11,9 +11,10 @@ import SearchForm from '../../components/SearchForm/SearchForm';
 import { BiAddToQueue } from 'react-icons/bi';
 import Pagination from '../../components/Pagination/Pagination';
 import Ordering from '../../components/Ordering/Ordering';
+import LoadingSpinner from '../../components/LoadingSpinner/LoadingSpinner';
 
 const Supplier = () => {
-    const { modalIsOpen, closeModal, handleModal, data, isSuccess, supplierSelected } = useSupplier()
+    const { modalIsOpen, closeModal, handleModal, data, isSuccess, supplierSelected, isLoading } = useSupplier()
 	const { t } = useTranslation();
 	const dispatch = useDispatch()
 
@@ -100,6 +101,13 @@ const Supplier = () => {
                                 )
                             })
                         }
+						{ isLoading && (
+							<tr>
+								<td colSpan={6}>
+									<LoadingSpinner />
+								</td>
+							</tr>
+						) }
 					</tbody>
 				</table>
 			</div>

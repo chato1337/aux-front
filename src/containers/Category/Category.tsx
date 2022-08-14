@@ -12,10 +12,11 @@ import SearchForm from '../../components/SearchForm/SearchForm';
 import Pagination from '../../components/Pagination/Pagination';
 import Ordering from '../../components/Ordering/Ordering';
 import { RootState } from '../../redux/store';
+import LoadingSpinner from '../../components/LoadingSpinner/LoadingSpinner';
 
 const Category = () => {
     const [ t ] = useTranslation()
-    const { data, isSuccess, modalIsOpen, closeModal, handleModal, categorySelected, handleDelete } = useCategory()
+    const { data, isSuccess, modalIsOpen, closeModal, handleModal, categorySelected, handleDelete, isLoading } = useCategory()
     const dispatch = useDispatch()
     const searchQuery = useSelector((state: RootState) => state.settings.searchQuery)
 
@@ -88,6 +89,15 @@ const Category = () => {
                                 <td className='no-results' colSpan={4}>No results for: "{searchQuery}" 🧐</td>
                             </tr>
                         ) }
+						{
+							isLoading && (
+								<tr>
+									<td colSpan={4}>
+										<LoadingSpinner />
+									</td>
+								</tr>
+							)
+						}
                     </tbody>
                 </table>
             </div>

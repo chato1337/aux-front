@@ -71,7 +71,7 @@ export const useSupplier = () => {
     })
 
     //fetch suppliers
-    const { data, isSuccess } = useQuery(
+    const { data, isSuccess, isLoading } = useQuery(
         ["supplier", searchQuery, limit, offset, order],
         SupplierService.getSupplier,
         { keepPreviousData: true }
@@ -125,6 +125,7 @@ export const useSupplier = () => {
         isSuccess,
         supplierSelected,
         fullData,
-        isSuccessFull
+        isSuccessFull,
+		isLoading
     }
 }

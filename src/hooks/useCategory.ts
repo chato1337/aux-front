@@ -72,7 +72,7 @@ export const useCategory = () => {
     })
 
     //fetch categories
-    const { data, isSuccess } = useQuery(
+    const { data, isSuccess, isLoading } = useQuery(
         ["category", searchQuery, limit, offset, order],
         CategoryService.getCategories,
         { keepPreviousData: true }
@@ -132,6 +132,7 @@ export const useCategory = () => {
         handleDelete,
         setValue,
         fullData,
-        isSuccessFull
+        isSuccessFull,
+		isLoading
     }
 }

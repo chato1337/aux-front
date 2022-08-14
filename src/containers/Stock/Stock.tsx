@@ -15,6 +15,7 @@ import { ParserNumber } from "../../utils";
 import Payment from "../../components/Payment/Payment";
 import { useTranslation } from 'react-i18next';
 import ProductRow from "../../components/ProductRow/ProductRow";
+import LoadingSpinner from "../../components/LoadingSpinner/LoadingSpinner";
 
 const Stock = () => {
 	const products = useSelector((state: RootState) => state.cart.products);
@@ -27,7 +28,8 @@ const Stock = () => {
 		closeModal,
 		handleCancelOrder,
 		handlePay,
-		total
+		total,
+		isLoading
 	} = useCart();
 	const enableCancel = products.length > 0;
 	const dispatch = useDispatch();
@@ -72,6 +74,13 @@ const Stock = () => {
 									data.results.map((item: Product) => (
 										<ProductRow key={item.id} product={item} handleEdit={handleEdit} />
 									))}
+								{ isLoading && (
+									<tr>
+										<td colSpan={5}>
+											<LoadingSpinner />
+										</td>
+									</tr>
+								) }
 							</tbody>
 						</table>
 					</div>
@@ -120,7 +129,7 @@ const Stock = () => {
 							))}
 							<tr>
 								<td className="total-text" colSpan={4}>
-									{ t('sales.total') }
+									{ t('total') }
 								</td>
 								<td className="total-sum text-center">
 									{ParserNumber.colDecimals(total)} $

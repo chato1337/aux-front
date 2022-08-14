@@ -16,7 +16,7 @@ import { Option } from "./useSelect";
 import { useTranslation } from "react-i18next";
 
 export const useCart = () => {
-    const { data, isSuccess, handleModal, modalIsOpen, closeModal } = useInventory()
+    const { data, isSuccess, handleModal, modalIsOpen, closeModal, isLoading } = useInventory()
     const dispatch = useDispatch()
     const [ quantity, setQuantity ] = useState(0)
     const products = useSelector((state: RootState) => state.cart.products)
@@ -136,6 +136,7 @@ export const useCart = () => {
 		isDirty,
 		handleSubmit,
 		control,
-		watch
+		watch,
+		isLoading
     }
 }

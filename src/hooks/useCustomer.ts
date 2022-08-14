@@ -50,7 +50,7 @@ export const useCustomer = () => {
 	})
 
 	//fetch customer list
-	const { data, isSuccess } = useQuery(
+	const { data, isSuccess, isLoading } = useQuery(
 		["customer", searchQuery, limit, offset, order],
 		CustomerService.getCustomers,
 		{ keepPreviousData: true }
@@ -119,6 +119,7 @@ export const useCustomer = () => {
 		control,
 		handleModal,
 		fullData,
-		isSuccessFull
+		isSuccessFull,
+		isLoading
 	}
 }

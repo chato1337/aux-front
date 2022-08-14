@@ -84,7 +84,7 @@ export const useInventory = () => {
         },
     })
 
-    const { data, isSuccess } = useQuery(
+    const { data, isSuccess, isLoading } = useQuery(
         ['inventory', searchQuery, limit, offset, order],
         InventoryService.getInventories,
         { keepPreviousData: true }
@@ -130,6 +130,7 @@ export const useInventory = () => {
         selectedOption,
         handleChange,
         control,
-        isDirty
+        isDirty,
+		isLoading
     }
 }
