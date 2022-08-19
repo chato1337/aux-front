@@ -101,7 +101,7 @@ const InventoryComponent = () => {
 							})}
 						{ isLoading && (
 							<tr>
-								<td colSpan={5}>
+								<td colSpan={6}>
 									<LoadingSpinner />
 								</td>
 							</tr>

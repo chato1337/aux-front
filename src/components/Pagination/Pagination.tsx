@@ -16,7 +16,7 @@ const Pagination = () => {
     const queryClient = useQueryClient()
     const next = limit + offset <= count
     const canPrev = offset >= limit
-    // const totalPages = Math.ceil(count / limit)
+    const totalPages = Math.ceil(count / limit)
 
     const handlePaginate = (action: "prev" | "next") => {
         if (action === "next" &&  limit + offset <= count) {
@@ -25,6 +25,11 @@ const Pagination = () => {
             dispatch(setOffset(offset - limit))
         }
     }
+
+	const handleJumpPag = (pageJump: number) => {
+		const toJump = (pageJump * limit) - limit
+		dispatch(setOffset(toJump))
+	}
 
     useEffect(() => {
         queryClient.refetchQueries()
@@ -39,6 +44,23 @@ const Pagination = () => {
                 <BiArrowToLeft />
                 { t('previous') }
             </button>
+			{
+				//generate jump pagination buttons
+				Array.from({ length: totalPages }).map((el: any, i) => {
+					const index = i + 1
+					const isActive = offset === (index * limit) - limit
+
+					return (
+						<button
+							key={index}
+							onClick={ () => handleJumpPag(index) }
+							className={ isActive ? 'pag-active' : '' }
+						>
+							{ index }
+						</button>
+					)
+				})
+			}
             <button
                 onClick={() => handlePaginate("next")}
                 disabled={!next}

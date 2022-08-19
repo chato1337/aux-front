@@ -3,4 +3,10 @@
         display: flex;
         align-items: center;
     }
+
+	.pag-active {
+		color: #ffffff;
+		cursor: pointer;
+		background: #5f8ee4;
+	}
 }
