@@ -88,7 +88,8 @@
 		"edit": "Editar usuario",
 		"address": "Direccion",
 		"create": "Crear usuario",
-		"password": "Contraseña"
+		"password": "Contraseña",
+		"manage": "Gestión de usuarios"
 	},
 	"organization": {
 		"title": "Organización"

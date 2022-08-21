@@ -88,7 +88,12 @@
 		"edit": "Edit user",
 		"address": "Address",
 		"create": "Create user",
-		"password": "Password"
+		"password": "Password",
+		"manage": "User management",
+		"first_name": "First name",
+		"last_name": "Last name",
+		"role": "Role",
+		"id": "Idetification nunmber"
 	},
 	"organization": {
 		"title": "Organization"

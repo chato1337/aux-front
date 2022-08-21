@@ -22,10 +22,10 @@ export const useAuth = () => {
             dispatch(setToken(res.data.token))
             AccountService.storeToken(res.data.token)
 			//check if have organization
-			if(res.data.staff.user.organization.length > 0) {
+			if(res.data.staff.user.organizations.length > 0) {
 				//store in redux the first org stored
-				dispatch(setOrganization(res.data.staff.user.organization[0]))
-				AccountService.storeOrganization(res.data.staff.user.organization[0])
+				dispatch(setOrganization(res.data.staff.user.organizations[0]))
+				AccountService.storeOrganization(res.data.staff.user.organizations[0])
 			} else {
 				//redirect to create org in case dont have
 				navigate('/organization')

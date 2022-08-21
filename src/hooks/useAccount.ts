@@ -11,12 +11,18 @@ import { AxiosResponse } from 'axios';
 import { setToken, setStaff } from '../redux/accountSlice';
 import { AccountService } from '../services/AccountService';
 import { useNavigate } from 'react-router-dom';
+import { Option } from './useSelect';
+
+const id_types: Option[] = [
+	{ value: "CC", label: "CC" },
+	{ value: "PS", label: "PS" }
+]
 
 export const useAccount = () => {
     const { modalIsOpen, closeModal } = useModal()
     const [form, setForm] = useState('user')
     const actionForm = useSelector((state: RootState) => state.settings.actionForm)
-    const { register, handleSubmit, formState: {errors, isDirty} } = useForm<Owner>()
+    const { register, handleSubmit, control, formState: {errors, isDirty} } = useForm<Owner>()
     const dispatch = useDispatch()
     const navigate = useNavigate()
 
@@ -52,6 +58,8 @@ export const useAccount = () => {
         register,
         handleSubmit,
         errors,
-        onSubmit
+        onSubmit,
+		control,
+		id_types
     }
 }

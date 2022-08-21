@@ -2,9 +2,12 @@ import { useAccount } from "../../hooks/useAccount";
 import { useSelector } from 'react-redux';
 import { RootState } from "../../redux/store";
 import { useTranslation } from 'react-i18next';
+import { Controller } from "react-hook-form";
+import Select, { SingleValue } from 'react-select';
+import { Option } from "../../hooks/useSelect";
 
 const AddUserForm = () => {
-	const { onSubmit, handleSubmit, register } = useAccount();
+	const { onSubmit, handleSubmit, register, control, id_types } = useAccount();
     const staff = useSelector((state: RootState) => state.account.staff)
 	const [ t ] = useTranslation()
 
@@ -17,15 +20,40 @@ const AddUserForm = () => {
                     <input
                         id="first_name"
                         type="text"
-                        placeholder="first name"
+                        placeholder={ t("user.first_name") }
 						defaultValue={ staff?.first_name }
                         {...register('first_name', {required: true})}
                     />
                     <input
                         type="text"
-                        placeholder="last name"
+                        placeholder={ t("user.last_name") }
 						defaultValue={ staff?.last_name }
                         {...register('last_name', {required: true})}
+                    />
+                </div>
+				<div className="form-group">
+					<label>identification type</label>
+					<Controller
+						name="id_type"
+						control={control}
+						rules={{ required: true }}
+						defaultValue={ staff?.user.id_type }
+						render={({ field: { value, onChange, onBlur } }) => (
+							<Select
+								onChange={(el: SingleValue<Option>) => onChange(el?.value)}
+								defaultValue={ id_types.filter((item: Option) => item.value === value) }
+								options={ id_types }
+							/>
+						)}
+					/>
+				</div>
+                <div className="form-group">
+                    <label htmlFor="ident">{ t("user.id") }</label>
+                    <input
+                        id="ident"
+                        type="number"
+						defaultValue={ staff?.user.identifier }
+                        {...register('identifier', {required: true})}
                     />
                 </div>
                 <div className="form-group">

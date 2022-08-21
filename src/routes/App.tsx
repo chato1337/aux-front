@@ -23,6 +23,7 @@ import DashboardStart from '../components/DashboardStart/DashboardStart';
 import Register from '../containers/Register/Register';
 import NewOrganization from '../containers/NewOrganization/NewOrganization';
 import Customer from '../containers/Customer/Customer';
+import UserManagement from '../containers/UserManagement/UserManagement';
 
 const App = () => {
     // const user = useSelector((state: RootState) => state.account.user)
@@ -70,6 +71,7 @@ const App = () => {
                         <Route path="invoice" element={<Invoices />} />
                         <Route path="settings" element={<Settings />} />
                         <Route path="customer" element={<Customer />} />
+                        <Route path="user-management" element={<UserManagement />} />
                     </Route>
                     <Route path="login" element={<Login />} />
                     <Route path="register" element={<Register />} />

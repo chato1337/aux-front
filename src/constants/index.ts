@@ -12,7 +12,12 @@ export class AccountConstant {
 }
 
 export class OrganizationConstant {
-    static addUrl = 'user/organization/add/'
+	static addUrl = 'user/organization/add/'
+	static manageUrl = 'user/'
+}
+
+export class StaffConstant {
+	static apiUrl = 'user/staff/'
 }
 
 export class CustomerConstant {
