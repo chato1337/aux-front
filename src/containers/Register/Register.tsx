@@ -26,7 +26,7 @@ const Register = () => {
 		<div className="register-container">
 			<div className="login-form">
 				<h2>Create an Aux account</h2>
-				<AddUserForm />
+				<AddUserForm user={ null } />
 			</div>
 		</div>
 	);

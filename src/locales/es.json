@@ -89,7 +89,12 @@
 		"address": "Direccion",
 		"create": "Crear usuario",
 		"password": "Contraseña",
-		"manage": "Gestión de usuarios"
+		"manage": "Gestión de usuarios",
+		"first_name": "Nombres",
+		"last_name": "Apellidos",
+		"role": "Role",
+		"id": "Número de identificación"
+
 	},
 	"organization": {
 		"title": "Organización"

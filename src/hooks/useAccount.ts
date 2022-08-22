@@ -45,7 +45,10 @@ export const useAccount = () => {
     const onSubmit = (data: Owner) => {
         if (isDirty && actionForm === FORM_OPTION.create) {
             mutate(data)
-        }else {
+        }
+		else if(isDirty && actionForm === FORM_OPTION.join) {
+			console.log("Join to org")
+		} else {
             console.log(data)
         }
     }

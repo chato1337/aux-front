@@ -5,6 +5,7 @@ export enum FORM_OPTION {
 	'edit',
 	'delete',
 	'pay',
+	'join'
 }
 
 export interface SettingsState {

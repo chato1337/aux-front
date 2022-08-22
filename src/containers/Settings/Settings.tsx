@@ -53,7 +53,7 @@ const Settings = () => {
 				</div>
 			</div>
 			<SimpleModal modalIsOpen={modalIsOpen} closeModal={closeModal}>
-				{form === "user" ? <AddUserForm /> : <AddOrganizationForm />}
+				{form === "user" ? <AddUserForm user={ null }/> : <AddOrganizationForm />}
 			</SimpleModal>
 		</div>
 	);
