@@ -34,7 +34,7 @@ export const useCart = () => {
 		(prev, item: ProductCart) => item.subtotal + prev, 0
 	);
 
-	const staff = useSelector((state: RootState) => state.account.staff)
+	const staff = useSelector((state: RootState) => state.account.logged)
 
     const onSubmit = (data: Cart) => {
 		const cartData: Cart = {

@@ -4,7 +4,7 @@ import { useDispatch } from 'react-redux';
 import { useEffect } from 'react';
 import { RootState } from '../../redux/store';
 import { AccountService } from '../../services/AccountService';
-import { setToken, setStaff, setOrganization } from '../../redux/accountSlice';
+import { setToken, setLogged, setOrganization } from '../../redux/accountSlice';
 import { USER_STATUS } from '../../models/User.model.d';
 
 type ProtectedRouterProps = {
@@ -16,13 +16,13 @@ const ProtectedRoute = ({
     redirectPath = '/login',
     children
 }: ProtectedRouterProps) => {
-    const staff = useSelector((state: RootState) => state.account.staff)
+    const staff = useSelector((state: RootState) => state.account.logged)
     const dispatch = useDispatch()
 
     // restore session from local storage
     useEffect(() => {
         if (AccountService.getUser()) {
-            dispatch(setStaff(AccountService.getUser()))
+            dispatch(setLogged(AccountService.getUser()))
         }
     }, [dispatch])
 

@@ -27,7 +27,7 @@ export class ApiUtil {
         const limit = queryKey[2]
         const offset = queryKey[3]
         const order = queryKey[4]
-		const args = query[5]
+		const args = queryKey[5]
 
         return { searchQuery, limit, offset, order, args }
     }

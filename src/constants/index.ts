@@ -18,6 +18,8 @@ export class OrganizationConstant {
 
 export class StaffConstant {
 	static apiUrl = 'user/staff/'
+	static editUrl = 'user/staff/edit/'
+	static addUrl = 'user/staff/add/'
 }
 
 export class CustomerConstant {

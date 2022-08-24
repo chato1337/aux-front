@@ -14,7 +14,7 @@ import { ROLES } from '../../models/User.model.d';
 const SideBar = () => {
 	const location = useLocation()
 	const { t } = useTranslation();
-	const staff = useSelector((state:RootState) => state.account.staff)
+	const staff = useSelector((state:RootState) => state.account.logged)
 
     return (
 		<div className="sidebar-container">

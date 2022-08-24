@@ -4,7 +4,7 @@ import { useMutation } from 'react-query';
 import { organizationService } from '../services/OrgService';
 import { AxiosResponse } from 'axios';
 import { useDispatch, useSelector } from 'react-redux';
-import { setOrganization, setStaff } from '../redux/accountSlice';
+import { setOrganization, setLogged } from '../redux/accountSlice';
 import { useNavigate } from 'react-router-dom';
 import { RootState } from '../redux/store';
 import { AccountService } from '../services/AccountService';
@@ -13,10 +13,10 @@ export const useOrganization = () => {
     const { register, handleSubmit, formState: { errors } } = useForm<Organization>()
     const dispatch = useDispatch()
     const navigate = useNavigate()
-    const staff = useSelector((state: RootState) => state.account.staff)
+    const logged = useSelector((state: RootState) => state.account.logged)
 
     const onSubmit = (data: any) => {
-        const orgData = { ...data, owner: staff?.user.id }
+        const orgData = { ...data, owner: logged?.user.id }
         mutate(orgData)
     }
 
@@ -24,7 +24,7 @@ export const useOrganization = () => {
         onSuccess(data, variables, context) {
             const res: AxiosResponse<OrganizationResponse> = data
             dispatch(setOrganization(res.data.organization))
-            dispatch(setStaff(res.data.staff))
+            dispatch(setLogged(res.data.staff))
             AccountService.removeUser()
             AccountService.store(res.data.staff)
             navigate('/dashboard', {replace: true})

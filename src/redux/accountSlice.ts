@@ -4,33 +4,38 @@ import { Organization } from '../models/Organization.model.d';
 
 
 export interface AccountState {
-    staff: Staff | null,
+    logged: Staff | null,
     organization: Organization | null,
     token: string | null,
+	staffSelected: Staff | null
 }
 
 const initialState: AccountState = {
-    staff: null,
+    logged: null,
     organization: null,
     token: null,
+	staffSelected: null
 }
 
 export const accountSlice = createSlice({
     name: 'account',
     initialState,
     reducers: {
-        setStaff: (state: AccountState, action: PayloadAction<Staff | null>) => {
-            state.staff = action.payload
+        setLogged: (state: AccountState, action: PayloadAction<Staff | null>) => {
+            state.logged = action.payload
         },
         setOrganization: (state: AccountState, action: PayloadAction<Organization | null>) => {
             state.organization = action.payload
         },
         setToken: (state: AccountState, action: PayloadAction<string | null>) => {
             state.token = action.payload
-        }
+        },
+		setStaffSelected: (state: AccountState, action: PayloadAction<Staff | null>) => {
+			state.staffSelected = action.payload
+		}
     }
 })
 
-export const { setStaff, setOrganization, setToken } = accountSlice.actions
+export const { setLogged, setOrganization, setToken, setStaffSelected } = accountSlice.actions
 
 export default accountSlice.reducer

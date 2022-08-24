@@ -9,7 +9,7 @@ import { useNavigate } from "react-router-dom";
 
 const Register = () => {
 	const dispatch = useDispatch();
-	const staff = useSelector((state: RootState) => state.account.staff);
+	const staff = useSelector((state: RootState) => state.account.logged);
 	const navigate = useNavigate();
 
 	useEffect(() => {
@@ -26,7 +26,7 @@ const Register = () => {
 		<div className="register-container">
 			<div className="login-form">
 				<h2>Create an Aux account</h2>
-				<AddUserForm user={ null } />
+				<AddUserForm/>
 			</div>
 		</div>
 	);

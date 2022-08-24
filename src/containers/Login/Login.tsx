@@ -11,7 +11,7 @@ import { USER_STATUS } from "../../models/User.model.d";
 
 const Login = () => {
 	const { register, onSubmit, handleSubmit, errors } = useAuth();
-	const staff = useSelector((state: RootState) => state.account.staff);
+	const staff = useSelector((state: RootState) => state.account.logged);
 	const navigate = useNavigate();
 
 	//redirects in case the staff is logged or send to create a organization

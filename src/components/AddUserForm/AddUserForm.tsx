@@ -5,16 +5,11 @@ import { useTranslation } from 'react-i18next';
 import { Controller } from "react-hook-form";
 import Select, { SingleValue } from 'react-select';
 import { Option } from "../../hooks/useSelect";
-import { Staff } from "../../models/User.model";
 
-type AddUserFormProps = {
-	user: Staff | null
-}
 
-const AddUserForm = ({ user }: AddUserFormProps) => {
+const AddUserForm = () => {
 	const { onSubmit, handleSubmit, register, control, id_types } = useAccount();
-	const userStaff = useSelector((state: RootState) => state.account.staff)
-    const staff = user ? user : userStaff
+    const staff = useSelector((state: RootState) => state.account.staffSelected)
 	const [ t ] = useTranslation()
 
 	return (

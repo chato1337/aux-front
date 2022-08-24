@@ -2,10 +2,11 @@ import { useSelector, useDispatch } from 'react-redux';
 import { RootState } from '../redux/store';
 import { useQuery, useQueryClient } from 'react-query';
 import { organizationService } from '../services/OrgService';
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import { setCount, setModal } from '../redux/settingsSlice';
 import { useModal } from './useModal';
 import { Staff } from '../models/User.model';
+import { setStaffSelected } from '../redux/accountSlice';
 
 export const useUserManagement = () => {
 	const organization = useSelector((state: RootState) => state.account.organization)
@@ -17,17 +18,17 @@ export const useUserManagement = () => {
 	const dispatch = useDispatch()
 	const queryClient = useQueryClient()
 	const { modalIsOpen, closeModal } = useModal()
-	const [ user, setUser ] = useState<Staff | null>(null)
+	const orgId = organization ? organization.id : null
 
 	const { data, isSuccess, isLoading } = useQuery(
-		["user-management", searchQuery, limit, offset, order, organization?.owner.id],
+		["user-management", searchQuery, limit, offset, order, orgId],
 		organizationService.getOrgUser,
 		{ keepPreviousData: true },
 	)
 
 	const handleModal = (user: Staff | null) => {
 		dispatch(setModal(true))
-		setUser(user)
+		dispatch(setStaffSelected(user))
 	}
 
 	    //preload next category
@@ -38,7 +39,7 @@ export const useUserManagement = () => {
 			if (limit + offset <= count && !searchQuery) {
 				const nextOffset = offset + limit;
 				queryClient.prefetchQuery(
-					["user-management", null, limit, nextOffset, order],
+					["user-management", null, limit, nextOffset, order, orgId],
 					organizationService.getOrgUser,
 				);
 			}
@@ -53,6 +54,7 @@ export const useUserManagement = () => {
 		count,
 		order,
 		searchQuery,
+		orgId
 	]);
 
 
@@ -62,7 +64,6 @@ export const useUserManagement = () => {
 		isSuccess,
 		modalIsOpen,
 		closeModal,
-		handleModal,
-		user
+		handleModal
 	}
 }

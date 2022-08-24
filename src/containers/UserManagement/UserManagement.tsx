@@ -9,11 +9,13 @@ import { Staff } from "../../models/User.model";
 import { useDispatch } from 'react-redux';
 import { FORM_OPTION, setActionForm } from "../../redux/settingsSlice";
 import { BiAddToQueue } from "react-icons/bi";
+import LoadingSpinner from "../../components/LoadingSpinner/LoadingSpinner";
 
 const UserManagement = () => {
 	const [t] = useTranslation();
 	const dispatch = useDispatch()
-	const { data, isLoading, isSuccess, modalIsOpen, closeModal, handleModal, user } = useUserManagement()
+	const { data, isLoading, isSuccess, modalIsOpen, closeModal, handleModal } = useUserManagement()
+
 	const handleEdit = (user: Staff) => {
 		dispatch(setActionForm(FORM_OPTION.edit))
 		handleModal(user)
@@ -39,6 +41,9 @@ const UserManagement = () => {
 					<thead>
 						<tr>
 							<th>
+								{ t("id") }
+							</th>
+							<th>
 								{ t("user.first_name") }
 							</th>
 							<th>
@@ -62,10 +67,17 @@ const UserManagement = () => {
 						</tr>
 					</thead>
 					<tbody>
-						{ isLoading && 'loading...' }
+						{ isLoading && (
+							<tr>
+								<td colSpan={8}>
+									<LoadingSpinner />
+								</td>
+							</tr>
+						) }
 						{ isSuccess && (
 							data.results.map((item: Staff) => (
-								<tr key={item.id}>
+								<tr key={ item.id }>
+									<td>{ item.id }</td>
 									<td>{ item.first_name }</td>
 									<td>{ item.last_name }</td>
 									<td>{ item.user?.role?.name }</td>
@@ -83,7 +95,7 @@ const UserManagement = () => {
 			</div>
 			<Pagination />
 			<SimpleModal modalIsOpen={modalIsOpen} closeModal={closeModal}>
-				<AddUserForm user={ user }/>
+				<AddUserForm />
 			</SimpleModal>
 		</div>
 	);

@@ -19,7 +19,7 @@ const Settings = () => {
 	};
 
 	const organization = useSelector((state: RootState) => state.account.organization)
-	const staff = useSelector((state: RootState) => state.account.staff)
+	const staff = useSelector((state: RootState) => state.account.logged)
 
 	return (
 		<div className="module-container settings-container">
@@ -53,7 +53,7 @@ const Settings = () => {
 				</div>
 			</div>
 			<SimpleModal modalIsOpen={modalIsOpen} closeModal={closeModal}>
-				{form === "user" ? <AddUserForm user={ null }/> : <AddOrganizationForm />}
+				{form === "user" ? <AddUserForm /> : <AddOrganizationForm />}
 			</SimpleModal>
 		</div>
 	);

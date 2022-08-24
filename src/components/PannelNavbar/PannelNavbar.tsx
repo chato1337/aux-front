@@ -8,7 +8,7 @@ import { useAuth } from '../../hooks/useAuth';
 
 
 const PannelNavbar = () => {
-	const staff = useSelector((state: RootState) => state.account.staff)
+	const logged = useSelector((state: RootState) => state.account.logged)
 	const { handleLogout } = useAuth()
 
 	return (
@@ -18,7 +18,7 @@ const PannelNavbar = () => {
                     <IoNotificationsCircle size={24}/>
                 </ul>
 				<ul>
-					<Tooltip tooltipName={staff ? `${staff.first_name} ${staff.last_name}` : 'user-error'}>
+					<Tooltip tooltipName={logged ? `${logged.first_name} ${logged.last_name}` : 'user-error'}>
 						<menu>
 							<ul>My profile</ul>
 							<ul onClick={handleLogout}>Logut</ul>

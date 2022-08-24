@@ -22,4 +22,12 @@ export class organizationService {
 			return res.data
 		}
 	}
+
+	static editUser = async (data: any) => {
+		return await axios.put(`${AuxConstants.baseUrl}${StaffConstant.editUrl}`, data)
+	}
+
+	static joinUser = async (data: any) => {
+		return await axios.post(`${AuxConstants.baseUrl}${StaffConstant.addUrl}`, data)
+	}
 }

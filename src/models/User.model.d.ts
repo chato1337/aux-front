@@ -40,7 +40,7 @@ export interface User {
 	id_type: string;
 	identifier: number;
     status: USER_STATUS;
-	organizations: Organization[]
+	organization: Organization[]
 }
 
 export enum ROLES {

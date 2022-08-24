@@ -1,6 +1,6 @@
 import { ChangeEvent, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { setLimit, setSearchQuery } from '../redux/settingsSlice';
+import { setLimit, setSearchQuery, initialLimit } from '../redux/settingsSlice';
 import { RootState } from '../redux/store';
 import { useState } from 'react';
 import { useQueryClient } from 'react-query';
@@ -10,7 +10,7 @@ export const useSearch = (numResults: number | null = null) => {
     const limit = useSelector((state: RootState) => state.settings.limit)
     const count = useSelector((state: RootState) => state.settings.count)
     const [ value, setValue ] = useState(searchQuery ? searchQuery : "")
-    const [ countValue, setCountValue ] = useState(numResults ? numResults : limit)
+    const [ countValue, setCountValue ] = useState(numResults ? numResults : initialLimit)
     const dispatch = useDispatch()
     const queryClient = useQueryClient()
 
@@ -27,12 +27,15 @@ export const useSearch = (numResults: number | null = null) => {
 		setCountValue(numEvent)
 	}
 
+	// set initial state for number of results
     useEffect(() => {
+		// check if page has results
         if (count < limit && count > 0) {
             setCountValue(count)
         }
     }, [count, limit])
 
+	// set quantity of results on change select
     useEffect(() => {
         dispatch(setLimit(countValue))
     }, [countValue, dispatch])

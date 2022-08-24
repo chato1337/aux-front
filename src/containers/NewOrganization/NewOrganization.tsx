@@ -6,7 +6,7 @@ import { useNavigate } from "react-router-dom";
 import { useEffect } from "react";
 
 const NewOrganization = () => {
-	const staff = useSelector((state: RootState) => state.account.staff);
+	const staff = useSelector((state: RootState) => state.account.logged);
 	const navigate = useNavigate();
 
 	useEffect(() => {

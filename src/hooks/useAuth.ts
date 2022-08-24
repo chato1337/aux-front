@@ -5,7 +5,7 @@ import { AccountService } from '../services/AccountService';
 import { AxiosResponse } from 'axios';
 import { UserResponse } from '../models/User.model.d';
 import { useDispatch } from 'react-redux';
-import { setToken, setStaff, setOrganization } from '../redux/accountSlice';
+import { setToken, setLogged, setOrganization } from '../redux/accountSlice';
 import { useNavigate } from 'react-router-dom';
 
 export const useAuth = () => {
@@ -17,15 +17,16 @@ export const useAuth = () => {
         onSuccess(data) {
             const res: AxiosResponse<UserResponse> = data
             // store data into redux state and local storage
-            dispatch(setStaff(res.data.staff))
+            dispatch(setLogged(res.data.staff))
             AccountService.store(res.data.staff)
             dispatch(setToken(res.data.token))
             AccountService.storeToken(res.data.token)
 			//check if have organization
-			if(res.data.staff.user.organizations.length > 0) {
+			if(res.data.staff.user.organization.length > 0) {
+				console.log(res)
 				//store in redux the first org stored
-				dispatch(setOrganization(res.data.staff.user.organizations[0]))
-				AccountService.storeOrganization(res.data.staff.user.organizations[0])
+				dispatch(setOrganization(res.data.staff.user.organization[0]))
+				AccountService.storeOrganization(res.data.staff.user.organization[0])
 			} else {
 				//redirect to create org in case dont have
 				navigate('/organization')
@@ -45,7 +46,7 @@ export const useAuth = () => {
 
     const handleLogout = () => {
         //remove data from localstorage and redux state
-        dispatch(setStaff(null))
+        dispatch(setLogged(null))
         dispatch(setToken(null))
 		dispatch(setOrganization(null))
         AccountService.removeUser()

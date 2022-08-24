@@ -19,12 +19,14 @@ export interface SettingsState {
 	order: string;
 }
 
+export const initialLimit = 10
+
 const initialState: SettingsState = {
 	language: 'en',
 	modal: false,
 	actionForm: FORM_OPTION.create,
 	searchQuery: null,
-	limit: 10,
+	limit: initialLimit,
 	offset: 0,
 	count: 0,
 	order: 'id',
