@@ -1,6 +1,9 @@
 @import '../../styles/variables.scss';
 
 .pannel-nav-container {
+	position: fixed;
+	width: 100%;
+	top: 0;
     menu {
         display: flex;
         justify-content: flex-end;
