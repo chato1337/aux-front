@@ -13,7 +13,14 @@ export interface Product {
     expiration_date: string
     entry_date: string
     is_active: boolean,
-    description: string
+    description: string,
+	brand: string,
+	is_featured: boolean,
+	image: string | null
+}
+
+export interface ProductDTO extends Omit<Product, id> {
+	logo: File
 }
 
 export interface Category {

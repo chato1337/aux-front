@@ -3,7 +3,7 @@ import { useSelector } from 'react-redux';
 import { RootState } from "../../redux/store";
 
 const AddOrganizationForm = () => {
-	const { register, handleSubmit, onSubmit } = useOrganization();
+	const { register, handleSubmit, onSubmit, handleChangeFile } = useOrganization();
 	const organization = useSelector((state: RootState) => state.account.organization)
 
 	return (
@@ -54,6 +54,10 @@ const AddOrganizationForm = () => {
 						defaultValue={organization?.address}
 						{...register("address", { required: true })}
 					/>
+				</div>
+				<div className="form-group">
+					<label htmlFor="logo">logo</label>
+					<input id="logo" type="file" onChange={handleChangeFile} />
 				</div>
 				<button type="submit">{ organization ? 'Edit' : 'Create Org' }</button>
 			</form>

@@ -13,13 +13,14 @@ import { useTranslation } from 'react-i18next';
 import { useSelector } from 'react-redux';
 import { RootState } from '../../redux/store';
 import { FORM_OPTION } from '../../redux/settingsSlice';
+import FileUpload from '../FileUpload/FileUpload';
 
 type AddInventoryFormProps = {
     productData?: Product
 }
 
 const AddInventoryForm = ({ productData = InventoryConstant.defaultValue }: AddInventoryFormProps) => {
-    const { handleSubmit, onSubmit, register, errors, control, isDirty } = useInventory()
+    const { handleSubmit, onSubmit, register, errors, control, isDirty, handleChangeFile, file } = useInventory()
     const { fullData, isSuccessFull } = useSupplier()
     const { fullData: categoryData, isSuccessFull: isSuccessCategory } = useCategory()
     const categories = isSuccessCategory ? CategoryService.genCategoryOpt(categoryData.results) : []
@@ -124,8 +125,21 @@ const AddInventoryForm = ({ productData = InventoryConstant.defaultValue }: AddI
                         min={currentDate}
                         defaultValue={productData.expiration_date}
                         className={ errors.expiration_date ? 'error' : '' }
+						/>
+                </div>
+                <div className="form-group">
+                    <label htmlFor="">brand:</label>
+                    <input
+                        {...register('brand', {required: true})}
+                        defaultValue={productData.brand}
+                        type="text"
+                        className={ errors.description ? 'error' : '' }
                     />
                 </div>
+				<div className="form-group">
+					<label htmlFor="">Is Featured</label>
+					<input defaultChecked={productData.is_featured} type="checkbox" {...register('is_featured', { required: true })} />
+				</div>
                 <div className="form-group">
                     <label htmlFor="">{ t('description') }:</label>
                     <input
@@ -135,7 +149,8 @@ const AddInventoryForm = ({ productData = InventoryConstant.defaultValue }: AddI
                         className={ errors.description ? 'error' : '' }
                     />
                 </div>
-                <button disabled={!isDirty} className='btn btn-success' type="submit">{ actionForm === FORM_OPTION.create ? t('product.add') : t('product.edit') }</button>
+				<FileUpload handleChange={handleChangeFile}/>
+                <button disabled={!isDirty || !Boolean(file)} className='btn btn-success' type="submit">{ actionForm === FORM_OPTION.create ? t('product.add') : t('product.edit') }</button>
             </form>
         </div>
     )

@@ -76,7 +76,10 @@ export class InventoryConstant {
         entry_date: '',
         expiration_date: '',
         supplier: SupplierConstant.defaultSupplier,
-        description: ''
+        description: '',
+		brand: '',
+		is_featured: false,
+		image: ''
     }
 
 }

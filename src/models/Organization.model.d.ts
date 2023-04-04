@@ -10,6 +10,7 @@ export interface Organization {
     email: string
 	//TODO: Enhance with model
 	owner: { id: number }
+	logo: string
 }
 
 export interface OrganizationResponse {
